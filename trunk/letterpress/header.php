@@ -130,8 +130,8 @@ else {
 		<li><a href="/bespoke/" title="BESPOKE">|</a></li>
 		<li><a href="/product-category/emporium" title="EMPORIUM">EMPORIUM</a></li>
 		<li><a href="/product-category/emporium" title="BESPOKE">|</a></li>		
-		<li><a href="/customise/" title="CUSTOMISE">CUSTOMISE</a></li>
-		<li><a href="/customise/" title="CUSTOMISE">|</a></li>				
+		<li><a href="/quote/" title="CUSTOMISE">QUOTE</a></li>
+		<li><a href="/quote/" title="CUSTOMISE">|</a></li>				
 		<li><a href="/wholesale" title="WHOLESALE">WHOLESALE</a></li>
 		<li><a href="/wholesale" title="WHOLESALE">|</a></li>
 		<li><a href="/contact" title="CONTACT">CONTACT</a></li>

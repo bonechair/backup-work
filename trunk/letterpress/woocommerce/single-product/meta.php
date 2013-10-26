@@ -11,11 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $post, $product;
 ?>
-
+<?php $pinterestimage = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
 <ul class="social-icons">
-<li><img src="/wp-content/themes/letterpress/img/pinit.png"><b>SEE PINBOARD</b></li>
+<li><a href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode(get_permalink($post->ID)); ?>&description=<?php the_title(); ?>&media=<?php echo $pinterestimage[0]; ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/pinit.png"></a><b>SEE PINBOARD</b></li>
 <li><img src="/wp-content/themes/letterpress/img/favorite.png"><b>FAVORITE</b></li>
-<li><b>SHARE</b><img src="/wp-content/themes/letterpress/img/pinit2.png"><img src="/wp-content/themes/letterpress/img/facebook.png"><img src="/wp-content/themes/letterpress/img/twitter.png"></li>
+<li><b>SHARE</b>
+<a href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode(get_permalink($post->ID)); ?>&description=<?php the_title(); ?>&media=<?php echo $pinterestimage[0]; ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/pinit2.png"></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink($post->ID)); ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/facebook.png"></a>
+<a href="https://twitter.com/intent/tweet?text=Checkout Letterpress Website&url=<?php echo urlencode(get_permalink($post->ID)); ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/twitter.png"></a>
+</li>
 </ul>
 <div class="product_meta">
 
@@ -32,7 +36,7 @@ global $post, $product;
 
 	<?php
 		$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
-		echo $product->get_tags( ' ', '<span class="tagged_as">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' );
+		echo $product->get_tags( '<br><br>', '<span class="tagged_as">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' );
 	?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>

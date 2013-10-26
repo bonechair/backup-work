@@ -1212,8 +1212,28 @@ ul.social-icons li {
 }
 form.wpcf7-form br {display:none;}
 
-ul.products .add_to_cart_button{
+ul.products .add_to_cart_button, ul.products .price{
 display:none!important;
+}
+ul.products .product-category {
+  width:235px!important;
+  margin-top:10px !important;
+  margin-bottom:10px !important;
+  font-size:2em;
+}
+
+ul.products .product-category:nth-child(3n) {
+  margin-right:0px !important;
+}
+ul.products .type-product {
+  width:227px!important;
+  margin-top:10px !important;
+  margin-bottom:10px !important;
+  font-size:2em;
+  margin-right:40px !important;
+}
+ul.products .type-product:nth-child(3n) {
+  margin-right:0px !important;
 }
 .first-parent {
 
@@ -1256,12 +1276,18 @@ a.first-parent {
 }
 .tagged_as a {
   width:100px;
-  height:35px;
-  background:#6D6D6D;
+  height:18px;
   color:#FFF;
-  padding:3px;
-  margin:0 2px 2px 0;
+  padding:3px 15px 3px 3px;
+  margin:2px 2px 12px 2px;
   text-transform:uppercase;
+  clear:both;
+  display:inline;
+  overflow:hidden;
+}
+.tagged_as a {
+    background: url("/wp-content/themes/letterpress/img/ribbongrey.png") right no-repeat;
+	background-color:#6D6D6D;
 }
 .term-description img{
   float:right;
@@ -1292,4 +1318,19 @@ a.first-parent {
 .woocommerce .woocommerce-breadcrumb:before, .woocommerce-page .woocommerce-breadcrumb:before {
  
 	display:none!important;
+}
+.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3 {
+    font-family: serif;
+	text-transform:uppercase;
+    text-align: center;
+	font-size:0.78em!important;
+	font-weight:normal!important;
+}
+#content div.product form.cart {
+    float: left;
+	margin:20px 0 0 0;
+}
+.quick_view_ultimate_button {
+  position:relative!important;
+  right:-95px!important;
 }
