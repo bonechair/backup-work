@@ -1163,7 +1163,7 @@ box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
 }
 
 .footerbanner {
-    background: url("/wp-content/themes/letterpress/img/footerbanner.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    /*background: url("/wp-content/themes/letterpress/img/footerbannerblack.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
     color: #FFFFFF;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 16px;
@@ -1172,7 +1172,7 @@ box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
     text-transform: uppercase;
     width: 960px;
 	margin:auto;
-	padding:10px 0 10px 0;;
+	padding:10px 0 20px 0;;
 }
 
 .quickview {
@@ -1228,24 +1228,43 @@ display:none!important;
   margin:0px!important;
 
 }
-.first-parent a{
+#sidemenu {
+  width:160px;
+
+}
+a.first-parent {
+  font-family:Verdana;
   display:block;
   background:#917C83;
   color:#FFF;
-  height:16px;
-  padding:0px!important;
-  margin:0px!important;
+  height:15px;
+  width:75px;
+  padding:0px 0 0 2px!important;
+  margin:0px 0 0 0px!important;
   text-transform:uppercase;
   overflow: hidden;
 }
-.second-parent a{
+.second-parent {
+  font-family:Verdana;
+  background:#C8BEC1;
   display:block;
-  background:#917C83;
-  color:#FFF;
+  color:#FFF!important;
+  padding:0px 0 0 28px!important;
+  margin:5px 0 5px 10px!important;  
 }
-.third-parent a{
+.third-parent {
+  font-family:Verdana;
   display:block;
-  background:#917C83;
-  color:#FFF;
+  color:#6E6D6E;
+  font-size:0.9em!important;
   text-transform:lowercase;
+  margin:5px 0 5px 45px!important;    
+
+}
+.term-description img{
+  float:right;
+  margin:10px;
+}
+.woocommerce-ordering {
+  display:none;
 }

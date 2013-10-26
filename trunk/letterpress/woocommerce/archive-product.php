@@ -25,7 +25,7 @@ get_header('shop'); ?>
 <?php
  include(get_template_directory() . "/sidemenu.php");
 ?>
-<div style="float:left;width:80%;margin-top:-35px;"><!--start categories-->
+<div style="float:left;width:80%;margin-top:5px;"><!--start categories-->
 
 		<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 

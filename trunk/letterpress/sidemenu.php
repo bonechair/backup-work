@@ -1,5 +1,4 @@
-<div style="float:left; width:155px; margin-right:24px;"><!--start categories-->
-<div class="grid_2 Left">    
+<div style="float:left;margin-right:24px;"><!--start categories--> 
 
 <div style="clear:both;"></div>
 
@@ -10,13 +9,9 @@
 <?php
 global $post;
 $terms = get_the_terms( $post->ID, 'product_cat' );
-$slug = get_post( $post->ID )->post_name;
-	$emporium = false;
-	$bespoke = false;
-	if ($slug == 'emporium')$emporium = true;
-	if ($slug == 'bespoke')$bespoke = true;
-if($terms) {
+$emporium = false;
 
+if($terms) {
 
 	foreach ($terms as $term) {
 		if($term->name == 'Emporium') {
@@ -25,23 +20,54 @@ if($terms) {
 	}    
 }
 
-if ($emporium == true) {
+
+if ( $emporium && !is_product_category(array('emporium', 'bespoke', 'invitations-bespoke', 'business', 'business-social-bespoke'))) {
 ?>
-	<?php //dynamic_sidebar( 'Left Hand Sidebar Emporium' ); ?>
+<ul id="sidemenu" style="letter-spacing:1px">
+
+<li><h3>FILTER BY</h3></li>
+<ul>
+<li><a href="?orderby=bestsellers">&#9633; BEST SELLERS</a></li>
+<li><a href="?orderby=date">&#9633; NEWEST</a></li>
+</ul>
+
+<li><h3>TAGS</h3></li>
+<ul>
+<?php
+$posttags = get_the_terms( $post->ID, 'product_tag' );
+if ($posttags) {
+  foreach($posttags as $tag) {
+    echo '<li><a href="/product-tag/' . $tag->slug . '/">&#9633; ' . $tag->name . '</li>'; 
+  }
+}
+?>
+</ul>
+
+
+<li><h3>PRICE</h3></li>
+<ul>
+<li><a href="?min_price=0&max_price=25">&#9633; CLASSIC ( From R25 )</a></li>
+<li><a href="?min_price=25&max_price=35">&#9633; DELUXE ( From R35 )</a></li>
+<li><a href="?min_price=35&max_price=45">&#9633; PREMIUM ( From R45 )</a></li>
+<li><a href="?min_price=45&max_price=999999">&#9633; ABOVE</a></li>
+</ul>
+<li>
+<? /**
+<br>
+<?php dynamic_sidebar( 'Left Hand Sidebar Emporium' ); ?>
+</li>
+
+**/
+?>
+</ul>	
 <?php
 }
-else if ($bespoke == true) {
-?>
-	<?php //dynamic_sidebar( 'Left Hand Sidebar Bespoke' ); ?>
-<?php
-}
+
 else {
 ?>
-	<?php //dynamic_sidebar( 'Left Hand Sidebar Bespoke' ); ?>
-<?php
-}
-?>
-<ul id="iceverticalmenu" class="iceverticalmenu">
+
+
+<ul id="sidemenu">
 
 <?php
 $taxonomy     = 'product_cat';
@@ -72,7 +98,7 @@ foreach ($all_categories as $cat) {
 
 <?php   $category_id = $cat->term_id;
 
-        echo '<li class="first-parent"><a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a>';
+        echo '<li><a  class="first-parent" href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a></li>';
 
 
         $args2 = array(
@@ -95,7 +121,7 @@ foreach ($all_categories as $cat) {
 
         if($sub_cats->$sub_category == 0) {
 
-            echo '<li class="second-parent"><a href="'. get_term_link($sub_category->slug, 'product_cat') .'">'. $sub_category->name .'</a></li>';
+            echo '<li><a class="second-parent" href="'. get_term_link($sub_category->slug, 'product_cat') .'">'. $sub_category->name .'</a></li>';
             
 			}
 
@@ -121,7 +147,7 @@ foreach ($all_categories as $cat) {
 
 			if($sub_cats3->$sub_category3 == 0) {
 
-				echo '<li class="third-parent"><a href="'. get_term_link($sub_category3->slug, 'product_cat') .'"> < '. $sub_category3->name .'</a></li>';
+				echo '<li><a class="third-parent"href="'. get_term_link($sub_category3->slug, 'product_cat') .'"> < '. $sub_category3->name .'</a></li>';
 				
 				}
 			}
@@ -138,6 +164,11 @@ foreach ($all_categories as $cat) {
 <?php   } 
  } ?>
 			</ul>
+
+<?php
+}
+?>
+
 	<? /**	
 	<ul id="menu-letterpresssidemenu" class="menu">
 	<li id="menu-item-386" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-386"><a href="/bespoke">BESPOKE</a>
@@ -168,6 +199,4 @@ foreach ($all_categories as $cat) {
 
 
 </div>
-
-</div><!--end categories-->
 </div><!--end categories-->

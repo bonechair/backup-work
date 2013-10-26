@@ -48,11 +48,9 @@
 <?php
 global $post;
 $terms = get_the_terms( $post->ID, 'product_cat' );
-$slug = get_post( $post->ID )->post_name;
-	$emporium = false;
-	if ($slug == 'emporium')$emporium = true;
-if($terms) {
+$emporium = false;
 
+if($terms) {
 
 	foreach ($terms as $term) {
 		if($term->name == 'Emporium') {
@@ -128,10 +126,10 @@ else {
 	<ul class="sf-menu sf-js-enabled sf-shadow"> 
 
 	<li></li>
-		<li><a href="/bespoke" title="BESPOKE">BESPOKE</a></li>
-		<li><a href="/bespoke" title="BESPOKE">|</a></li>
-		<li><a href="/emporium" title="EMPORIUM">EMPORIUM</a></li>
-		<li><a href="/bespoke" title="BESPOKE">|</a></li>		
+		<li><a href="/bespoke/" title="BESPOKE">BESPOKE</a></li>
+		<li><a href="/bespoke/" title="BESPOKE">|</a></li>
+		<li><a href="/product-category/emporium" title="EMPORIUM">EMPORIUM</a></li>
+		<li><a href="/product-category/emporium" title="BESPOKE">|</a></li>		
 		<li><a href="/customise/" title="CUSTOMISE">CUSTOMISE</a></li>
 		<li><a href="/customise/" title="CUSTOMISE">|</a></li>				
 		<li><a href="/wholesale" title="WHOLESALE">WHOLESALE</a></li>

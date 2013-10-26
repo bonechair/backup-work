@@ -97,3 +97,4 @@ add_theme_support( 'woocommerce' );
   'before_title' => '<h1>',
   'after_title' => '</h1>'
 ));
+

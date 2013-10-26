@@ -12,42 +12,31 @@ if(!$_GET['ajax']) {
 <?php wp_pagenavi(); ?>
 
 
-<div style="padding:12px; padding-top:0px; ">
-
-	<div style="float:left; width:650px; margin-right:20px;">	
-	
-		
-	</div>
-	
-	
-	<div style="float:left; width:260px;">	
-	
-	
-	</div>
+<div style="clear:both;"></div>
 
 </div>
+<?php
+global $post;
+$terms = get_the_terms( $post->ID, 'product_cat' );
+$emporium = false;
 
-<!-- DISPLAY ITEMS --> 
-
-<div style="clear:both;"></div>
-
-	
-<div style="clear:both;"></div>
-
-<!-- BOTTOM ELEMENTS -->
-
- <div style="clear:both;"></div>
+if($terms) {
 
 
-<div style="clear:both;"></div>
+	foreach ($terms as $term) {
+		if($term->name == 'Emporium') {
+		  $emporium = true;
+		}
+	}    
+}
 
-<br>
+?>
+<?php if ($emporium == true) {?>
+<div class="footerbanner"><img src="/wp-content/themes/letterpress/img/footerbannerblack.png" width="960"></div>
 
-  
- </div>
-
-
-<div class="footerbanner"></div>
+<?php 
+}
+?>
 <div class="container_12" id="Footer">
  
 <p id="copyrightBar">

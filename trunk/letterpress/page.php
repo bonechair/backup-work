@@ -99,8 +99,7 @@ wp_reset_query();
 <?php get_sidebar(); ?>			
 </div><!--end right column-->
 
-
-	</div>
+</div>
 
 
 

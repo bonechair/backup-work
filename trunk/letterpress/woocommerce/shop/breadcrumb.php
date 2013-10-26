@@ -7,7 +7,11 @@
  * @version     1.6.4
  */
 
+
+ 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+//if ( is_single()  ) { // Exit if accessed directly
 
 global $post, $wp_query;
 
@@ -203,5 +207,7 @@ if ( ( ! is_home() && ! is_front_page() && ! ( is_post_type_archive() && get_opt
 		echo ' (' . __( 'Page', 'woocommerce' ) . ' ' . get_query_var( 'paged' ) . ')';
 
 	echo $wrap_after;
+
+//}
 
 }
