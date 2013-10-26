@@ -1289,3 +1289,7 @@ a.first-parent {
  
 	display:none!important;
 }
+.woocommerce .woocommerce-breadcrumb:before, .woocommerce-page .woocommerce-breadcrumb:before {
+ 
+	display:none!important;
+}

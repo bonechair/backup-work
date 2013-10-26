@@ -76,13 +76,6 @@ add_image_size( 'category-thumb', 300, 9999 ); //300 pixels wide (and unlimited 
 add_theme_support( 'woocommerce' );
 
 
-  register_sidebar(array(
-  'name' => __( 'Left Hand Sidebar Bespoke' ),
-  'id' => 'left-sidebar-bespoke',
-  'description' => __( 'Widgets in this area will be shown on the left-hand side.' ),
-  'before_title' => '<h1>',
-  'after_title' => '</h1>'
-));
  register_sidebar(array(
   'name' => __( 'Left Hand Sidebar Emporium' ),
   'id' => 'left-sidebar-emporium',
@@ -90,11 +83,5 @@ add_theme_support( 'woocommerce' );
   'before_title' => '<h1>',
   'after_title' => '</h1>'
 ));
- register_sidebar(array(
-  'name' => __( 'Left Hand Sidebar Filter' ),
-  'id' => 'left-sidebar-filter',
-  'description' => __( 'Widgets in this area will be shown on the left-hand side.' ),
-  'before_title' => '<h1>',
-  'after_title' => '</h1>'
-));
+
 
