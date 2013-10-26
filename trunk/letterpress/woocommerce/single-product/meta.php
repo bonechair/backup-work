@@ -39,6 +39,8 @@ global $post, $product;
 		echo $product->get_tags( '<br><br>', '<span class="tagged_as">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' );
 	?>
 
+
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 
 </div>
+	<br>

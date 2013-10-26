@@ -27,7 +27,7 @@ if ( $emporium && !is_product_category(array('emporium', 'bespoke', 'invitations
 
 <li><h3>FILTER BY</h3></li>
 <ul>
-<li><a href="#">&#9633; BEST SELLERS</a></li>
+<li><a href="?">&#9633; BEST SELLERS</a></li>
 <li><a href="?orderby=date">&#9633; NEWEST</a></li>
 <li><a href="?orderby=popularity">&#9633; POPULARITY</a></li>
 <li><a href="?orderby=rating">&#9633; RATING</a></li>
