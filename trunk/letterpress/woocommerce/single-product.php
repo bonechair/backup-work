@@ -28,7 +28,7 @@ get_header('shop'); ?>
 <?php
  //include(get_template_directory() . "/sidemenu.php");
 ?>
-<div style="float:left;width:80%;">
+<div style="float:left;width:80%;margin-top:25px;">
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<?php woocommerce_get_template_part( 'content', 'single-product' ); ?>

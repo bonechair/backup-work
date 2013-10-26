@@ -32,7 +32,7 @@ global $post, $product;
 
 	<?php
 		$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
-		echo $product->get_tags( ', ', '<span class="tagged_as">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' );
+		echo $product->get_tags( ' ', '<span class="tagged_as">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' );
 	?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
