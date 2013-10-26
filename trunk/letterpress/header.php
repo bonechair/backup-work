@@ -126,8 +126,8 @@ else {
 	<ul class="sf-menu sf-js-enabled sf-shadow"> 
 
 	<li></li>
-		<li><a href="/bespoke/" title="BESPOKE">BESPOKE</a></li>
-		<li><a href="/bespoke/" title="BESPOKE">|</a></li>
+		<li><a href="/product-category/bespoke/" title="BESPOKE">BESPOKE</a></li>
+		<li><a href="/product-category/bespoke/" title="BESPOKE">|</a></li>
 		<li><a href="/product-category/emporium" title="EMPORIUM">EMPORIUM</a></li>
 		<li><a href="/product-category/emporium" title="BESPOKE">|</a></li>		
 		<li><a href="/quote/" title="CUSTOMISE">QUOTE</a></li>
