@@ -1,0 +1,49 @@
+#banner img{
+	margin-top: -18px;
+	display: block;
+}
+#site-title img { behavior: url(/img/iepngfix.htc) }
+
+#navigation {
+	font-size:90%;
+	font-weight:bold;
+	line-height:100%;
+	margin-bottom:-28px;
+	margin-top:5px;
+	padding:5px 19px 0.5em 0.5em;
+	text-align:right;
+	font-size:13px;
+}
+#navigation a, #navigation a:visited {
+  background-color: #eae3c5;
+  color: black;
+  padding: .5em;
+  padding-left: .9em;
+  padding-right: .9em;
+  margin-right: 5px;
+  text-decoration: none;
+  display: block;
+  height: 25px;
+  width: 70px;
+ text-align:center; 
+}
+#navigation a:hover, #navigation a:visited:hover {
+  text-decoration: underline;
+}
+#navigation .selected a{ 
+
+  background-color: white;
+  color: black;
+  padding: .5em;
+  padding-left: .9em;
+  padding-right: .9em;
+  margin-right: 5px;
+  text-decoration: none;
+  display: block;
+  height: 25px;
+  width: 70px;
+ text-align:center; 
+}
+#main {
+	height:400px;
+}
