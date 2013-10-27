@@ -12,8 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $post, $woocommerce, $product;
 
 ?>
-<div class="images">
 
+<div class="images">
+			
 	<?php
 		if ( has_post_thumbnail() ) {
 
@@ -30,7 +31,16 @@ global $post, $woocommerce, $product;
 			} else {
 				$gallery = '';
 			}
-
+			preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'], $matches);
+			if (count($matches)>1){
+			//ie
+			}
+			else {
+			?>
+			<?php $pinterestimage = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
+				<a href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode(get_permalink($post->ID)); ?>&description=<?php the_title(); ?>&media=<?php echo $pinterestimage[0]; ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/pinit-big.png" class="pinit-ribbon"></a>
+			<?php
+			}
 			//echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" class="woocommerce-main-image zoom" title="%s"  rel="prettyPhoto' . $gallery . '">%s</a>', $image_link, $image_title, $image ), $post->ID );
 			echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" class="woocommerce-main-image zoom" title="%s"  rel="prettyPhoto">%s</a>', $image_link, $image_title, $image ), $post->ID );
 

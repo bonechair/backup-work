@@ -49,7 +49,7 @@ get_header(); ?>
 <div class="clearfix"></div>
 </div>
 
-<?php get_search_form(); ?>
+<?php //get_search_form(); ?>
 
 </div>
 

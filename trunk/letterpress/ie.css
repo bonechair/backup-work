@@ -1,0 +1,11 @@
+
+
+#searchsubmit {
+  height: 24px;
+  width: 29px;
+  cursor: pointer;
+  border: none;
+  margin: 0 8px 0 0;
+  float:left;
+  background: url(/wp-content/themes/letterpress/img/search_box.png) no-repeat left top;
+}

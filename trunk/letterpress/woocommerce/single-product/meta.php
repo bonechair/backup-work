@@ -14,7 +14,38 @@ global $post, $product;
 <?php $pinterestimage = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
 <ul class="social-icons">
 <li><a href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode(get_permalink($post->ID)); ?>&description=<?php the_title(); ?>&media=<?php echo $pinterestimage[0]; ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/pinit.png"></a><b>SEE PINBOARD</b></li>
-<li><img src="/wp-content/themes/letterpress/img/favorite.png"><b>FAVORITE</b></li>
+
+<li>
+<script type="text/javascript"> 
+	function bookmark(title, url)
+		{
+	   if(document.all)
+		{ // ie
+		  window.external.AddFavorite(url, title);
+			} 
+	   else if(window.chrome)
+			{ // chrome
+			alert("The Chrome Browser Does Not Allow Direct Bookmarking. Press Ctrl-D to Bookmark This Page."); 				
+			}
+	   else if(window.opera && window.print) 
+			{ // opera
+			alert("The Opera Browser Does Not Allow Direct Bookmarking. Press Ctrl-D to Bookmark This Page."); 				
+			}
+	   else if(navigator.userAgent.indexOf("Safari") > -1) 
+			{ // safari
+			alert("The Safari Browser Does Not Allow Direct Bookmarking. Press Ctrl-D to Bookmark This Page."); 				
+			}
+		else if(window.sidebar) 
+		{ // firefox
+			alert("The Firefox Browser No Longer Allows Direct Bookmarking. Press Ctrl-D to Bookmark This Page."); 				
+			}
+	   else
+			{ // others
+			alert("Your browser does not allow direct bookmarking. Press Ctrl-D to Bookmark This Page."); 				
+			}
+		}
+</script>
+<a href="javascript:bookmark('<?php the_title(); ?>', '<? echo get_permalink($post->ID); ?>')" class="bookmark"><img src="/wp-content/themes/letterpress/img/favorite.png"></a><b>FAVORITE</b></li>
 <li><b>SHARE</b>
 <a href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode(get_permalink($post->ID)); ?>&description=<?php the_title(); ?>&media=<?php echo $pinterestimage[0]; ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/pinit2.png"></a>
 <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink($post->ID)); ?>" target="_blank"><img src="/wp-content/themes/letterpress/img/facebook.png"></a>

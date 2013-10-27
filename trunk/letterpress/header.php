@@ -21,21 +21,16 @@
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-	
+	<link href="<?php echo get_template_directory_uri(); ?>/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />	
 	
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
 
 	<?php wp_head(); ?>
-	<!--[if IE 6]>
-	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/ie6.css" />
-	<![endif]-->
-	<!--[if IE 7]>
-	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/ie7.css" />
-	<![endif]-->
- 	<!--[if IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/ie8.css" />
+	
+	<!--[if gte IE 8]>
+		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/ie.css" />
 	<![endif]-->
 </head>
 
@@ -135,7 +130,7 @@ if ( !is_user_logged_in() ) {
 		<ul class="sf-menu sf-js-enabled sf-shadow"> 
 			<form action="/" class="searchform" id="searchform" method="get" role="search">
 				<div>
-					<label for="s" class="screen-reader-text">Search for:</label>
+					<label for="s" class="screen-reader-text"></label>
 					<input type="text" id="s" name="s" value="">
 					<input type="submit" value="" id="searchsubmit">
 				</div>

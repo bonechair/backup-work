@@ -54,7 +54,9 @@ if (is_product_category()){
     // get the image URL
     $image = wp_get_attachment_url( $thumbnail_id ); 
     // print the IMG HTML
-    echo '<img src="'.$image.'" alt="" width="762" height="365" />';
+    if (file_exists($image)) {
+	  echo '<img src="'.$image.'" alt="" width="762" height="365" />';
+    }
 }
 
 	?>
