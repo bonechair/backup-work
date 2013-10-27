@@ -20,7 +20,20 @@ get_header(); ?>
 ?>
 	<div class="kontent">	<!--start middle column-->
 	
+	<?php
+	if($_GET['quote'] != '') {
+
+	?>
+		<script>
+		  jQuery( "span.description" ).html( "<p>All new content. <em>You bet!</em></p>" );
+		</script>
+	<?php
+	}
+	else {
+	?>
 	<h2><?php the_title(); ?></h2>
+	<?php }
+	?>
 <!-- END ShopperPress Slider -->
 
 <div class="frontcontent">
@@ -43,9 +56,9 @@ wp_reset_query();
 
 ?>
 
-					<footer class="entry-meta">
-						<?php edit_post_link( __( 'Edit', 'letterpress' ), '<span class="edit-link">', '</span>' ); ?>
-					</footer><!-- .entry-meta -->
+<footer class="entry-meta">
+	<?php edit_post_link( __( 'Edit', 'letterpress' ), '<span class="edit-link">', '</span>' ); ?>
+</footer><!-- .entry-meta -->
 <div class="clearfix"></div></div>
 
 
