@@ -42,7 +42,7 @@ global $post, $product;
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 
-
+	<br style="both:clear;">
 	<img src="/wp-content/themes/letterpress/img/product-badge.png" class="product-badge">
 	
 </div>
