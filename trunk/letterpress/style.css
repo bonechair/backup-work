@@ -1390,3 +1390,17 @@ a.first-parent {
 .type-product {
   width:960px!important;
 }
+#qaplus_searchform {
+  display:none;
+}
+#searchform {
+  margin:4px 0 0 0;
+}
+#searchsubmit {
+  height: 24px;
+  width: 29px;
+  cursor: pointer;
+  border: none;
+  margin: 0 8px 0 0;
+  background: url(/wp-content/themes/letterpress/img/search_box.png) no-repeat left top;
+}

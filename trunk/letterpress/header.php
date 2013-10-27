@@ -137,7 +137,7 @@ if ( !is_user_logged_in() ) {
 				<div>
 					<label for="s" class="screen-reader-text">Search for:</label>
 					<input type="text" id="s" name="s" value="">
-					<input type="submit" value="Search" id="searchsubmit">
+					<input type="submit" value="" id="searchsubmit">
 				</div>
 			</form>	
 		</ul>
