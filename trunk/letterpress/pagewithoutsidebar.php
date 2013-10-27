@@ -16,7 +16,7 @@ get_header(); ?>
 
 <!--<br /><br /> -->
 <?php
- include("sidemenu.php");
+ if(!$_GET['ajax'])include("sidemenu.php");
 ?>
 	<div class="kontent">	<!--start middle column-->
 	

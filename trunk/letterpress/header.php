@@ -76,7 +76,9 @@ else {
 
 }
 else {
+if(!$_GET['ajax']){
 ?>	
+
 	
 	<div class="grid_7" id="Logo">
 
@@ -90,6 +92,7 @@ else {
 <div id="letterpresstext"></div>
 <div id="Logoright"></div>
 <?php
+}
 }
 ?>	
 
