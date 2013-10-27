@@ -18,7 +18,7 @@ get_header(); ?>
 <?php
  include("sidemenu.php");
 ?>
-	<div style="float:left; width:589px; margin-right:20px;">	<!--start middle column-->
+	<div class="kontent">	<!--start middle column-->
 	
 	
  
