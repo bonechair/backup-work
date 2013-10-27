@@ -97,6 +97,6 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 10 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 30 );
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 40 );
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 50 );
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 60 );
+//add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 40 );
+//add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 50 );
+//add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 60 );
