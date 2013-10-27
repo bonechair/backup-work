@@ -41,9 +41,31 @@ global $post, $product;
 
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
+	<br>
+	<div class="co">
+	<a class="fancybox quick_view_ultimate_click tag" data-link="/quote/" id="33">GET A QUOTE</a>
+	</div>
+	
+<?php
+global $post;
+$terms = get_the_terms( $post->ID, 'product_cat' );
+$emporium = false;
 
+if($terms) {
+
+	foreach ($terms as $term) {
+		if($term->name == 'Emporium') {
+		  $emporium = true;
+		}
+	}    
+}
+
+if ($emporium) {
+?>	
 	<br style="both:clear;">
 	<img src="/wp-content/themes/letterpress/img/product-badge.png" class="product-badge">
-	
+<?php
+}
+?>	
 </div>
 	<br>

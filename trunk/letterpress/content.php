@@ -13,7 +13,7 @@
 			<?php the_post_thumbnail(); ?>
 		</div>
 		<?php endif; ?>
-	<h2><a title="The Art of Letterpress" href="<?php the_permalink(); ?>">The Art of Letterpress</a></h2>
+	<h2><a title="The Art of Letterpress" href="<?php the_permalink(); ?>"><?php echo the_title() ?></a></h2>
 	
 	<div class="post-date"><em><?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?><?php //comments_popup_link( '<span class="leave-reply">' . __( 'Leave a comment', 'lightsites' ) . '</span>', __( 'One comment so far', 'lightsites' ), __( 'View all % comments', 'lightsites' ) ); ?></em></div>
 	<br>

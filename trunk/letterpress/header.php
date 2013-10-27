@@ -100,15 +100,18 @@ if(!$_GET['ajax']){
     <div class="grid_12" id="Nav" style="margin-bottom:20px; padding-bottom:0px;">
 
 	
-<?php if ( !is_user_logged_in() ) {
+<?php 
+/**
+if ( !is_user_logged_in() ) {
+
 ?>
 
 				<div style="float:right">
 				<ul class="sf-menu sf-js-enabled sf-shadow"> 
-				<?php /**
+
 				<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_site_url()?>/wp-login.php?action=register&redirect_to">Register Page</a></li>
 				<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_site_url()?>/wp-login.php?action=register&redirect_to"> | </a></li>
-				**/ ?>
+
 				<li class="menu-item menu-item-type-post_type menu-item-object-page"><?php echo wp_loginout(get_site_url())?></li>
 				</ul>
 				</div>
@@ -125,7 +128,20 @@ if(!$_GET['ajax']){
 				</div>
 <?php
 }			
+**/
 	?>
+	
+	<div style="float:right">
+		<ul class="sf-menu sf-js-enabled sf-shadow"> 
+			<form action="/" class="searchform" id="searchform" method="get" role="search">
+				<div>
+					<label for="s" class="screen-reader-text">Search for:</label>
+					<input type="text" id="s" name="s" value="">
+					<input type="submit" value="Search" id="searchsubmit">
+				</div>
+			</form>	
+		</ul>
+	</div>	
 	<ul class="sf-menu sf-js-enabled sf-shadow"> 
 
 	<li></li>
