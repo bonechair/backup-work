@@ -42,5 +42,6 @@ global $post, $product;
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 
+	<span class="fancybox quick_view_ultimate_button quick_view_ultimate_click" data-link="/quote/" id="33">GET A QUOTE</span>
 </div>
 	<br>

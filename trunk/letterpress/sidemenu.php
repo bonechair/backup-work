@@ -9,14 +9,23 @@
 <?php
 global $post;
 $terms = get_the_terms( $post->ID, 'product_cat' );
-$emporium = false;
+$emporium = 0;
+$beskope = 0;
 
 if($terms) {
 
 	foreach ($terms as $term) {
+		if($term->name == 'Bespoke') {
+		
+			$beskope = 1;
+			
+		}	
 		if($term->name == 'Emporium') {
-		  $emporium = true;
+		
+		  $emporium = 1;
+		  
 		}
+
 	}    
 }
 
@@ -100,6 +109,9 @@ foreach ($all_categories as $cat) {
 
 <?php   $category_id = $cat->term_id;
 
+if($emporium == 1 && $category_id == 25)continue;
+if($beskope == 1 && $category_id == 21)continue;
+
         echo '<li><a  class="first-parent" href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a></li>';
 
 
@@ -125,7 +137,7 @@ foreach ($all_categories as $cat) {
 
             echo '<li><a class="second-parent" href="'. get_term_link($sub_category->slug, 'product_cat') .'">'. $sub_category->name .'</a></li>';
             
-			}
+		}
 
 
 		  $category_id3 = $sub_category->term_id;
