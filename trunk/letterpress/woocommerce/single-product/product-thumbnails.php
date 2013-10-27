@@ -15,6 +15,8 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 if ( $attachment_ids ) {
 	?>
+	<br>
+	<h2>More Views</h2>
 	<div class="thumbnails"><?php
 
 		$loop = 0;
