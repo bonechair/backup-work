@@ -1387,3 +1387,6 @@ a.first-parent {
 .product-badge {
   margin:50px 0 0 0;
 }
+.type-product {
+  width:960px!important;
+}
