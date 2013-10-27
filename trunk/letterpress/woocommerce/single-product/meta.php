@@ -41,9 +41,9 @@ global $post, $product;
 
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
-	<br>
-	<div class="co">
-	<a class="fancybox quick_view_ultimate_click tag" data-link="/quote/" id="33">GET A QUOTE</a>
-	</div>
+
+
+	<img src="/wp-content/themes/letterpress/img/product-badge.png" class="product-badge">
+	
 </div>
 	<br>
