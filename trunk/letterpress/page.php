@@ -82,6 +82,11 @@ while ( have_posts() ) : the_post();
   <div class="post">
   <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><br>
   <small><?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></small> 
+  		<?php if ( has_post_thumbnail()) : ?>
+		<div class="entry-thumbnail">
+			<?php the_post_thumbnail(); ?>
+		</div>
+		<?php endif; ?>
 </div>
 <div class="sidebar-post" style="margin-top:5px;"><p>
 <?php the_excerpt(); ?></p>

@@ -42,7 +42,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 	
-	<img src="/wp-content/themes/letterpress/img/quickview.png" style="width:68px;height:20px;" class="fancybox quick_view_ultimate_button quick_view_ultimate_click"   data-link="<?php the_permalink(); ?>">
+	<img src="/wp-content/themes/letterpress/img/quickview.png" class="fancybox quick_view_ultimate_button quick_view_ultimate_click quickview_end"   data-link="<?php the_permalink(); ?>">
 	
 	<a href="<?php the_permalink(); ?>">		<?php
 			/**

@@ -1427,3 +1427,10 @@ a.first-parent {
   position:relative!important;
   margin:10px -2px 0 0;
 }
+.quickview_end {
+    height: 23px!important;
+    margin-left: 160px!important;
+    position: absolute!important;
+    width: 68px!important;
+    cursor: pointer!important;
+}
