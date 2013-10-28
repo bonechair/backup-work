@@ -57,6 +57,8 @@ if (is_product_category()){
     if (file_exists($image)) {
 	  echo '<img src="'.$image.'" alt="" width="762" height="365" />';
     }
+	
+
 }
 
 	?>

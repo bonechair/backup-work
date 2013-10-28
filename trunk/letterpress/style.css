@@ -1203,14 +1203,6 @@ box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
 	padding:10px 0 20px 0;;
 }
 
-.quickview {
-   background: url("/wp-content/themes/letterpress/img/quickview.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-   height: 25px;
-   width:70px;
-   margin:5px 0 0 0;
-   position:relative;
-   float:right;
-}
 ul.products li {
 
   width:150px!important;
@@ -1362,10 +1354,7 @@ a.first-parent {
     float: left;
 	margin:20px 0 0 0;
 }
-.quick_view_ultimate_button {
-  position:relative!important;
-  right:-95px!important;
-}
+
 .product_meta .fancybox{
   
   clear:both;

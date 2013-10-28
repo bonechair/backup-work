@@ -41,8 +41,10 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
-	<a href="<?php the_permalink(); ?>">
-		<?php
+	
+	<img src="/wp-content/themes/letterpress/img/quickview.png" style="width:68px;height:20px;" class="fancybox quick_view_ultimate_button quick_view_ultimate_click"   data-link="<?php the_permalink(); ?>">
+	
+	<a href="<?php the_permalink(); ?>">		<?php
 			/**
 			 * woocommerce_before_shop_loop_item_title hook
 			 *
@@ -51,9 +53,11 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			 */
 			do_action( 'woocommerce_before_shop_loop_item_title' );
 		?>	
-	</a>
 	
+		</a>
+
 	<a href="<?php the_permalink(); ?>">
+
 
 
 		<h3><?php the_title(); ?></h3>

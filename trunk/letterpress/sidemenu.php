@@ -109,8 +109,8 @@ foreach ($all_categories as $cat) {
 
 <?php   $category_id = $cat->term_id;
 
-if($emporium == 1 && $category_id == 25)continue;
-if($beskope == 1 && $category_id == 21)continue;
+if($emporium == 1 && $category_id == 32)continue;
+if($beskope == 1 && $category_id == 18)continue;
 
         echo '<li><a  class="first-parent" href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a></li>';
 
