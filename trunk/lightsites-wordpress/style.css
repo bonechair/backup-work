@@ -5,7 +5,7 @@ Description: My Webdesign Portfolio
 Version: 1.0
 Author: Louis Stoltz
 Author URI: lightsites.co.za
-#705D20*/
+*/
 
 body {
 font-family:'Philosopher',Georgia;
@@ -13,11 +13,11 @@ font-size:95%;
 margin:0;
 min-width:997px;
 padding:0;
-background:white url(/wp-content/themes/lightsites-wordpress/img/tile-body.jpg) repeat fixed 0 0;
-color: #BD3E51;
+background:white url(/wp-content/themes/lightsites-wordpress/img/tile.jpg) repeat fixed 0 0;
+color: #705D20;
 }
 h1 {
-color:orange;
+color:#FFF;
 font-family:'Philosopher',Georgia;
 font-size:47px;
 font-weight:bold;
@@ -52,7 +52,7 @@ padding:0;
 
 .archive-meta p {
   margin: 0 0 20px 0;
-  color:#705D20;
+  color:#000;
   font-size:15px;
   font-weight:bold;
 }
@@ -75,10 +75,12 @@ a, a:visited {
 color:orange;
 text-decoration:none;
 }
+.wp-pagenavi a, .wp-pagenavi span {
+    border: 1px solid #000000!important;
+    color:#000!important;
+}
 #header {
-background:orange url(/wp-content/themes/lightsites-wordpress/img/tile.jpg) repeat scroll 0 0;
 width:100%;
-border-bottom: 2px dashed #FFFFFF;
 }
 #header-container {
 color:white;
@@ -258,7 +260,7 @@ box-shadow: 0px 0px 9px #000000;
 
 background:#FFF none repeat scroll 0 0;
 text-align:left;
-color:#BD3E51;
+color:#000;
 display:block;
 height:auto;
 margin:7px 0 20px 0;
@@ -266,7 +268,7 @@ width:95%;
 padding:5px 15px 15px 15px;
 }
 .portfolio-text p {
-font-family: 'Philosopher',Georgia;
+font-family: Verdana;
 font-size: 25px;
 margin: 15px 15px 15px 2px;
 padding-bottom: 5px;
@@ -285,6 +287,7 @@ border-radius: 1px;
 -moz-box-shadow: 0px 0px 9px #000000;
 -webkit-box-shadow: 0px 0px 9px #000000;
 box-shadow: 0px 0px 9px #000000;
+margin: 0 0 10px 0;
 }
 #contact-form {
 background:#FCF6E6 none repeat scroll 0 0;

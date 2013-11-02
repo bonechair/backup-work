@@ -47,17 +47,18 @@
 
       <div id='header'>
 		  <div id='header-container'>
+<? /**
 			<div id='site-title'><a href="/"><img src="/wp-content/themes/pennyauctions-wordpress/img/logo.png" alt="pennyauctions" /></a></div>
-			<div id='site-subtitle'>Penny Auctions for Charity</div>
+			<div id='site-subtitle'>Competition Fundraisers</div>
 			<div id='navigation'>
 					<span class="separator"> | </span>	<div <?php if (is_front_page()) echo 'class="selected"'; ?>><a href="/">Fundraiser</a></div>
-<? /**
+
 					<span class="separator"> | </span>	<div <?php if (is_category( 'services' )) echo 'class="selected"'; ?>><a href="/capetown-phpdeveloper/services">Create your own website charity website for free</a></div>
 					<span class="separator"> | </span>	<div <?php if (is_category( 'pennyauctions-blog' )) echo 'class="selected"'; ?>><a href="/capetown-phpdeveloper/pennyauctions-blog/" style="width:120px;">Blog</a></div>
-**/
-?>
+
 				    <span class="separator"> | </span>	<div <?php if (is_page( 'contact-us' )) echo 'class="selected"'; ?>><a href="/contact-us">Contact</a></div>
 			</div>
+**/?>
 		  </div>
       </div>
 

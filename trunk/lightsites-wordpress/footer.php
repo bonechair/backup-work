@@ -7,9 +7,7 @@
  *
  */
 ?>
-
-<?php wp_pagenavi(); ?>
-
+	<?php wp_pagenavi(); ?>
 </div><!-- #main -->	
 <?php get_sidebar(); ?>
 	
