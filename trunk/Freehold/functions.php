@@ -147,6 +147,7 @@ function pyre_init() {
 
 	register_taxonomy('portfolio_type', 'portfolio', array('hierarchical' => true, 'label' => 'Types', 'query_var' => true, 'rewrite' => true));
 	register_taxonomy('property_type', 'property', array('hierarchical' => true, 'label' => 'Property Type', 'query_var' => true, 'rewrite' => true));
+	register_taxonomy('property_suburb', 'property', array('hierarchical' => true, 'label' => 'Property Suburb', 'query_var' => true, 'rewrite' => true));
 }
 
 

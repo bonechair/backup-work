@@ -11,7 +11,7 @@ get_header(); ?>
 	
 	//$distr = "'South Africa','Stellenbosch', 'Gordons Bay','Drakensberg','Strand','Wilderness','Somerset West','West Coast National Park','Swellendam', 'Krugersdorp','Durbanville','Kommetjie','Bellville','Cape Town','Garden Route','Bloubergstrand','Cape Peninsula','Simons Town','City Bowl','Hermanus','George','Knysna','Jeffreys Bay','Western Cape','Atlantic Seaboard North','Mossel Bay','Southern Suburbs','South Peninsula','Cape Winelands'";
 	//$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 AND `district` IN (" . $distr . ") LIMIT 10";
-	$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 LIMIT 10";
+	$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 LIMIT 20";
 	$myrows = $wpdb->get_results( $sql );
 	
 	foreach ($myrows as $row) {
@@ -67,16 +67,16 @@ get_header(); ?>
 	
 	$code = $row->code;
 	$name = wp_strip_all_tags($row->name);
+	
+	$slug = str_replace("-"," ", $type);
+	$slug = strtolower($type);
+	
 
 	$region = wp_strip_all_tags($row->region);
 	$town = wp_strip_all_tags($row->town);
 	$district = wp_strip_all_tags($row->district);
 	$hits = wp_strip_all_tags($row->hits);
 	$grading = wp_strip_all_tags($row->grading);
-
-	$permalink = $regions . "-" . $town . "-" . $district . "-" . $type;
-	$slug = str_replace("-"," ", $permalink);
-	$slug = strtolower($type);
 	
 	$price = $row->price;
 	
@@ -104,12 +104,11 @@ get_header(); ?>
 	
 		$my_post = array(
 		  'post_title'    => $name,
-		  'post_name'     => $slug,
 		  'post_content'  => $description,
 		  'post_excerpt'  => $excerpt,
 		  'post_status'   => 'publish',
 		  'post_author'   => 1,
-		  'post_type'     => 'property'
+		  'post_type' => 'property'
 		);
 
 			// Insert the post into the database
