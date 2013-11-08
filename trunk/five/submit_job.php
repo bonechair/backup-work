@@ -59,11 +59,14 @@ echo "<option value='".$a_kw."' >".$currency_symbol." ".$a_kw."</option> ";
 </select>
 </div>
 </div>
+<? /**
 <div class="field">
 <label><?PHP echo $lang['LINK']?>:<span class="mandatory">*</span> <?PHP echo $lang['LINK_TO_WEB']?> http://www.example.com.</label>
 <div class="fieldInput" id="phone">
 <input class="textfield"  name="link" type="text" />
 </div></div>
+**/
+?>
 <div class="field">
 <label><?PHP echo $lang['VIDEO']?> <?PHP echo $lang['LINK']?>:<span class="mandatory">*</span> <?PHP echo $lang['LINK_TO_VIDEO']?> http://www.youtube.com/v/OVNZ3rX4a54</label>
 <div class="fieldInput" id="phone">

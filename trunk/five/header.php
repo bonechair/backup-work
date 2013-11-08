@@ -201,9 +201,10 @@ document.cookie=cookieName+"="+cookieText+"; ";
 <tr><td>
 <input type="submit" name="register" id="submit" class="fader" value="<?PHP echo $lang['REGISTER']?>"/></td></tr>
 </table></form>
-<?PHP $twitterObj = new EpiTwitter($consumer_key, $consumer_secret);
-echo '<fb:login-button length="long" onlogin="window.location=\''.$siteurl.'/?runfb=1&isuser=1\';"><fb:intl>Connect with Facebook</fb:intl></fb:login-button>&nbsp;&nbsp;';
-echo '<a href="' . $twitterObj->getAuthorizationUrl() . '"><img src="images/twt.gif" alt="sign in with twitter" height="25px" width="190px" border="0"/></a>';
+<?PHP
+// $twitterObj = new EpiTwitter($consumer_key, $consumer_secret);
+//echo '<fb:login-button length="long" onlogin="window.location=\''.$siteurl.'/?runfb=1&isuser=1\';"><fb:intl>Connect with Facebook</fb:intl></fb:login-button>&nbsp;&nbsp;';
+//echo '<a href="' . $twitterObj->getAuthorizationUrl() . '"><img src="images/twt.gif" alt="sign in with twitter" height="25px" width="190px" border="0"/></a>';
 ?>
 </div>
 		<div class="modal_bott"></div>
@@ -231,9 +232,10 @@ echo '<a href="' . $twitterObj->getAuthorizationUrl() . '"><img src="images/twt.
 <td><input class="fader" type="submit" id="submit" name="submit" value="<?PHP echo $lang['LOGIN']?>" /></td>
 </tr></table>
 </form>
-<?PHP $twitterObj = new EpiTwitter($consumer_key, $consumer_secret);
-echo '<fb:login-button length="long" onlogin="window.location=\''.$siteurl.'/?runfb=1&isuser=1\';"><fb:intl>Connect with Facebook</fb:intl></fb:login-button>&nbsp;&nbsp;';
-echo '<a href="' . $twitterObj->getAuthorizationUrl() . '"><img src="images/twt.gif" alt="sign in with twitter" height="25px" width="190px" border="0"/></a>';
+<?PHP 
+//$twitterObj = new EpiTwitter($consumer_key, $consumer_secret);
+//echo '<fb:login-button length="long" onlogin="window.location=\''.$siteurl.'/?runfb=1&isuser=1\';"><fb:intl>Connect with Facebook</fb:intl></fb:login-button>&nbsp;&nbsp;';
+//echo '<a href="' . $twitterObj->getAuthorizationUrl() . '"><img src="images/twt.gif" alt="sign in with twitter" height="25px" width="190px" border="0"/></a>';
 ?>
 		</div>
 		<div class="modal_bott"></div>

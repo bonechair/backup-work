@@ -14,13 +14,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see http://www.gnu.org/licenses/gpl.html.
 */
-
+/**
+ | <a href="terms.php"><?PHP echo $lang['TERMS']?></a> | <a href="faq.php"><?PHP echo $lang['FAQS']?></a>
+ **/
  ?>
 <div class="footer">
     <div class="footer_resize">
-      <p class="lf">&copy; <?PHP echo $lang['COPYRIGHT']?> <?PHP echo $domain?>. Designed by <a href="http://www.phpvalley.com">phpvalley</a></p>
+      <p class="lf">&copy; <?PHP echo $lang['COPYRIGHT']?> <?PHP echo $domain?>. Hosted by <a href="http://www.lightsites.co.za">lightsites.co.za</a></p>
       <div class="lf">
-        <a href="rss"><img src="images/rss.png" width="16" height="16" alt="" border="0"/></a> <a href="contact.php"><?PHP echo $lang['CONTACT_US']?></a> | <a href="terms.php"><?PHP echo $lang['TERMS']?></a> | <a href="faq.php"><?PHP echo $lang['FAQS']?></a> | <a href="privacy.php"><?PHP echo $lang['PRIVACY']?></a> | <a href="./"><?PHP echo $lang['HOME']?></a>
+        <a href="rss"><img src="images/rss.png" width="16" height="16" alt="" border="0"/></a> <a href="contact.php"><?PHP echo $lang['CONTACT_US']?></a> | <a href="privacy.php"><?PHP echo $lang['PRIVACY']?></a> | <a href="./"><?PHP echo $lang['HOME']?></a>
          </div>
       <div class="clr"></div>
     </div>
