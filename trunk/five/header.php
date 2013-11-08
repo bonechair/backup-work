@@ -88,14 +88,14 @@ document.cookie=cookieName+"="+cookieText+"; ";
 
 <div class="logo">
 
-    <img src="images/logo.png" width="279" height="51" alt="" />
+    <a href="/"><img src="images/logo.png" width="279" height="51" alt="" /></a>
     </div>
     <?PHP if (!isset($username)) {?>
     <div class="nav">
     <a class='Button' href='./'><?PHP echo $lang['HOME']?></a>
     <a class='Button' href="#" id="trigger_register"><?PHP echo $lang['REGISTER']?></a>
     <a class='Button' href="#" id="trigger_login"><?PHP echo $lang['LOGIN']?></a>
-    <a class='Button' href='help.php'><?PHP echo $lang['HELP']?></a>
+    <a class='Button' href='contact.php'><?PHP echo $lang['HELP']?></a>
     </div>
 
     <div class="mainbar">
@@ -122,7 +122,7 @@ document.cookie=cookieName+"="+cookieText+"; ";
     <a class='Button' href="submit_job.php"><?PHP echo $lang['POST_A_JOB']?></a>
     <a class='Button' href="profile-<?PHP echo $username ?>"><?PHP echo $lang["MY_PROFILE"]?></a>
     <a class='Button' href="logout.php"><?PHP echo $lang['LOGOUT']?></a>
-    <a class='Button' href='help.php'><?PHP echo $lang['HELP']?></a>
+    <a class='Button' href='contact.php'><?PHP echo $lang['HELP']?></a>
     </div>
     <div class="mainbar">
     <div class="header">

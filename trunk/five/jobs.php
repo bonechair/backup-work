@@ -44,7 +44,8 @@ $(function() {
 </div>
 <p class="viewed"><?PHP echo $lang['VIEWED']?> <?PHP echo "".$times_viewed.""?> Times.</p>
 <div align="center" class="ratings_inner"><?PHP if(($pos_feed) == 0 AND ($neut_feed) == 0 AND ($neg_feed) == 0) {
-echo "<img src=\"images/star.png\" alt=\"\" />$my_user ".$lang['NO_FEEDBACK']."";
+//echo "<img src=\"images/star.png\" alt=\"\" />$my_user ".$lang['NO_FEEDBACK']."";
+echo "<img src=\"images/star.png\" alt=\"\" />";
 }else{
 $allPoints = $pos_feed + $neut_feed + $neg_feed;
 $percent = round(($pos_feed) / $allPoints * 100);
@@ -90,13 +91,18 @@ include("php/tags_content.php");
 ?></div>
 <div class="art-image"><img src="<?PHP echo $image_path ?>"  alt="an image"/></div>
 <h2><?PHP echo $lang['JOB_DESC']?></h2>
+<p><?PHP echo $job_description?></p>
 <?PHP if ($link==''){echo"";}else{ ?>
 <p><?PHP echo $lang['LINK']?>: <a href="<?PHP echo $link ?>"><?PHP echo $link ?></a></p>
+
 <?PHP }
 if ($video_link==''){echo"";}else{ ?>
-<p><?PHP echo $lang['VIDEO']?>: <a href="<?PHP echo $video_link ?>" class="nyroModal"><?PHP echo $video_link ?></a></p>
+<p>
+<iframe id="ytplayer" type="text/html" width="640" height="390"
+  src="<?PHP echo $video_link ?>"
+  frameborder="0"/> </iframe>
 <?PHP } ?>
-<p><?PHP echo $job_description?></p>
+
 <div class="share">
 <u><?PHP echo $lang['SHARE_THIS']?>:</u><div class="clear"></div>
 <a href="http://www.facebook.com/share.php?u=<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id?>.html" target="_blank"><img src="images/facebook-button.png" width="16" height="16" alt="send-to-facebook" border="0"/> Facebook</a><div class="clear"></div>

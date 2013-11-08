@@ -36,8 +36,9 @@ $featured = stripslashes(nl2br($row['featured']));
 $currency = stripslashes(nl2br($row['currency']));
 $currency_symbol = stripslashes(nl2br($row['currency_symbol']));
 $part_description=stripslashes(str_replace('<br />', ' ',($row['part_description'])));
+$tagline=stripslashes(str_replace('<br />', ' ',($row['willdo'])));
 
-$title = "".$domain." - ".$part_description." ";
+$title = "I will " . $tagline." for five dollars - ".$domain;
 }
 
 if($_GET['enter']=="go"){
