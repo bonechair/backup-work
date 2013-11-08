@@ -51,7 +51,7 @@ echo "<div class=\"dialog-box-success1\">
 $to      = $em;
 $subject = " ".$domain." ".$lang["SU_SUBJECT"]."";
 $message = "".$lang["SIGN_UP_EMAIL1"]." ".$site_url.". ".$lang["SIGN_UP_EMAIL2"]." ".$site_url."/verify.php?$activationKey\r\r"."".$lang["SIGN_UP_EMAIL3"]." ".$site_url." Team";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 session_destroy();

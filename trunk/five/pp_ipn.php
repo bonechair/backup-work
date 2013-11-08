@@ -133,7 +133,7 @@ $to      = $custom;
 $subject = "".$lang["PP_SUBJECT"].": ".$job."";
 $message = "Hi! $_POST[$on0]\n Your job: $job ".$lang["PP_EMAIL1"]." $_POST[$on1] on $time\n".$lang["PP_EMAIL2"].".\n".$lang["PP_EMAIL3"]."\n
 The $domain team.";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 

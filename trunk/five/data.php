@@ -24,7 +24,7 @@ $cols = mysql_num_rows($rsdc);
 $page = $_REQUEST['page'];
 
 $start = ($page-1)*$per_page;
-$sql = "select * from suggestions order by id desc limit $start,$per_page";
+$sql = "select * from suggestions WHERE active = 1 order by id desc limit $start,$per_page";
 $rsd = mysql_query($sql);
 ?>
 <?php

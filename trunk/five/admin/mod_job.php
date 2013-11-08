@@ -112,7 +112,7 @@ $email = $row1['email'];
 $to      = $email;
 $subject = "Job Approved!";
 $message = "Hi $username\n\n\nYour job $title has been approved and is now live on $domain\n\nYour job can be found here: $willdo\n\nThanks for using $domain\n\nRegards the $domain team!\n\n\n\nPlease do not reply to this email.";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 }
@@ -140,7 +140,7 @@ $email2 = $row2['email'];
 $to      = $email2;
 $subject = "Job Rejected!";
 $message = "Hi $username\n\n\nUnfortunately your job $title did not meet our high standards and was rejected on $domain\n\nThanks for using $domain\n\nRegards the $domain team!\n\n\n\nPlease do not reply to this email.";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 }

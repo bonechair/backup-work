@@ -251,7 +251,7 @@ mysql_query("UPDATE payment_request SET status = 'paid', date_paid = '".$date_pa
 $to      = $email1;
 $subject = "Payment Sent";
 $message = "We have paid your amount requested $currency_symbol$amount into your paypal account\n\n\nThanks for using $domain\n\nRegards the $domain team!\n\n\n\nPlease do not reply to this email.";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 

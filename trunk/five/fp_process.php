@@ -53,7 +53,7 @@ while($row = mysql_fetch_array($result))
 $to      = $emails;
 $subject = " ".$domain." ".$lang["FP_SUBJECT"]."";
 $message = "".$lang["FORGOT_PASS1"]." ".$domain.". ".$lang["FORGOT_PASS2"]." ".$siteurl."/fp_process.php?$passKey ".$lang["FORGOT_PASS3"]."";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 
     'Reply-To: noreply@'.$domain.'' . "\r\n" .
 

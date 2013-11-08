@@ -198,7 +198,7 @@ $time = date('r');
 $to      = $email;
 $subject = "".$lang["ME_SUBJECT"]."";
 $message = "Hi! $r_id\n".$lang["ME_EMAIL1"]." $siteurl on $time\n".$lang["ME_EMAIL2"].": $s_id\n".$lang["ME_EMAIL3"]."\n\n".$lang["ME_EMAIL4"]."\n$domain";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);}
 

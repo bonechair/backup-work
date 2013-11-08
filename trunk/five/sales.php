@@ -182,7 +182,7 @@ $message = "Hi! $receiver_id\n ".$lang["ACC_EMAIL1"]." $siteurl on $time\n ".$la
 ".$lang["ACC_EMAIL4"]."
 ".$lang["ACC_EMAIL5"]."
 The $domain team.";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 
@@ -216,7 +216,7 @@ $message = "Hi! $receiver_id\n ".$lang["REJECT_EMAIL1"]." $siteurl on $time\n Fr
 ".$lang["REJECT_EMAIL3"]."
 ".$lang["REJECT_EMAIL4"]."
 The $domain team.";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 $title = ''.$lang["RE_SUBJECT"].'';

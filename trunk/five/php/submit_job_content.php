@@ -151,7 +151,7 @@ echo "<div class=\"dialog-box-success5\">
 $to      = $site_email;
 $subject = "New job submission";
 $message = "".$lang["JS_EMAIL1"]." $time\n".$lang["JS_EMAIL2"]."\n";
-$headers = 'From: louis@lightsites.co.za' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 }

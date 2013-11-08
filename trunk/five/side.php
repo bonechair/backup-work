@@ -196,7 +196,7 @@ else {
 $to      = "lightsites@gmail.com";
 $subject = "New suggestion";
 $message = "New Suggestion on five.triplegood.co.za";
-$headers = 'From: louis@lightsites.co.za' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 

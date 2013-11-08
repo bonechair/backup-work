@@ -59,7 +59,7 @@ $time = date('r');
 $to      = $site_email;
 $subject = " ".$lang["PR_SUBJECT"]."";
 $message = "".$lang["PR_EMAIL1"]." $username on $time\n ".$lang["PR_EMAIL2"].": $currency_symbol$amount\n";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 mysql_query("UPDATE members SET balance=balance- '".$amount."' where username='$username'") or die(mysql_error());

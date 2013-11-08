@@ -139,7 +139,7 @@ $to      = $seller_email;
 $subject = "".$lang["JOB_SOLD_SUBJECT"]."";
 $message = "Hi! $seller_id\n Your job: $job ".$lang["PP_EMAIL1"]." $buyer_id on $time\n".$lang["PP_EMAIL2"].".\n".$lang["PP_EMAIL3"]."\n
 The $domain team.";
-$headers = 'From: noreply@'.$domain.'' . "\r\n" .
+$headers = 'From: support@triplegood.co.za' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers);
 
