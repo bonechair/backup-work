@@ -1,0 +1,17 @@
+<?
+if(file_exists('sa.php')){
+    include(file_exists('sa.php'));
+}
+if(file_exists('../sa.php')){
+    include('../sa.php');
+}
+if(file_exists('../../sa.php')){
+    include('../../sa.php');
+}
+if(file_exists('../../../sa.php')){
+    include('../../../sa.php');
+}
+if(file_exists('../../../../sa.php')){
+    include('../../../../sa.php');
+}
+?>

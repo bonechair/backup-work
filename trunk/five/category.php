@@ -1,0 +1,152 @@
+<?PHP  session_start();
+/*
+    
+    PHPValley Micro Jobs Site Script
+    Copyright (C) 2012  Ozgur Zeren (unity100@gmail.com)
+
+    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/gpl.html.
+*/
+
+
+
+include("connect.php");
+$cat =  mysql_real_escape_string($_GET['cat']);
+
+// Get the category id by snipping it from the end of the string :
+$catid_pv = end(explode('-', $cat)); 
+
+// We got the cat id if it exists. If it does, lets snip it from the string
+if(is_numeric($catid_pv))
+{
+
+	$snipat_pv=strlen('-'.$catid_pv);
+
+	$cat = substr($cat,0,strlen($cat)-$snipat_pv);
+	// Get the exact category name to use for searching the jobs with
+	$sql="SELECT catname FROM categories WHERE catid = '".$catid_pv."'";
+
+	$catquery_pv=mysql_query($sql) or die(mysql_error());
+	$catdetails_pv=@mysql_fetch_assoc($catquery_pv);
+	$search_jobs_with_catname_pv=$catdetails_pv['catname'];
+	
+}
+else 
+{
+	// This is an old type url. Lets get the category id, and then redirect to new category url
+	$sql="SELECT catid FROM categories WHERE catname = '".$cat."'";
+
+	$get_catid_query_pv=mysql_query($sql) or die(mysql_error());
+	$get_catid_pv=@mysql_fetch_assoc($get_catid_query_pv);
+
+	// Append the id to end of the url name and redirect : 
+	header ('HTTP/1.1 301 Moved Permanently');
+	header("Location: /category-".$cat.'-'.$get_catid_pv['catid']);
+	die;
+	
+	
+}
+
+$page_name = 'category-'.$cat.'';
+$result = mysql_query("SELECT * FROM sitesettings");
+while($row = mysql_fetch_array($result))
+{
+$title = "".$row["domain"]." - Category: ".stripslashes(str_replace('-', ' ',($cat)))."";
+$rpp = 20; // results per page
+$adjacents = 4;
+$page = intval($_GET["page"]);
+if(!$page) $page = 1;
+$reload = "".$row["site_url"]."/category-".stripslashes(str_replace('-', ' ',($cat)))."";
+}
+include("header.php");
+include("filter.php");
+?>
+<div class="search_title">
+<h3><?PHP echo $lang['CATEGORY']?>: <?PHP  echo $cat;?></h3>
+</div><!-- /# end catrgory title-->
+<?PHP  $job_cost = mysql_real_escape_string($_POST['job_cost']);
+
+
+$sql = "SELECT * FROM jobs,sitesettings WHERE `approved` = 'Yes' AND  category ='".mysql_escape_string($search_jobs_with_catname_pv)."' ORDER BY featured, id desc ";
+if($job_cost){
+$sql = "SELECT * FROM jobs,sitesettings WHERE `approved` = 'Yes' AND  category ='".mysql_escape_string($search_jobs_with_catname_pv)."' AND `job_cost` = '$job_cost' ORDER BY id desc ";
+}
+$result = mysql_query($sql)or die(mysql_error());
+if(mysql_num_rows($result) < 1){
+echo '<div class="dialog-box-information">
+<div class="dialog-left">
+<img src="images/information.png" class="dialog-ico" alt=""/>'.$lang['NO_JOBS'].'</div>
+</div>';
+}
+$tcount = mysql_num_rows($result);
+$tpages = ($tcount) ? ceil($tcount/$rpp) : 1;
+$count = 0;
+$i = ($page-1)*$rpp;
+while(($count<$rpp) && ($i<$tcount)) {
+mysql_data_seek($result,$i);
+while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+$currency = $row['currency'];
+$featured = $row['featured'];
+$category = $row['category'];
+$jobcost = $row['job_cost'];
+$willdo=stripslashes(nl2br($row['willdo']));
+$part_description=stripslashes($row['part_description']);
+$job_description=stripslashes($row['job_description']);
+$username = $row['username'];
+$id = $row['id'];
+$img_path = $row['img_path'];
+$postdate = $row['postdate'];
+$times_viewed = $row['times_viewed'];
+// seo_link_pv function below is in functions/general.php - change that function if you want to change how seo urls are formatted
+$seo=seo_link_pv($willdo);
+$voteup1 = $row['voteup'];
+$votedown1 = $row['votedown'];
+$voting_array1 = mysql_fetch_array(mysql_query("SELECT * FROM `votes` WHERE `ip`='".mysql_real_escape_string($ip)."'"));
+$vote_explode1 = explode(',', $voting_array1['article_id']);
+foreach($vote_explode1 as $vote_ex1){
+$vote_ex1 = explode(":", $vote_ex1);
+$compnum1 = $vote_ex1[0];
+$compvote1 = $vote_ex1[1];
+$compvotearray1[$compnum1] = $compvote1;
+}
+?>
+<div class="art_img"><a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a></div>
+<div class="article">
+<?PHP if ( $featured == yes ) { ?><div class="featured"><img class="job_img" src="images/featured.png" width="71" height="71" alt="" border="0"/></div><?PHP }?>
+<h3><a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['I_WILL']?> <?PHP echo $willdo ?></a></h3>
+<div class="p_desc"><?PHP echo $part_description ?>...<a class="p_des" href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['MORE']?></a></div>
+<div class="crumbs"><?PHP echo $lang['BY']?>~<a href="profile-<?PHP echo $username ?>"><?PHP echo $username ?></a> <?PHP echo $lang['IN']?>~<a href="category-<?PHP echo $category ?>"><?PHP echo $category ?></a> <?PHP echo $lang['ON']?>~<?PHP echo $postdate ?>
+<a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html" title="Click to buy this job"><span class="jobcost"><?PHP echo $currency_symbol ?><?php echo $jobcost?></span></a>
+<div class="fbook"><?PHP if(!$compvotearray1[$id]){?><div class="vote">
+<span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span><span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span>
+                <span id="a1votes_count<?PHP echo $id ?>">
+                <a id=":<?PHP echo $id ?>:1:<?PHP echo $voteup1 ?>:<?PHP echo $votedown1 ?>:" class="vote_up" href="javascript:;">
+                <img src="images/positive.png" width="16" height="16" alt="Up" border="0"title="Vote Up :)"/><?PHP echo $voteup1 ?></a></span>&nbsp;&nbsp;<span id="a2votes_count<?PHP echo $id ?>">
+                <a id=":<?PHP echo $id ?>:2:<?PHP echo $voteup1 ?>:<?PHP echo $votedown1 ?>:" class="vote_down" href="javascript:;">
+                <img src="images/negative.png" width="16" height="16" alt="Down" border="0" title="Vote Down :("/><?PHP echo $votedown1 ?></a>
+                </span></div><?PHP }else{?><div class="vote">
+<span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span><span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span>
+                <span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons voted"></span>
+                <span id="votes_count<?PHP echo $id ?>">
+                <img src="images/voted.png" width="16" height="16" alt="Up" border="0" title="You have already voted for this job"/><a><?PHP echo $voteup1 ?></a></span>&nbsp;&nbsp;<span id="a2votes_count<?PHP echo $id ?>" class="vote_buttons voted">
+                <img src="images/voted_neg.png" width="16" height="16" alt="Down" border="0" title="You have already voted for this job"/><a><?PHP echo $votedown1 ?></a>
+                </span></div><?PHP } ?><a href="http://twitter.com/share" class="twitter-share-button" data-url="<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html" data-count="horizontal" data-via="<?PHP echo $siteurl?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script><iframe src="http://www.facebook.com/plugins/like.php?href=<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html&amp;layout=button_count&amp;show_faces=false&amp;width=120&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;" allowTransparency="true"></iframe></div></div>
+</div><div class="shadow"><img src="images/shadow.png" width="692" height="5" alt="" /></div>
+<?PHP
+$i++;
+$count++;
+}
+}
+?>
+<div class="pagination"><?PHP include("php/pagination_cat.php");
+echo paginate_three($reload, $page, $tpages, $adjacents);?></div>
+</div>
+<?PHP include("side.php"); ?>
+<?PHP include("footer.php"); ?>

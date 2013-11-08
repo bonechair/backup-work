@@ -1,0 +1,168 @@
+/*
+	jQuery Scrolling Tweet Ticker 1.1 (May 2, 2011)
+	Copyright 2011 Scott Langendyk. All Rights Reserved.
+*/
+
+div.tweetticker{
+	width: 100%;
+	display: block;
+	font-family: "Helvetica Neue", Helvetica, Arial;
+}
+
+div.tweetticker-container{
+	background:url(images/container-bg.png) repeat-x center center;
+	position: relative;
+	margin: 0 30px;
+	height: 50px;
+}
+
+div.tweetticker-container-left{
+	background: url(images/container-left.png) no-repeat right center;
+	width: 30px;
+	height: 50px;
+	display: block;
+	position: absolute;
+	left: -30px;
+	top: 0;
+	z-index: 2;
+}
+
+div.tweetticker-container-right{
+	background: url(images/container-right.png) no-repeat left center;
+	width: 30px;
+	display: block;
+	height: 50px;
+	position: absolute;
+	right: -30px;
+	top: 0;
+	z-index: 2;
+}
+
+div.tweetticker-container-content{
+	position: relative;
+	z-index: 3;
+	line-height: 30px;
+	padding: 10px 0;
+	margin: 0 0;
+}
+
+div.tweetticker-username{
+	position: relative;
+	float: left;
+	z-index: 100;
+	padding: 0 5px;
+	color: #FFFFFF;
+	font-size: 14px;
+	letter-spacing: 0.1em;
+	text-shadow: 0 -1px 1px #000000;
+	margin: 0 0 0 -16px;
+}
+
+div.tweetticker-username a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+div.tweetticker-username a:hover{
+	color: #EEEEEE;
+}
+
+div.tweetticker-tweetbox{
+	overflow: hidden;
+	position: relative;
+	background: url(images/tweetbox-bg.png) repeat-x 0 1px;
+	z-index: 100;
+	margin: 0;
+	padding: 0;
+}
+
+div.tweetticker-tweetbox-left{
+	background: url(images/tweetbox-left.png) no-repeat 0 1px;
+	display: block;
+	height: 30px;
+	width: 23px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 150;
+}
+
+div.tweetticker-tweetbox-right{
+	background: url(images/tweetbox-right.png) no-repeat 0 1px;
+	display: block;
+	height: 30px;
+	width: 23px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 150;
+}
+
+div.tweetticker-tweetbox-content{
+	display: block;
+	margin: 0 3px 0 2px;
+	height: 30px;
+	position: relative;
+	z-index: 200;
+}
+
+div.tweetticker-overflow-container{
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+	font-size: 12px;
+	display: block;
+	width: 100%;
+}
+
+ul.tweetticker-tweets-list{
+	position: relative;
+	list-style: none;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+ul.tweetticker-tweets-list li{
+	display: inline;
+	margin: 0 10px;
+	list-style: none;
+	padding: 0;
+	white-space: nowrap;
+}
+
+ul.tweetticker-tweets-list li a{
+	color: #444444;
+}
+
+ul.tweetticker-tweets-list li span.tweetticker-date{
+	font-size: 9px;
+	font-style: italic;
+	color: #666666;
+	position: relative;
+	bottom: 1px;
+}
+
+ul.tweetticker-tweets-list li span.tweetticker-date a{
+	color: inherit !important;
+	margin-right: 5px;
+	text-decoration: none !important;
+	border-bottom: 1px solid #AAAAAA;
+}
+
+div.tweetticker-twitter-link{
+	position: relative;
+	z-index: 200;
+	float: right;
+	margin: 0 -16px 0 0;
+}
+
+div.tweetticker-twitter-link a{
+	background: url(images/twitter-logo.png) no-repeat center center;
+	margin-top:-10px;
+	overflow: hidden;
+	text-indent: -9999px;
+	width: 31px;
+	height: 50px;
+	display: block;
+}

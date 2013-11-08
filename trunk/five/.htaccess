@@ -1,0 +1,21 @@
+
+
+Options +FollowSymlinks
+Options -MultiViews
+RewriteEngine on
+
+RewriteBase /
+
+
+RewriteRule ^tags-(.*)/ tags.php?keyword=$1
+RewriteRule ^tags-(.*) tags.php?keyword=$1
+RewriteRule ^profile-(.*)/ profile.php?username=$1
+RewriteRule ^profile-(.*) profile.php?username=$1	
+RewriteRule ^category-(.*)/ category.php?cat=$1
+RewriteRule ^category-(.*) category.php?cat=$1	
+RewriteRule ^(.*)-([^-]+)\.html jobs.php?id=$2
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+RewriteRule ^([a-z]{2})(?:/)?$ index.php?lang=$1 [NC]
+
