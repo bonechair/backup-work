@@ -232,7 +232,7 @@ onload="load_company_map()"
 			<form method="get" class="searchform" action="<?php echo $purl; ?>">
 				<input type="hidden" name="post_type" value="property" />
 				<label for="s" class="assistive-text"><?php _e('Search','progressionstudios'); ?>:</label>
-				<input type="text" class="field" name="search_keyword" id="s" placeholder="<?php echo of_get_option('search_keyword', 'Enter an address, zip code or city...'); ?>" />
+				<input type="text" class="field" name="search_keyword" id="s" placeholder="<?php echo of_get_option('search_keyword', 'Enter an address, zip code, suburb or city...'); ?>" />
 				<input type="submit" class="submit" name="submit" id="searchsubmit" value="<?php _e('Search','progressionstudios'); ?>" />
 				
 				<div class="clearfix"></div>
@@ -272,7 +272,7 @@ onload="load_company_map()"
 					</div>
 					
 		
-					
+<? /**					
 					<div class="header-advanced-bedbath">
 						<select name="beds"> 
 							<option value="" selected="selected"><?php echo of_get_option('beds_text', 'Beds'); ?></option> 
@@ -313,7 +313,7 @@ onload="load_company_map()"
 							<option value="4000">4000+ <?php echo of_get_option('square_feet_text_small', 'sqft'); ?></option> 
 						</select>
 					</div>
-
+**/ ?>
 					<?php
 					$ptype = get_terms('property_type');
 					if($ptype):
@@ -340,7 +340,8 @@ onload="load_company_map()"
 						</select>
 					</div>
 					<?php endif; ?>
-					
+<?
+/**					
 					<div class="header-prop-typestatus hidden-value-tablet">
 						<select name="status"> 
 							<option value="" selected="selected"><?php echo of_get_option('property_status_text', 'Property Status'); ?></option> 
@@ -350,7 +351,7 @@ onload="load_company_map()"
 							<!--option value="Reduced">Recently Reduced</option--> 
 						</select>
 					</div>
-					
+**/ ?>					
 					<a class="more-search-options" href="<?php echo $purl; ?>"><?php _e('More search options','progressionstudios'); ?></a>
 			
 				</div>
