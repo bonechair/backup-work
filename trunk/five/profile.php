@@ -131,10 +131,10 @@ $compvotearray1[$compnum1] = $compvote1;
 }
 ?>
 <div class="article">
-
+<?PHP if ( $featured == yes ) { ?><div class="featured"><img class="job_img" src="images/featured.png" width="71" height="71" alt="" border="0"/></div><?PHP }?>
 <div class="art_img"><a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a>
 
-<?PHP if ( $featured == yes ) { ?><div class="featured"><img class="job_img" src="images/featured.png" width="71" height="71" alt="" border="0"/></div><?PHP }?>
+
 <h3><a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['I_WILL']?> <?PHP echo $willdo ?></a></h3>
 <div class="clr"></div>
 <?PHP if(!$compvotearray1[$id]){?><div class="vote">
