@@ -448,7 +448,6 @@ margin-bottom:12px;
 .article img {
     padding: 4px;
     border: 1px solid #bbb;
-    margin-top: -29px;
 }
 .content img.ilf {
     margin-right: 16px;
@@ -458,11 +457,7 @@ margin-bottom:12px;
     float: left;
     width: 690px;
 }
-.content .mainbar .article,
-.content .sidebar .gadget {
-    margin: 0;
-    padding: 0 0 16px 0;
-}
+
 .sidebar {
     float: right;
     width: 185px;
@@ -474,12 +469,17 @@ margin-bottom:12px;
     -webkit-border-radius: 7px;
 }
 .article {
-    min-height: 105px;
     background-color: #F5FFF8;
     border: 1px solid #F5FFF8;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+	width:150px;
+	float:left;
+	margin:0 0 10px 10px!important;
+	padding:5px!important;
+	min-height:270px;
+
 }
 .article:hover {
     background-color: #EDFCFF;
@@ -493,18 +493,16 @@ margin-bottom:12px;
     margin-top: 0px;
 }
 .article h3 {
-    margin-left: 145px;
-    margin-bottom: -2px;
     font: bold 15px Arial;
     color: #043C96;
     text-decoration: none;
+	margin: 0 0 5px 0;
+	min-height:
 }
 .article p {
   margin-left: 10px
 }
 .art_img {
-    margin-top: 10px;
-    margin-bottom: -112px;
 }
 .art_img img {
     margin-left: 5px;

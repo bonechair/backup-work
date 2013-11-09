@@ -144,6 +144,7 @@ if($mod_job == 'Yes') {
             }
       else
             {
+header( 'Location: /profile-' . $_SESSION['userName'] ) ;				
 echo "<div class=\"dialog-box-success5\">
 <div class=\"dialog-left\">
 <h3 align=\"center\"><img src=\"images/succes.png\" alt=\"\"/>Thank you!</h3><h3 align=\"center\">Your Job has been submitted for moderation</h3></div>

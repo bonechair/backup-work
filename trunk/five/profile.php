@@ -130,12 +130,14 @@ $compvote1 = $vote_ex1[1];
 $compvotearray1[$compnum1] = $compvote1;
 }
 ?>
-<div class="art_img"><a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a></div>
 <div class="article">
+
+<div class="art_img"><a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a>
+
 <?PHP if ( $featured == yes ) { ?><div class="featured"><img class="job_img" src="images/featured.png" width="71" height="71" alt="" border="0"/></div><?PHP }?>
 <h3><a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['I_WILL']?> <?PHP echo $willdo ?></a></h3>
-<div class="p_desc"><?PHP echo $part_description ?>...<a class="p_des" href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['MORE']?></a></div>
-<div class="profile_crumbs"><?PHP if(!$compvotearray1[$id]){?><div class="vote">
+<div class="clr"></div>
+<?PHP if(!$compvotearray1[$id]){?><div class="vote">
 <span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span><span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span>
                 <span id="a1votes_count<?PHP echo $id ?>">
                 <a id=":<?PHP echo $id ?>:1:<?PHP echo $voteup1 ?>:<?PHP echo $votedown1 ?>:" class="vote_up" href="javascript:;">
@@ -148,17 +150,21 @@ $compvotearray1[$compnum1] = $compvote1;
                 <span id="votes_count<?PHP echo $id ?>">
                 <img src="images/voted.png" width="16" height="16" alt="Up" border="0" title="You have already voted for this job"/><a><?PHP echo $voteup1 ?></a></span>&nbsp;&nbsp;<span id="a2votes_count<?PHP echo $id ?>" class="vote_buttons voted">
                 <img src="images/voted_neg.png" width="16" height="16" alt="Down" border="0" title="You have already voted for this job"/><a><?PHP echo $votedown1 ?></a>
-                </span></div><?PHP } ?><? if ( $username == $_SESSION['userName'] ) {echo ''.$lang['JOB_HAD'].' '.$times_viewed.' '.$lang['VIEWS'].' | <a href="my_jobs.php?act=edit&id='.$id.'" >'.$lang['EDIT_JOB'].'</a> | <a href="my_jobs.php?act=delete&id='.$id.'" onClick="return confirmSubmitt()">'.$lang['DELETE_JOB'].'</a>';}else {?><a class="Button" href="<? echo $seo?>-<? echo $id ?>.html"><?PHP echo $lang['ORDER_NOW']?></a><?}?>
-                </div>
-<a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html" title="<?PHP echo $lang['CLICK_TO_BUY']?>"><span class="profile_job_cost"><?PHP echo $currency_symbol ?><?php echo $jobcost?></span></a>
+                </span></div><?PHP } ?>
+	<div class="clr"></div>				
+				<? if ( $username == $_SESSION['userName'] ) {echo $times_viewed.' '.$lang['VIEWS'].' | <a href="my_jobs.php?act=edit&id='.$id.'" >'.$lang['EDIT_JOB'].'</a><br><br><a href="my_jobs.php?act=delete&id='.$id.'" onClick="return confirmSubmitt()">'.$lang['DELETE_JOB'].'</a>';}else {?><a class="Button" href="<? echo $seo?>-<? echo $id ?>.html"><?PHP echo $lang['ORDER_NOW']?></a><?}?>
+
+<div class="clr"></div>			
 </div>
-<div class="shadow"><img src="images/shadow.png" width="692" height="5" alt="" /></div>
+</div>
+
 <?PHP
 $i++;
 $count++;
 }
 ?>
 <?PHP  ?>
+<div class="clr"></div>
 <div class="pagination"><? include("php/pagination_cat.php");
 echo paginate_three($reload, $page, $tpages, $adjacents);?></div>
 </div>

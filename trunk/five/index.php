@@ -70,14 +70,19 @@ $compvote1 = $vote_ex1[1];
 $compvotearray1[$compnum1] = $compvote1;
 }
 include 'languages/'.$lang_file.'/'.$lang_file.'.php'; ?>
-<div class="art_img"><a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a></div>
+
 <div class="article">
 <div class="featured"><img class="job_img" src="images/featured.png" width="71" height="71" alt="" border="0"/></div>
+
+<div class="art_img">
+
+<a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a>
+<div class="clr"></div>
+<a href="profile-<?PHP echo $username ?>"><?PHP echo $username ?></a>~<a href="category-<?PHP echo $category ?>"><?PHP echo $category ?></a>
+<div class="clr"></div>
 <h3><a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['I_WILL']?> <?PHP echo $willdo ?></a></h3>
-<div class="p_desc"><?PHP echo $part_description ?>...<a class="p_des" href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['MORE']?></a></div>
-<div class="crumbs"><?PHP echo $lang['BY']?>~<a href="profile-<?PHP echo $username ?>"><?PHP echo $username ?></a> <?PHP echo $lang['IN']?>~<a href="category-<?PHP echo $category ?>"><?PHP echo $category ?></a> <?PHP echo $lang['ON']?>~<?PHP echo $postdate ?>
-<a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html" title="Click to buy this job"><span class="jobcost"><?PHP echo $currency_symbol ?><?php echo $jobcost?></span></a>
-<div class="fbook"><?PHP if(!$compvotearray1[$id]){?><div class="vote">
+<div class="clr"></div>
+<?PHP if(!$compvotearray1[$id]){?><div class="vote">
 <span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span><span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span>
                 <span id="a1votes_count<?PHP echo $id ?>">
                 <a id=":<?PHP echo $id ?>:1:<?PHP echo $voteup1 ?>:<?PHP echo $votedown1 ?>:" class="vote_up" href="javascript:;">
@@ -91,11 +96,17 @@ include 'languages/'.$lang_file.'/'.$lang_file.'.php'; ?>
                 <img src="images/voted.png" width="16" height="16" alt="Up" border="0" title="You have already voted for this job"/><a><?PHP echo $voteup1 ?></a></span>&nbsp;&nbsp;<span id="a2votes_count<?PHP echo $id ?>" class="vote_buttons voted">
                 <img src="images/voted_neg.png" width="16" height="16" alt="Down" border="0" title="You have already voted for this job"/><a><?PHP echo $votedown1 ?></a>
                 </span></div><?PHP } ?>
-<a href="http://twitter.com/share" class="twitter-share-button" data-url="<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html" data-count="horizontal" data-via="<?PHP echo $siteurl?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script><iframe src="http://www.facebook.com/plugins/like.php?href=<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html&amp;layout=button_count&amp;show_faces=false&amp;width=120&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;margin-bottom:-1px;margin-left:-12px;" allowTransparency="true"></iframe></div>
+<div class="clr"></div>
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html" data-count="horizontal" data-via="<?PHP echo $siteurl?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div class="clr"></div>
 </div>
-</div><div class="shadow"><img src="images/shadow.png" width="692" height="5" alt="" /></div>
+
+</div>
 <?PHP
 }
+?>
+<div class="clr"></div>
+<?php
 }
 $reload = $_SERVER['PHP_SELF'];
 $rpp = 15; // results per page
@@ -138,13 +149,16 @@ $compvote = $vote_ex[1];
 $compvotearray[$compnum] = $compvote;
     }
 include 'languages/'.$lang_file.'/'.$lang_file.'.php';?>
-<div class="art_img"><a href="<?PHP echo $seo1?>-<?PHP echo $Id?>.html"><img src="<?PHP echo $imgpath ?>" width="127" height="98" alt="img" class="" /></a></div>
+
 <div class="article">
+<div class="art_img"><a href="<?PHP echo $seo1?>-<?PHP echo $Id?>.html"><img src="<?PHP echo $imgpath ?>" width="127" height="98" alt="img" class="" /></a></div>
+
+<a href="profile-<?PHP echo $user_name ?>"><?PHP echo $user_name ?></a>~<a href="category-<?PHP echo $Category ?>"><?PHP echo $Category ?></a>
+<div class="clr"></div>
 <h3><a href="<?PHP echo $seo1?>-<?PHP echo $Id ?>.html"><?PHP echo $lang['I_WILL']?> <?PHP echo $will_do ?></a></h3>
-<div class="p_desc"><?PHP echo $partdescription ?>...<a class="p_des" href="<?PHP echo $seo1?>-<?PHP echo $Id ?>.html"><?PHP echo $lang['MORE']?></a></div>
-<div class="crumbs"><?PHP echo $lang['BY']?>~<a href="profile-<?PHP echo $user_name ?>"><?PHP echo $user_name ?></a> In~<a href="category-<?PHP echo $Category ?>"><?PHP echo $Category ?></a> On~<?PHP echo $post_date ?>
-<a href="<?PHP echo $seo1?>-<?PHP echo $Id ?>.html" title="Click to buy this job"><span class="jobcost"><?PHP echo $currency_symbol ?><?php echo $job_cost?></span></a>
-<div class="fbook"><?PHP if(!$compvotearray[$Id]){?><div class="vote">
+<div class="clr"></div>
+
+<?PHP if(!$compvotearray[$Id]){?><div class="vote">
 <span id="vote_buttons<?PHP echo $Id ?>" class="vote_buttons"></span><span id="vote_buttons<?PHP echo $Id ?>" class="vote_buttons"></span>
                 <span id="a1votes_count<?PHP echo $Id ?>">
                 <a id=":<?PHP echo $Id ?>:1:<?PHP echo $voteup ?>:<?PHP echo $votedown ?>:" class="vote_up" href="javascript:;">
@@ -158,14 +172,17 @@ include 'languages/'.$lang_file.'/'.$lang_file.'.php';?>
                 <img src="images/voted.png" width="16" height="16" alt="Up" border="0" title="You have already voted for this job"/><a><?PHP echo $voteup ?></a></span>&nbsp;&nbsp;<span id="a2votes_count<?PHP echo $Id ?>" class="vote_buttons voted">
                 <img src="images/voted_neg.png" width="16" height="16" alt="Down" border="0" title="You have already voted for this job"/><a><?PHP echo $votedown ?></a>
                 </span></div><?PHP } ?>
-<a href="http://twitter.com/share" class="twitter-share-button" data-url="<?PHP echo $siteurl?>/<?PHP echo $seo1?>-<?PHP echo $Id ?>.html" data-text="<?PHP echo $seo1?>"data-count="horizontal" data-via="<?PHP echo $siteurl?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script><iframe src="http://www.facebook.com/plugins/like.php?href=<?PHP echo $siteurl?>/<?PHP echo $seo1?>-<?PHP echo $Id ?>.html&amp;layout=button_count&amp;show_faces=false&amp;width=120&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;margin-bottom:-1px;margin-left:-12px;" allowTransparency="true"></iframe></div></div>
-</div><div class="shadow"><img src="images/shadow.png" width="692" height="5" alt="" /></div>
+<div class="clr"></div>				
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="<?PHP echo $siteurl?>/<?PHP echo $seo1?>-<?PHP echo $Id ?>.html" data-text="<?PHP echo $seo1?>"data-count="horizontal" data-via="<?PHP echo $siteurl?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div class="clr"></div>
+</div>
+
 <?PHP
 $i++;
 $count++;
 }
 ?>
-<div class="clear"></div>
+<div class="clr"></div>
 <?PHP if($google_ads == 'yes') { echo '<div align="center">';
 include("google_ads/google_468x60.php"); echo '</div>'; }
 echo '<div class="clear"></div>';?>

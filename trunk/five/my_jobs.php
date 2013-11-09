@@ -128,6 +128,7 @@ mysql_query("UPDATE jobs SET
 			") or die(mysql_error());
             if(mysql_query)
             {
+header( 'Location: /profile-' . $_SESSION['userName'] ) ;			
 echo "<div class=\"dialog-box-success5\">
 <div class=\"dialog-left\">
 <h3 align=\"center\"><img src=\"images/succes.png\" class=\"dialog-ico\" alt=\"\"/>".$lang['JOB_UPDATED']."</div></h3>
