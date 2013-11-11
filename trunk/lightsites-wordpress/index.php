@@ -16,7 +16,9 @@ get_header();
 if (is_home()) {
 query_posts("cat=7");
 ?>
-<?php if (function_exists('slideshow')) { slideshow(true, "1", false, array()); } ?>
+<?php 
+//if (function_exists('slideshow')) { slideshow(true, "1", false, array()); } 
+?>
 
 <?
 echo "<h1>Latest Work</h1>";
