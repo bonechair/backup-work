@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1); 
+error_reporting(E_ALL);
 set_time_limit(0);
 // Template Name: Import Safari
 get_header(); ?>
@@ -11,7 +13,7 @@ get_header(); ?>
 	
 	//$distr = "'South Africa','Stellenbosch', 'Gordons Bay','Drakensberg','Strand','Wilderness','Somerset West','West Coast National Park','Swellendam', 'Krugersdorp','Durbanville','Kommetjie','Bellville','Cape Town','Garden Route','Bloubergstrand','Cape Peninsula','Simons Town','City Bowl','Hermanus','George','Knysna','Jeffreys Bay','Western Cape','Atlantic Seaboard North','Mossel Bay','Southern Suburbs','South Peninsula','Cape Winelands'";
 	//$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 AND `district` IN (" . $distr . ") LIMIT 10";
-	$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 LIMIT 20";
+	$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 LIMIT 2";
 	$myrows = $wpdb->get_results( $sql );
 	
 	foreach ($myrows as $row) {
@@ -73,8 +75,29 @@ get_header(); ?>
 	
 
 	$region = wp_strip_all_tags($row->region);
+
+	$slug = str_replace(" ", "-", $region);
+	$slug = strtolower($slug);
+			
+	$t_id = get_term_by('slug', $slug, 'property_type');
+	$types_arr[] = $region;	
+			
+	if (empty($t_id->term_id)) {
+				
+		$tid = wp_insert_term(
+		 $region, // the term 
+		 'property_type', // the taxonomy
+		  array(
+		    //'description'=> 'A yummy apple.',
+		    //'parent'=> $parent_term_id,
+		    'slug' => $slug
+		  )
+		);
+      }
+
 	$town = wp_strip_all_tags($row->town);
 	$district = wp_strip_all_tags($row->district);
+	
 	$hits = wp_strip_all_tags($row->hits);
 	$grading = wp_strip_all_tags($row->grading);
 	
@@ -89,10 +112,11 @@ get_header(); ?>
 	$address = $name . ", " . $region . ", " . $json_decode->results[0]->formatted_address;
 	$address = wp_strip_all_tags($address);
 
-	$excerpt = substr($description, 0, 400); 
 
-	$images = unserialize($row->images);
-		
+	$images = sxml_unserialize($row->images);
+	$images =  toArray($images); 
+	if(empty($images[0]['image1'][0]))continue;
+
 		//$src = wp_get_attachment_url( $id );
 		
 	// Check if exists	
@@ -101,6 +125,7 @@ get_header(); ?>
 	if (empty($p_id)) {
 	
 		$description = enter_description ($row->description_1, $row->description_2, $row->name);
+		$excerpt = substr($description, 0, 400); 
 	
 		$my_post = array(
 		  'post_title'    => $name,
@@ -138,7 +163,8 @@ get_header(); ?>
 	else {
 	
 			$description = enter_description ($row->description_1, $row->description_2, $row->name);	   
-	   
+			$excerpt = substr($description, 0, 400); 
+
 		    $my_post = array();
 		    $my_post['ID'] = $p_id;
 		    $my_post['post_content'] = $description;
@@ -215,8 +241,7 @@ function set_featured_image ($image_url, $post_id) {
 		$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
 		wp_update_attachment_metadata( $attach_id, $attach_data );
 
-		add_post_meta($post_id, '_thumbnail_id', $attach_id);
-		
+	
 		return $attach_id;
 	}
 
@@ -224,71 +249,73 @@ function set_featured_image ($image_url, $post_id) {
 
 function upload_featured_images ($images, $post_id) {
 
-		if (!empty($images[0]['image1']) && $images[0]['image1'] != 'NULL' && URLIsValid($images[0]['image1'])) {
+              
+		if (!empty($images[0]['image1'][0]) && $images[0]['image1'][0] != 'NULL' && URLIsValid($images[0]['image1'][0])) {
 		   
-			$image_url = $images[0]['image1'];
+			$image_url = $images[0]['image1'][0];
 		   
 			$attach_id = set_featured_image( $image_url, $post_id );
 			set_post_thumbnail( $post_id, $attach_id );
-		   
+		    add_post_meta($post_id, '_thumbnail_id', $attach_id);
+			   
 		}
 		
 		if (empty($image_url)) {
-		  if (!empty($images[0]['image2']) && $images[0]['image2'] != 'NULL' && URLIsValid($images[0]['image2'])) {
+		  if (!empty($images[0]['image2'][0]) && $images[0]['image2'][0] != 'NULL' && URLIsValid($images[0]['image2'][0])) {
 		   
-			$image_url = $images[0]['image2'];
+			$image_url = $images[0]['image2'][0];
 		   
 			$attach_id = set_featured_image( $image_url, $post_id );
 			set_post_thumbnail( $post_id, $attach_id );
-		   
+		    add_post_meta($post_id, '_thumbnail_id', $attach_id);		   
 		  }	
 		}
 
 		if (empty($image_url)) {
-		  if (!empty($images[0]['image3']) && $images[0]['image3'] != 'NULL' && URLIsValid($images[0]['image3'])) {
+		  if (!empty($images[0]['image3'][0]) && $images[0]['image3'][0] != 'NULL' && URLIsValid($images[0]['image3'][0])) {
 		   
-			$image_url = $images[0]['image3'];
+			$image_url = $images[0]['image3'][0];
 		   
 			$attach_id = set_featured_image( $image_url, $post_id );
 			set_post_thumbnail( $post_id, $attach_id );
-		   
+		    add_post_meta($post_id, '_thumbnail_id', $attach_id);		   
 		  }	
 		}		
 		
-		if (!empty($images[0]['image2']) && $images[0]['image2'] != 'NULL' && URLIsValid($images[0]['image2'])) {
-			$image_url = $images[0]['image2'];
+		if (!empty($images[0]['image2'][0]) && $images[0]['image2'][0] != 'NULL' && URLIsValid($images[0]['image2'][0])) {
+			$image_url = $images[0]['image2'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}	
-		if (!empty($images[0]['image3']) && $images[0]['image3'] != 'NULL' && URLIsValid($images[0]['image3'])) {
-			$image_url = $images[0]['image3'];
+		if (!empty($images[0]['image3'][0]) && $images[0]['image3'][0] != 'NULL' && URLIsValid($images[0]['image3'][0])) {
+			$image_url = $images[0]['image3'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}			
-		if (!empty($images[0]['image4']) && $images[0]['image4'] != 'NULL' && URLIsValid($images[0]['image4'])) {
-			$image_url = $images[0]['image4'];
+		if (!empty($images[0]['image4'][0]) && $images[0]['image4'][0] != 'NULL' && URLIsValid($images[0]['image4'][0])) {
+			$image_url = $images[0]['image4'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}				
-		if (!empty($images[0]['image5']) && $images[0]['image5'] != 'NULL' && URLIsValid($images[0]['image5'])) {
-			$image_url = $images[0]['image5'];
+		if (!empty($images[0]['image5'][0]) && $images[0]['image5'][0] != 'NULL' && URLIsValid($images[0]['image5'][0])) {
+			$image_url = $images[0]['image5'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}		
-		if (!empty($images[0]['image6']) && $images[0]['image6'] != 'NULL' && URLIsValid($images[0]['image6'])) {
-			$image_url = $images[0]['image6'];
+		if (!empty($images[0]['image6'][0]) && $images[0]['image6'][0] != 'NULL' && URLIsValid($images[0]['image6'][0])) {
+			$image_url = $images[0]['image6'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}		
-		if (!empty($images[0]['image7']) && $images[0]['image7'] != 'NULL' && URLIsValid($images[0]['image7'])) {
-			$image_url = $images[0]['image4'];
+		if (!empty($images[0]['image7'][0]) && $images[0]['image7'][0] != 'NULL' && URLIsValid($images[0]['image7'][0])) {
+			$image_url = $images[0]['image4'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}			
-		if (!empty($images[0]['image8']) && $images[0]['image8'] != 'NULL' && URLIsValid($images[0]['image8'])) {
-			$image_url = $images[0]['image8'];
+		if (!empty($images[0]['image8'][0]) && $images[0]['image8'][0] != 'NULL' && URLIsValid($images[0]['image8'][0])) {
+			$image_url = $images[0]['image8'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}		
-		if (!empty($images[0]['image9']) && $images[0]['image9'] != 'NULL' && URLIsValid($images[0]['image9'])) {
-			$image_url = $images[0]['image9'];
+		if (!empty($images[0]['image9'][0]) && $images[0]['image9'][0] != 'NULL' && URLIsValid($images[0]['image9'][0])) {
+			$image_url = $images[0]['image9'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}
-		if (!empty($images[0]['image10']) && $images[0]['image10'] != 'NULL' && URLIsValid($images[0]['image10'])) {
-			$image_url = $images[0]['image10'];
+		if (!empty($images[0]['image10'][0]) && $images[0]['image10'][0] != 'NULL' && URLIsValid($images[0]['image10'][0])) {
+			$image_url = $images[0]['image10'][0];
 			$attach_id = set_featured_image( $image_url, $post_id );
 		}	
 		
@@ -324,7 +351,22 @@ function enter_description ($description1, $description2, $name) {
 		
 	return $description;
 }	
-	
+function sxml_unserialize($str) {
+return unserialize(str_replace(array('O:16:"SimpleXMLElement":0:{}', 'O:16:"SimpleXMLElement":'), array('s:0:"";', 'O:8:"stdClass":'), $str));
+} 
+  function toArray($obj) {
+    if(is_object($obj)) $obj = (array) $obj;
+    if(is_array($obj)) {
+      $new = array();
+      foreach($obj as $key => $val) {
+        $new[$key] = toArray($val);
+      }
+    }
+    else { 
+      $new = $obj;
+    }
+    return $new;
+  } 	
 ?>
 	
 	
