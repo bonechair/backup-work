@@ -286,6 +286,10 @@ function upload_featured_images ($images, $post_id) {
 		if (!empty($images[0]['image9']) && $images[0]['image9'] != 'NULL' && URLIsValid($images[0]['image9'])) {
 			$image_url = $images[0]['image9'];
 			$attach_id = set_featured_image( $image_url, $post_id );
+		}
+		if (!empty($images[0]['image10']) && $images[0]['image10'] != 'NULL' && URLIsValid($images[0]['image10'])) {
+			$image_url = $images[0]['image10'];
+			$attach_id = set_featured_image( $image_url, $post_id );
 		}	
 		
 }	
