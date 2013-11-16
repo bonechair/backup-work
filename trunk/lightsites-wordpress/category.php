@@ -15,7 +15,9 @@ get_header(); ?>
 			<header class="archive-header">
 
 	<?php if (is_category( 'services' )){ ?>
-	<?php if (function_exists('slideshow')) { slideshow(true, "1", false, array()); } ?>
+	<?php 
+	//if (function_exists('slideshow')) { slideshow(true, "1", false, array()); } 
+	?>
 	<?php }
      else {
 	?>	

@@ -146,7 +146,10 @@ function pyre_init() {
 	);
 
 	register_taxonomy('portfolio_type', 'portfolio', array('hierarchical' => true, 'label' => 'Types', 'query_var' => true, 'rewrite' => true));
-	register_taxonomy('property_type', 'property', array('hierarchical' => true, 'label' => 'Property Type', 'query_var' => true, 'rewrite' => true));
+	register_taxonomy('property_type', 'property', array('hierarchical' => true, 'label' => 'Property Type', 'query_var' => true, 'rewrite' => array( 'slug' => 'holiday_accommodation') ));
+	
+	//'rewrite' => array( 'slug' => 'holiday/accommodation'
+	
 }
 
 

@@ -13,7 +13,7 @@ get_header(); ?>
 	
 	//$distr = "'South Africa','Stellenbosch', 'Gordons Bay','Drakensberg','Strand','Wilderness','Somerset West','West Coast National Park','Swellendam', 'Krugersdorp','Durbanville','Kommetjie','Bellville','Cape Town','Garden Route','Bloubergstrand','Cape Peninsula','Simons Town','City Bowl','Hermanus','George','Knysna','Jeffreys Bay','Western Cape','Atlantic Seaboard North','Mossel Bay','Southern Suburbs','South Peninsula','Cape Winelands'";
 	//$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 AND `district` IN (" . $distr . ") LIMIT 10";
-	$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 LIMIT 2";
+	$sql = "SELECT * FROM properties WHERE price > 2500 AND checked != 1 LIMIT 1";
 	$myrows = $wpdb->get_results( $sql );
 	
 	foreach ($myrows as $row) {
@@ -73,14 +73,37 @@ get_header(); ?>
 	$slug = str_replace("-"," ", $type);
 	$slug = strtolower($type);
 	
-
+	$district = wp_strip_all_tags($row->district);	
 	$region = wp_strip_all_tags($row->region);
-
-	$slug = str_replace(" ", "-", $region);
-	$slug = strtolower($slug);
-			
-	$t_id = get_term_by('slug', $slug, 'property_type');
 	$types_arr[] = $region;	
+	$types_arr[] = $district;	
+
+	$slug2 = str_replace(" ", "-", $region);
+	$slug1 = strtolower($slug1);
+			
+	$tid = get_term_by('slug', $slug2, 'property_type');
+	
+	if (empty($tid->term_id)) {
+				
+		$parent_term_id = wp_insert_term(
+		 $region, // the term 
+		 'property_type', // the taxonomy
+		  array(
+		    //'description'=> 'A yummy apple.',
+		    //'parent'=> $parent_term_id,
+		    'slug' => $slug2
+		  )
+		);
+      }
+	  else {
+	    $parent_term_id = $tid->term_id;
+	  }
+	
+	$slug1 = str_replace(" ", "-", $region);
+	$slug1 = strtolower($slug1);
+			
+	$t_id = get_term_by('slug', $slug1, 'property_type');
+
 			
 	if (empty($t_id->term_id)) {
 				
@@ -89,14 +112,14 @@ get_header(); ?>
 		 'property_type', // the taxonomy
 		  array(
 		    //'description'=> 'A yummy apple.',
-		    //'parent'=> $parent_term_id,
-		    'slug' => $slug
+		    'parent'=> $parent_term_id,
+		    'slug' => $slug1
 		  )
 		);
       }
 
 	$town = wp_strip_all_tags($row->town);
-	$district = wp_strip_all_tags($row->district);
+
 	
 	$hits = wp_strip_all_tags($row->hits);
 	$grading = wp_strip_all_tags($row->grading);

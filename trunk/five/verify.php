@@ -39,14 +39,18 @@ $username = mysql_real_escape_string($us);
 $password = md5(mysql_real_escape_string($pr));
 $joined = date("F j, Y");
 $email = mysql_real_escape_string($em);
-$sql="INSERT INTO members (username, password, email, joined, isp, ip, activationkey, status) VALUES ('$username', '$password', '$email', '$joined', '$isp', '$ip', '$activationKey', 'verify')";
+$sql="INSERT INTO members (username, password, email, joined, isp, ip, activationkey, status) VALUES ('$username', '$password', '$email', '$joined', '$isp', '$ip', '$activationKey', 'activated')";
 if (!mysql_query($sql))
   {
   die('Error: ' . mysql_error());
   }
+//echo "<div class=\"dialog-box-success1\">
+//<div class=\"dialog-left\">
+//<img src=\"images/succes.png\" class=\"dialog-ico\" alt=\"\"/>Please check your spam folder. ".$lang["SIGN_UP_EMAIL_SENT"]." ".$em." ".$lang["ACT_KEY"].".</div>
+//</div>";
 echo "<div class=\"dialog-box-success1\">
 <div class=\"dialog-left\">
-<img src=\"images/succes.png\" class=\"dialog-ico\" alt=\"\"/>".$lang["SIGN_UP_EMAIL_SENT"]." ".$em." ".$lang["ACT_KEY"].".</div>
+<img src=\"images/succes.png\" class=\"dialog-ico\" alt=\"\"/>Thank you for signing up, you can login now.</div>
 </div>";
 $to      = $em;
 $subject = " ".$domain." ".$lang["SU_SUBJECT"]."";

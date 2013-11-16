@@ -152,7 +152,7 @@ $compvotearray1[$compnum1] = $compvote1;
                 <img src="images/voted_neg.png" width="16" height="16" alt="Down" border="0" title="You have already voted for this job"/><a><?PHP echo $votedown1 ?></a>
                 </span></div><?PHP } ?>
 	<div class="clr"></div>				
-				<? if ( $username == $_SESSION['userName'] ) {echo $times_viewed.' '.$lang['VIEWS'].' | <a href="my_jobs.php?act=edit&id='.$id.'" >'.$lang['EDIT_JOB'].'</a><br><br><a href="my_jobs.php?act=delete&id='.$id.'" onClick="return confirmSubmitt()">'.$lang['DELETE_JOB'].'</a>';}else {?><a class="Button" href="<? echo $seo?>-<? echo $id ?>.html"><?PHP echo $lang['ORDER_NOW']?></a><?}?>
+				<? if ( $username == $_SESSION['userName'] ) {echo $times_viewed.' '.$lang['VIEWS'].' | <a href="my_jobs.php?act=edit&id='.$id.'" >'.$lang['EDIT_JOB'].'</a><br><br><a href="my_jobs.php?act=delete&id='.$id.'"  onclick="return confirm(\'Are you sure?\')">'.$lang['DELETE_JOB'].'</a>';}else {?><a class="Button" href="<? echo $seo?>-<? echo $id ?>.html"><?PHP echo $lang['ORDER_NOW']?></a><?}?>
 
 <div class="clr"></div>			
 </div>

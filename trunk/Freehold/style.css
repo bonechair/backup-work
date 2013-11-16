@@ -1007,7 +1007,7 @@ ul.sf-menu li li:hover li ul, ul.sf-menu li li.sfHover li ul {top: -999em;}
 ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {left:10em; /* match ul width */ top:0;}
 
 /* -------------------- B. RESIZING MENU -------------------- */
-nav {padding-top:18px; }
+nav {margin:-20px 0; }
 .sf-menu a { padding:11px 14px 9px 14px;}  /* Top Menu Size */
 .sf-menu li:hover ul, .sf-menu li.sfHover ul {top:45px;} /* Move sub-menu down */
 
@@ -1371,3 +1371,6 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
 .pp_fade,.pp_gallery li.default a img{display:none}
 
 .hidden-values {display:none;}
+
+.flexslider .slides > li:first-child {display: block; -webkit-backface-visibility: visible;} 
+.flexslider .slides > li {display: none; -webkit-backface-visibility: none;} 

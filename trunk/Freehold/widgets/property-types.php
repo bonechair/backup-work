@@ -45,7 +45,8 @@ class pyre_homepage_prop_type_Widget extends WP_Widget {
 		<ul>
 		<?php
 		foreach ($tax_terms as $tax_term) {
-		echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s", "progressionstudios" ), $tax_term->name ) . '" ' . '>' . $tax_term->name.'</a></li>';
+
+		echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "Holiday Accommodation in %s", "progressionstudios" ), $tax_term->name ) . '" ' . '>' . $tax_term->name.'</a></li>';
 		}
 		?>
 

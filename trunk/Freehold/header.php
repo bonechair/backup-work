@@ -29,9 +29,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	<link href="<?php echo of_get_option('favicon'); ?>" rel="shortcut icon" /> 
 	<?php endif; ?>
 
-	<meta name="viewport" content="width=device-width">
-	
-
 	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 	
 	<?php wp_head(); ?>

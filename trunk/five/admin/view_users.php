@@ -98,7 +98,7 @@ echo "<tr>
 <td class=\"td-7\">$row[joined]</td>
 <td class=\"td-7\">$row[isbanned]</td>
 <td class=\"td-8\"><a href='view_users.php?act=edituser&id=$row[id]'><img src=\"images/icons/edit.gif\" alt=\"edit\" title=\"Edit Record\"/></a></td>
-<td class=\"td-8\"><a href='view_users.php?act=deluser&id=$row[id]'><img src=\"images/icons/action_delete.gif\" alt=\"edit\" title=\"Delete Record\"/></a></td></tr>";
+<td class=\"td-8\"><a href='no-view_users.php?act=deluser&id=$row[id]'  onclick=\"return confirm('Are you sure?')\"><img src=\"images/icons/action_delete.gif\" alt=\"edit\" title=\"Delete Record\"/></a></td></tr>";
 }
 echo "</table>";
 }else{
@@ -489,7 +489,7 @@ echo "<tr>
 <td class=\"td-7\">$row[joined]</td>
 <td class=\"td-7\">$row[isbanned]</td>
 <td class=\"td-8\"><a href='view_users.php?act=edituser&id=$row[id]'><img src=\"images/icons/edit.gif\" alt=\"edit\" title=\"Edit Record\"/></a></td>
-<td class=\"td-8\"><a href='view_users.php?act=deluser&id=$row[id]'><img src=\"images/icons/action_delete.gif\" alt=\"edit\" title=\"Delete Record\"/></a></td></tr>";
+<td class=\"td-8\"><a href='no-view_users.php?act=deluser&id=$row[id]' onclick=\"return confirm('Are you sure?')\"><img src=\"images/icons/action_delete.gif\" alt=\"edit\" title=\"Delete Record\"/></a></td></tr>";
 }
 echo "</table>"; ?>
 

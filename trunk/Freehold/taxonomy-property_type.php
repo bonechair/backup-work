@@ -13,7 +13,7 @@ get_header(); ?>
 					<?php if (is_tax('property_type')) {
 						$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 						$tax_term_breadcrumb_taxonomy_slug = $term->taxonomy;
-						echo '<h2 class="title-bg">Property Type: ' . $term->name . '</h2>';
+						echo '<h1 class="title-bg">Holiday Accommodation in ' . $term->name . '</h1>';
 					}
 					?>
 
@@ -58,7 +58,12 @@ get_header(); ?>
 					</script>
 					<?php endif; ?>
 					
-					
+					<?php if (is_tax('property_type')) {
+						$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+						$tax_term_breadcrumb_taxonomy_slug = $term->taxonomy;
+						echo '<h2 class="title-bg">Holiday Accommodation in ' . $term->name . '</h2>';
+					}
+					?>					
 
 					<?php
 					while(have_posts()): the_post();
