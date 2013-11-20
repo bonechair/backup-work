@@ -40,7 +40,7 @@ include("header.php");
 $path_thumbs = "users/".$_SESSION['userName']."";
 $path_big = "users/".$_SESSION['userName']."";
 //the new width of the resized image.
-$img_thumb_width = 300; // in pixcel
+$img_thumb_width = 380; // in pixcel
 $extlimit = "yes"; //Do you want to limit the extensions of files uploaded (yes/no)
 //allowed Extensions
 $limitedext = array(".jpg",".jpeg",".gif",".png",);
@@ -57,6 +57,7 @@ $part_description = nl2br($_POST['job_description']);
 $keywords = $_POST['keywords'];
 $time_span = $_POST['time_span'];
 $category = $_POST["category"];
+$country = $_POST["country"];
 $job_cost = $_POST["job_cost"];
 $featured = $_POST["featured"];
 $file_type = $_FILES['img_path']['type'];
@@ -95,6 +96,7 @@ $file_type = $_FILES['img_path']['type'];
            }elseif($file_type == "image/gif"){
                $new_img = imagecreatefromgif($file_tmp);
            }
+		     
            //list width and height and keep height ratio.
            list($width, $height) = getimagesize($file_tmp);
            $imgratio=$width/$height;
@@ -114,19 +116,22 @@ $file_type = $_FILES['img_path']['type'];
            imagecopyresized($resized_img, $new_img, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
            //save image
            ImageJpeg ($resized_img,"$path_thumbs/$rand_name.$file_ext");
+		   move_uploaded_file($file_tmp, "$path_thumbs/f-$rand_name.$file_ext");
            ImageDestroy ($resized_img);
            ImageDestroy ($new_img);
            $img_path = "$path_thumbs/$rand_name.$file_ext";
+           $orig_img = "$path_thumbs/f-$rand_name.$file_ext";
 
 
         }
 if($mod_job == 'Yes') {
-    $query = sprintf("INSERT INTO jobs (willdo, username, postdate, category, job_cost, link, video_link, job_description, part_description, keywords, time_span, featured, img_path)
-            VALUES( '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+    $query = sprintf("INSERT INTO jobs (willdo, username, postdate, category, country, job_cost, link, video_link, job_description, part_description, keywords, time_span, featured, img_path, orig_img)
+            VALUES( '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
             mysql_real_escape_string($willdo),
             mysql_real_escape_string($username),
             mysql_real_escape_string($postdate),
             mysql_real_escape_string($category),
+            mysql_real_escape_string($country),
             mysql_real_escape_string($job_cost),
             mysql_real_escape_string($link),
             mysql_real_escape_string($video_link),
@@ -135,7 +140,8 @@ if($mod_job == 'Yes') {
             mysql_real_escape_string($keywords),
             mysql_real_escape_string($time_span),
             mysql_real_escape_string($featured),
-            mysql_real_escape_string($img_path));
+            mysql_real_escape_string($img_path),
+            mysql_real_escape_string($orig_img));
 // run the query
     if(!mysql_query($query))
             {
@@ -157,12 +163,13 @@ $headers = 'From: support@triplegood.co.za' . "\r\n" .
 mail($to, $subject, $message, $headers);
 }
 }elseif($mod_job == 'No') {
-    $query = sprintf("INSERT INTO jobs (willdo, username, postdate, category, job_cost, link, video_link, job_description, part_description, keywords, time_span, featured, img_path,approved)
-            VALUES( '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+    $query = sprintf("INSERT INTO jobs (willdo, username, postdate, category, country, job_cost, link, video_link, job_description, part_description, keywords, time_span, featured, img_path,approved)
+            VALUES( '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
             mysql_real_escape_string($willdo),
             mysql_real_escape_string($username),
             mysql_real_escape_string($postdate),
             mysql_real_escape_string($category),
+            mysql_real_escape_string($country),
             mysql_real_escape_string($job_cost),
             mysql_real_escape_string($link),
             mysql_real_escape_string($video_link),

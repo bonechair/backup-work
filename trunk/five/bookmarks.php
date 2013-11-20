@@ -86,14 +86,20 @@ echo"<META HTTP-EQUIV = 'Refresh' Content = '0; URL =bookmarks.php'>";
 ob_flush();
 }
 ?>
-<div class="art_img"><a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a></div>
+
 <div class="article">
+
 <?PHP if ( $featured == yes ) { ?><div class="featured"><img class="job_img" src="images/featured.png" width="71" height="71" alt="" border="0"/></div><?PHP }?>
+<div class="clr"></div>
+<div class="art_img"><a href="<?PHP echo $seo?>-<?PHP echo $id?>.html"><img src="<?PHP echo $img_path ?>" width="127" height="98" alt="img" class="" /></a></div>
+<div class="clr"></div>
+
+<a href="profile-<?PHP echo $username ?>"><?PHP echo $username ?></a>~<a href="category-<?PHP echo $category ?>"><?PHP echo $category ?></a>
+<div class="clr"></div>
 <h3><a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['I_WILL']?> <?PHP echo $willdo ?></a></h3>
-<div class="p_desc"><?PHP echo $part_description ?>...<a class="p_des" href="<?PHP echo $seo?>-<?PHP echo $id ?>.html"><?PHP echo $lang['MORE']?></a></div>
-<div class="crumbs"><?PHP echo $lang['BY']?>~<a href="profile-<?PHP echo $username ?>"><?PHP echo $username ?></a> <?PHP echo $lang['IN']?>~<a href="category-<?PHP echo $category ?>"><?PHP echo $category ?></a> <?PHP echo $lang['ON']?>~<?PHP echo $postdate ?>
-<a href="<?PHP echo $seo?>-<?PHP echo $id ?>.html" title="Click to buy this job"><span class="jobcost"><?PHP echo $currency_symbol ?><?php echo $jobcost?></span></a>
-<div class="fbook"><?PHP if(!$compvotearray1[$id]){?><div class="vote">
+<div class="clr"></div>
+
+<?PHP if(!$compvotearray1[$id]){?><div class="vote">
 <span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span><span id="vote_buttons<?PHP echo $id ?>" class="vote_buttons"></span>
                 <span id="a1votes_count<?PHP echo $id ?>">
                 <a id=":<?PHP echo $id ?>:1:<?PHP echo $voteup1 ?>:<?PHP echo $votedown1 ?>:" class="vote_up" href="javascript:;">
@@ -106,22 +112,18 @@ ob_flush();
                 <span id="votes_count<?PHP echo $id ?>">
                 <img src="images/voted.png" width="16" height="16" alt="Up" border="0" title="You have already voted for this job"/><a><?PHP echo $voteup1 ?></a></span>&nbsp;&nbsp;<span id="a2votes_count<?PHP echo $id ?>" class="vote_buttons voted">
                 <img src="images/voted_neg.png" width="16" height="16" alt="Down" border="0" title="You have already voted for this job"/><a><?PHP echo $votedown1 ?></a>
-                </span></div><?PHP } ?><a href="http://twitter.com/share" class="twitter-share-button" data-url="<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html" data-count="horizontal" data-via="<?PHP echo $siteurl?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script><iframe src="http://www.facebook.com/plugins/like.php?href=<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html&amp;layout=button_count&amp;show_faces=false&amp;width=120&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;" allowTransparency="true"></iframe>
-<?PHP $sql5 = "SELECT username FROM likes WHERE `job_id` = '$id' AND `username` = '".$_SESSION['userName']."' ";
-$result5 = mysql_query($sql5)or die(mysql_error());
-while($row5 = mysql_fetch_array($result5, MYSQL_ASSOC)){
-if ( $row5['username'] == $_SESSION['userName'] ) {
-echo '<div class="bookimg"><a href="bookmarks.php?enter=no&id='.$id.'" title="'.$lang['REMOVE_BOOK'].'"><img src="images/delete.png"  title="'.$lang['REMOVE_BOOK'].'" alt="UnBookmark" border="0"></a></div>';
-}
-}
-?></div></div>
-</div><div class="shadow"><img src="images/shadow.png" width="692" height="5" alt="" /></div>
+                </span></div><?PHP } ?>
+<div class="clr"></div>				
+	<a href="http://twitter.com/share" class="twitter-share-button" data-url="<?PHP echo $siteurl?>/<?PHP echo $seo?>-<?PHP echo $id ?>.html" data-count="horizontal" data-via="<?PHP echo $siteurl?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	<div class="clr"></div>	
+</div>
 <?PHP
 $i++;
 $count++;
 }
 }
 ?>
+<div class="clr"></div>	
 <div class="pagination"><?PHP include("php/pagination3.php");
 echo paginate_three($reload, $page, $tpages, $adjacents);?></div>
 </div>

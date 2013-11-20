@@ -21,9 +21,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<?php echo "<title>".(isset($title)?$title:"Default title")."</title>\n";?>
+
 <meta name="description" content="<? echo $description = stripslashes(str_replace(array('\r\n', '<br>'), array(' ',' '), ($description))); ?>"/>
 <meta name="keywords" content="<? echo $keywords = stripslashes(str_replace(array('\r\n', '<br>'), array(' ',' '), ($keywords)));?>"/>
-<?php echo "<title>".(isset($title)?$title:"Default title")."</title>\n";?>
+
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/modal.css" rel="stylesheet" type="text/css"/>
 <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
@@ -168,7 +171,7 @@ document.cookie=cookieName+"="+cookieText+"; ";
 		<div class="modal_top"><a href="#" class="jqmClose" title="Close">Close</a></div>
 		<div class="modal_content">
 			<div class="headline"><?PHP echo $lang['REGISTER']?></div>
-			<p><?PHP echo $lang['REG_HERE']?>.</p>
+			<p>Register with us here, five dollar micro jobs.</p>
 
             <form action="" method="post" name="myform" id="myform">
 

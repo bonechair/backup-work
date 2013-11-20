@@ -98,6 +98,7 @@ $willdo = html_entity_decode($datas['willdo'], ENT_QUOTES);
 $jobdescription=stripslashes(str_replace('\r\n', '<br>',($job_description)));
 $willdo=stripslashes(str_replace('\r\n', '<br>',($willdo)));
 $category = $datas['category'];
+$country_id = $datas['country'];
 $job_cost = $datas['job_cost'];
 $link = $datas['link'];
 $video_link = $datas['video_link'];
@@ -106,6 +107,7 @@ $keywords = $datas['keywords'];
 $time_span = $datas['time_span'];
 $postdate = $datas['postdate'];
 $img_path = $datas['img_path'];
+$orig_img = $datas['orig_img'];
 if($_SESSION['userName']!=''.$username.''){
     header('Location: index.php');
 }
@@ -117,6 +119,7 @@ return array_map('mysql_real_escape_string', $arr);
 mysql_query("UPDATE jobs SET
             `willdo` = '$_POST[willdo]',
             `category` = '$_POST[category]',
+            `country` = '$_POST[country]',
             `job_cost` = '$_POST[job_cost]',
             `video_link` = '$_POST[video_link]',
             `link` = '$_POST[link]',
@@ -160,6 +163,29 @@ print "</select>\n";
 ?>
 </div>
 </div>
+
+<div class="field"><label>Target Country:<span class="mandatory"></label>
+<div class="fieldInput" id="country">
+<?PHP
+print "<select class=\"textfield\" name=\"country\">\n";
+If(empty($country_id)) {
+print "<option value=\"\">All Countries</option>";
+}
+else {
+$countryname = mysql_result(mysql_query("SELECT country_name FROM countries where id = $country_id LIMIT 1"),0);
+print "<option value=\"$country_id\">$countryname</option>";
+print "<option value=\"\">All Countries</option>";
+}
+$result = mysql_query('SELECT id,country_name FROM countries');
+while ($row = mysql_fetch_array($result)) {
+   printf('<option value="%1$s">%2$s</option>',
+            $row['id'], $row['country_name']);
+}
+print "</select>\n";
+?>
+</div>
+</div>
+
 <div class="field"><label><?PHP echo $lang['JOB_PRICE']?>:<span class="mandatory">*</span></label>
 <div class="fieldInput" id="email">
 <select class="textfield" name="job_cost">
@@ -174,11 +200,13 @@ echo "<option value='".$p_rc."' >".$currency_symbol." ".$p_rc."</option> ";
 </select>
 </div>
 </div>
-                    <div class="field">
+<?/* 
+ <div class="field">
                     <label><?PHP echo $lang['LINK']?>:<span class="mandatory">*</span> <?PHP echo $lang['LINK_TO_WEB']?> http://www.example.com</label>
                     <div class="fieldInput" id="phone">
                     <input class="textfield" name="link" type="text" value='<?PHP echo $link?>'/>
-                    </div></div>
+					</div></div>
+					*/?>
                     <div class="field">
                     <label><?PHP echo $lang['VIDEO']?><?PHP echo $lang['LINK']?>:<span class="mandatory">*</span> <?PHP echo $lang['LINK_TO_VIDEO']?> http://www.youtube.com/v/OVNZ3rX4a54</label>
                     <div class="fieldInput" id="phone">
@@ -213,7 +241,7 @@ echo "<option value='".$p_rc."' >".$currency_symbol." ".$p_rc."</option> ";
 <div class="fields">
 <div class="field">
 <label><?PHP echo $lang['CH_JOB_IMAGE']?></label><div class="clear"></div>
-<img src="<?PHP echo $img_path?>" alt="an image"  style="float: left; padding-right:10px;"/><div class="clr"></div>
+<img src="<?PHP echo $orig_img?>" alt="an image"  style="float: left; padding-right:10px;width:400px;"/><div class="clr"></div>
 <div class="fieldInput" id="phone"><input name="img_path" type="file" class="textfield" size="35"/><div class="clear"></div>
 <input type='submit' name='Upload' value='<?PHP echo $lang['CHANGE_IMAGE']?>' class="Button"/></div></div></div></div></div></form>
 <?PHP
@@ -271,6 +299,7 @@ $file_type = $_FILES['img_path']['type'];
            }elseif($file_type == "image/gif"){
                $new_img = imagecreatefromgif($file_tmp);
            }
+		   
            //list width and height and keep height ratio.
            list($width, $height) = getimagesize($file_tmp);
            $imgratio=$width/$height;
@@ -290,17 +319,23 @@ $file_type = $_FILES['img_path']['type'];
            imagecopyresized($resized_img, $new_img, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
            //save image
            ImageJpeg ($resized_img,"$path_thumbs/$rand_name.$file_ext");
+		   move_uploaded_file($file_tmp, "$path_thumbs/f-$rand_name.$file_ext");
+		   
            ImageDestroy ($resized_img);
            ImageDestroy ($new_img);
+		   
+		   mysql_query("UPDATE jobs SET
+						`orig_img` = '$path_thumbs/f-$rand_name.$file_ext'
+						`img_path` = '$path_thumbs/$rand_name.$file_ext'
+						WHERE id='$id'
+						") or die(mysql_error());
+			echo "<div class=\"dialog-box-success\">
+			<div class=\"dialog-left\">
+			<img src=\"images/succes.png\" class=\"dialog-ico\" alt=\"\"/>".$lang['JOB_UPDATED']."</div>
+			</div>";header( 'Location: my_jobs.php?act=edit&id='.$id.'' ) ;
+					   
         }
-mysql_query("UPDATE jobs SET
-            `img_path` = '$path_thumbs/$rand_name.$file_ext'
-            WHERE id='$id'
-			") or die(mysql_error());
-echo "<div class=\"dialog-box-success\">
-<div class=\"dialog-left\">
-<img src=\"images/succes.png\" class=\"dialog-ico\" alt=\"\"/>".$lang['JOB_UPDATED']."</div>
-</div>";header( 'Location: my_jobs.php?act=edit&id='.$id.'' ) ;
+
 }
 }
 ?>

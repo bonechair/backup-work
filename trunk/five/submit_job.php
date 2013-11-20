@@ -38,6 +38,25 @@ print "<option value=\"$catname\">$catname\n</option>";
 print "</select>\n";
 ?>
 </div></div>
+
+
+<div class="field"><label>Target Country:<span class="mandatory"></label>
+<div class="fieldInput" id="country">
+<?PHP
+print "<select class=\"textfield\" name=\"country\">\n";
+
+print "<option value=\"\">All Countries</option>";
+
+$result = mysql_query('SELECT id,country_name FROM countries');
+while ($row = mysql_fetch_array($result)) {
+   printf('<option value="%1$s">%2$s</option>',
+            $row['id'], $row['country_name']);
+}
+print "</select>\n";
+?>
+</div>
+</div>
+
 <div class="field"><label><?PHP echo $lang['MAKE_FEATURED']?>: <?PHP echo $lang['WE_CHARGE']?> <?PHP echo $featured_fee ?>% <?PHP echo $lang['FOR_FEATURED']?><span class="mandatory">*</span></label>
 <div class="fieldInput" id="featured">
 <select class="textfield" name="featured">
