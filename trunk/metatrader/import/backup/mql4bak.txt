@@ -1,0 +1,184 @@
+extern int maxorders = 5;
+
+/**
+  Variables
+**/  
+
+double glbOrderProfit;
+double glbOrderOpen;
+double glbOrderStop;
+double glbOrderType;
+double glbOrderTicket;
+double mOpen, mClose, mStopLoss, mTakeProfit; 
+double ask, bid, point;
+
+int mNumber, spread, file;
+string mSymbol, mType, opendate, closedate;
+
+datetime date1, date2;  
+
+double Lots = 5;
+
+int init()
+{
+return(0);
+}
+
+int deinit()
+{
+return(0);
+}
+
+int start()
+{
+   double record=0;
+
+   //string current_date = TimeToStr(TimeCurrent(),TIME_DATE|TIME_SECONDS);
+
+   //string test = StringConcatenate("SELECT id, opendate, closedate, op, cp,  tp, st, trade, symbol FROM signals WHERE opendate <= '" , current_date , "' AND (trade = 'Sell' || trade='Buy') GROUP by symbol, opendate, author ORDER by opendate DESC LIMIT 100  INTO OUTFILE '/tmp/orders.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';");
+
+   int total = OrdersTotal();
+   
+   file = FileOpen("signals.csv",FILE_READ|FILE_CSV,',');
+   while (!FileIsEnding(file))
+     {
+  
+       mNumber = StrToInteger(FileReadString(file));
+       opendate = FileReadString(file);       
+       closedate = FileReadString(file);
+       mOpen = StrToDouble(FileReadString(file));    
+       mClose = StrToDouble(FileReadString(file));       
+       mTakeProfit = StrToDouble(FileReadString(file));   
+       mStopLoss = StrToDouble(FileReadString(file));           
+       mType = FileReadString(file);   
+       mSymbol = FileReadString(file);   
+
+       date1=StrToTime(opendate);
+       date2=StrToTime(closedate);
+
+       ask     = MarketInfo(mSymbol,MODE_ASK);
+       bid     = MarketInfo(mSymbol,MODE_BID);   
+       spread  = MarketInfo(mSymbol,MODE_SPREAD);   
+       point   = MarketInfo(mSymbol,MODE_POINT);
+
+       datetime _15mAgo=TimeCurrent() - (15*60);
+       datetime _1m=TimeCurrent() + (1*60);
+       if (date1 > _15mAgo ) 
+       {
+       
+         if(mNumber)Comment("Magic=", mNumber, ",Symbol=", mSymbol, ",Type=", mType, ",Open=", mOpen, ",Close=", mClose, ",SL=", mStopLoss, ",TakeProfit=", mTakeProfit);   
+
+         if(mType == "Sell" && OrderFind(mNumber, mSymbol) == false)
+         {   
+           if(total<maxorders)OrderSend(mSymbol, OP_SELL, Lots, bid, 3, mStopLoss, mTakeProfit, "Sell Order", mNumber, 0, Blue);
+         }
+         if(mType == "Buy" && OrderFind(mNumber, mSymbol) == false)
+         {
+           if(total<maxorders)OrderSend(mSymbol, OP_BUY, Lots, ask, 3, mStopLoss, mTakeProfit, "Buy Order", mNumber, 0, Blue);
+         }
+       }
+       
+       else if (TimeCurrent() >= date2 && OrderFind(mNumber, mSymbol) == true) 
+       {
+           CloseOrder(glbOrderTicket);
+       }
+       
+       else 
+       {
+         continue;
+       }  
+
+
+      }
+   
+   FileClose(file);  
+   return(0);
+}
+ 
+
+/**
+  Close Order Function
+**/  
+
+void CloseOrder( int Ticket )
+{
+
+  OrderSelect(Ticket, SELECT_BY_TICKET);
+
+  if (OrderType() == OP_BUY) {
+    OrderClose(Ticket, OrderLots(), Bid, 0);     
+  }  
+
+  else {
+    OrderClose(Ticket, OrderLots(), Ask, 0);      
+  }  
+
+ return;  
+
+}   
+ 
+/**
+  Order Find Function
+**/  
+
+bool OrderFind(int Magic, string symbol) 
+{
+
+   glbOrderType = -1;
+   glbOrderTicket = -1;
+   glbOrderProfit = 0;
+   glbOrderOpen = -1;
+   glbOrderStop = -1;
+
+   int total = OrdersTotal();
+
+   bool res = false;
+
+   for(int cnt = 0 ; cnt < total ; cnt++)
+
+     {
+
+       OrderSelect(cnt, SELECT_BY_POS, MODE_TRADES);
+
+       if(OrderMagicNumber() == Magic && OrderSymbol() == symbol)
+
+         {
+
+           glbOrderType = OrderType();
+           glbOrderTicket = OrderTicket();
+           glbOrderProfit = OrderProfit();
+           glbOrderOpen = OrderOpenPrice();
+           glbOrderStop = OrderStopLoss();
+
+           res = true;
+
+         }
+
+     }
+
+ return(res);
+
+}
+
+
+/**
+  Scan History
+**/  
+
+bool InOrders(double op, string symbol) 
+{
+  int i,Totals=OrdersTotal();
+  for(i=0;i<Totals;i++)
+    {
+     OrderSelect(i, SELECT_BY_POS, MODE_TRADES);
+     if(OrderOpenPrice() == op && OrderSymbol() == symbol) {
+        return(TRUE);
+        break;
+     }
+     else {
+        return(FALSE);
+     }
+     
+    }
+} 
+ 
