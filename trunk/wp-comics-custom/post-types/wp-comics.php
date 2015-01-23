@@ -8,9 +8,7 @@ if(!class_exists('Post_Type_Template'))
 	{
 		const POST_TYPE	= "wp-comics";
 		private $_meta	= array(
-			'twitter',
-			'facebook',
-			'province',
+			'twitter','facebook','province',
 		);
 		
     	/**
@@ -36,8 +34,8 @@ if(!class_exists('Post_Type_Template'))
     	/**
     	 * Create the post type
     	 */
-    	public function create_post_type()
-    	{
+    	public function create_post_type() {
+		
     		register_post_type(self::POST_TYPE,
     			array(
     				'labels' => array(
@@ -47,13 +45,34 @@ if(!class_exists('Post_Type_Template'))
     				'public' => true,
     				'has_archive' => true,
     				'description' => __("This is WP Comics Post Type"),
-    				'supports' => array(
-    					'title', 'editor', 'excerpt','thumbnail','custom-fields'
-    				),
+    				'supports' => array('title', 'editor', 'excerpt','thumbnail','custom-fields'),
     			)
     		);
-    	}
-	
+
+			register_taxonomy(
+				'comic-category',
+				self::POST_TYPE,
+				array(
+					'label' => __( 'Category' ),
+					'rewrite' => array( 'slug' => 'comic-category' ),
+					'hierarchical' => true,
+				)
+			);
+
+			/**
+				register_taxonomy(
+					'regions',
+					self::POST_TYPE,
+					array(
+						'label' => __( 'Region' ),
+						'rewrite' => array( 'slug' => 'region' ),
+						'hierarchical' => true,
+					)
+				);
+			**/
+
+		}
+
     	/**
     	 * Save the metaboxes for this custom post type
     	 */
@@ -86,7 +105,7 @@ if(!class_exists('Post_Type_Template'))
     	public function admin_init()
     	{			
     		// Add metaboxes
-    		add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
+    		//add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
     	} // END public function admin_init()
 			
     	/**

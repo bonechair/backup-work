@@ -68,7 +68,6 @@ if(class_exists('WP_Custom_Login_Profile'))
 }
 
 //Database Upgrade
-
 function install_db () {
 global $wpdb;
 
