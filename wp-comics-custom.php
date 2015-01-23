@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Comics Voting
 Plugin URI: lightsites@gmail.com
-Description: Wp Comics Voting Plugin..
+Description: Wp Comics Voting Plugin
 Version: 1.0
 Author: Louis Christian Stoltz
 */
@@ -85,8 +85,7 @@ CREATE TABLE IF NOT EXISTS `wp_votes` (
   `description` longtext NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-ALTER TABLE `wp_votes`
-ADD PRIMARY KEY (`id`);
+ALTER TABLE `wp_votes` ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `wp_votes` ADD PRIMARY KEY (`id`);
 ALTER TABLE `wp_votes` MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
