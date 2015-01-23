@@ -144,7 +144,17 @@ div.wpcf7-validation-errors {
     position: relative !important;
 }
 </style>
+<?php
+/** 
+.form input[type="file"]{ 
 
+<img id="image" style="cursor:pointer;" src="img.jpg" />
+<input type='file' style="display:none;" name="photosubmit" id="photosubmit"/>
+$("#image").click(function(){
+ $("#photosubmit").click();
+});
+**/
+?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -190,8 +200,8 @@ div.wpcf7-validation-errors {
 		
 		<div class="arrow-down"></div>
 
-	 <div class="container box">
-	 
+	 <div style="width:94%;margin:0 auto;">
+	 <br />
    <div class="row">
 
 	<section class="sc-blog-section">
@@ -205,7 +215,8 @@ div.wpcf7-validation-errors {
 <?php get_template_part('postformats/format', $format); ?>			
 			
 			<?php
-				the_content();
+				//the_content();
+				echo do_shortcode( '[contact-form-7 id="1153" title="Profile"]' );
 				$ex = wp_strip_all_tags(get_the_excerpt());
 				$ex = str_replace('"', "''", $ex);
 			?>
@@ -240,9 +251,7 @@ div.wpcf7-validation-errors {
 				}
 				?>
 
-				<?php
-				  //if($meta['Ext-Image'] && !has_post_thumbnail( $post_id )) {
-				?>
+				<?php //if($meta['Ext-Image'] && !has_post_thumbnail( $post_id )) {	?>
 
 				var urlRelative = jQuery('.wp-post-image').attr("src");
 

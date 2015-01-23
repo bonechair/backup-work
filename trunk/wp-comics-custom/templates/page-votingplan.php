@@ -43,14 +43,33 @@ if ( !is_user_logged_in() ) {
 }
 
 hr {
-    background: none repeat scroll 0 0 #ccc;
-    clear: both;
-    height: 1px;
-    margin: 0!important;
-    padding:0!important;
-    width: 100%!important;
+  background: none repeat scroll 0 0 #ccc;
+  clear: both;
+  height: 1px;
+  margin: 0!important;
+  padding:0!important;
+  width: 100%!important;
 }
-
+.left {
+  float:left;
+}
+.right {
+  float:right;
+}
+.voty {
+  margin:5px;
+  width:auto;
+  text-align:right;
+}
+.voty .place{
+  margin:-110px -10px 0 0;
+  position:relative;
+}
+.cat-row {
+  padding-top:10px;
+  width:100%;
+  height:130px;
+}
 </style>
 
 </head>
@@ -91,9 +110,114 @@ hr {
 		<?php the_content(); ?>
 		<?php endwhile; ?>
 		<?php endif; ?>
-		<br />
+
 		<hr style="clear:both;">
-		
+		<br />
+	<?php
+	  $theme 	= get_template_directory_uri();
+
+	  $default 	= '<img src="' . $theme . '/img/default-pic.png">';
+ 
+	  $orange 	= '<img src="' . $theme . '/img/orange.png">';
+	  $orange_c = '<img src="' . $theme . '/img/orange-check.png">';
+	  
+	  $grey	 	= '<img src="' . $theme . '/img/grey.png">';
+	  $grey_c 	= '<img src="' . $theme . '/img/grey-check.png">';	
+
+	  $yellow 	= '<img src="' . $theme . '/img/yellow.png">';
+	  $yellow_c = '<img src="' . $theme . '/img/yellow-check.png">';		  
+	?>
+
+<?php 
+	function get_categories_ids( $args = '' ) {
+	        $defaults = array( 'taxonomy' => 'comic-category' );
+	        $args = wp_parse_args( $args, $defaults );
+	
+	        $taxonomy = $args['taxonomy'];
+
+	        $taxonomy = apply_filters( 'get_categories_taxonomy', $taxonomy, $args );
+	
+	        if ( isset($args['type']) && 'link' == $args['type'] ) {
+	                _deprecated_argument( __FUNCTION__, '3.0', '' );
+	                $taxonomy = $args['taxonomy'] = 'link_category';
+	        }
+	
+	        $categories = (array) get_terms( $taxonomy, $args );
+	
+	        foreach ( array_keys( $categories ) as $k )
+	                _make_cat_compat( $categories[$k] );
+	
+	        return $categories;
+	}
+    $objects = get_categories_ids();
+	global $wpdb;
+	
+  foreach ($objects as $row) {
+	  
+	  $cat = $row->cat_ID;
+?>
+	<div class="cat-row left">
+
+		<div class="left" style="width:65%;">
+		  <h4><a href="/vote?id=<?php echo $cat; ?>"><?php echo $row->name; ?></a></h4> 
+		  <p><?php echo $row->description; ?></p>
+		</div>
+<?php
+	  $uid 				= get_current_user_id();
+	  $post1			= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 3 LIMIT 1" , $uid));
+	  $image1 			= wp_get_attachment_image_src( get_post_thumbnail_id( $post1 ), 'thumbnail' );
+
+	  if(empty($image1)){
+		$image1 = $default;
+	  }
+	  else {
+		$image1 = '<img src="' . $image1[0] . '" width="101" height="101">';
+	  }
+	  ?>
+
+		<div class="voty right"><a href="#"><?php echo $image1;?><div class="place"><?php echo $gold; ?></a></div></div>
+
+	  <?php
+	  $post2			= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 2 LIMIT 1" , $uid));
+	  $image2 			= wp_get_attachment_image_src( get_post_thumbnail_id( $post2 ), 'thumbnail' );
+	  if(empty($image2)){
+		$image2 = $default;
+	  }
+	  else {
+		$image2 = '<img src="' . $image2[0] . '" width="101" height="101">';
+	  }
+	  ?>
+
+		<div class="voty right"><a href="#"><?php echo $image2;?><div class="place"><?php echo $silver; ?></a></div></div>
+
+		  <?php
+
+			  $post3			= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 1 LIMIT 1" , $uid));
+			  $image3 			= wp_get_attachment_image_src( get_post_thumbnail_id( $post3 ), 'thumbnail' );
+			  if(empty($image3)){
+				$image3 = $default;
+			  }
+			  else {
+				$image3 = '<img src="' . $image3[0] . '" width="101" height="101">';
+			  }
+
+			  $gold 	= $yellow_c;
+			  $silver 	= $grey_c;
+			  $bronze 	= $orange_c;
+
+?>
+
+		<div class="voty right"><a href="#"><?php echo $image3;?><div class="place"><?php echo $bronze; ?></a></div></div>
+
+	</div>
+
+<hr style="clear:both;">
+	
+<?php
+}
+?>
+	
+	
 	</div>
 
    	  <div class="col-md-12">

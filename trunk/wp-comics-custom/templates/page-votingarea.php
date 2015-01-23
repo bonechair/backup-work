@@ -47,7 +47,6 @@ if ( is_user_logged_in() ) {
 .vt-header-sub h1{
 	color:#61D9A4!important;
 }
-
 hr {
     background: none repeat scroll 0 0 #ccc;
     clear: both;
@@ -56,11 +55,9 @@ hr {
     padding:0!important;
     width: 100%!important;
 }
-
 .wpcf7-textarea {
     height: 156px;
 }
-
 .go-profile .grinfo {
     clear: both;
     color: #61d9a4 !important;
@@ -69,23 +66,21 @@ hr {
     position: absolute;
 }
 span.wpcf7-not-valid-tip {
-    color: #ec1f26!important;
-    float: right!important;
-    font-size: 0.8em!important;
-    margin: -90px 30px 0 0!important;
-    position: relative!important;
+  color: #ec1f26!important;
+  float: right!important;
+  font-size: 0.8em!important;
+  margin: -90px 30px 0 0!important;
+  position: relative!important;
 }
 .wpcf7-not-valid {
 	border: 1px solid #ec1f26!important;
 }
-
 div.wpcf7-validation-errors {
     border-color: #ec1f26!important;
 }
 .wpcf7-checkbox {
 	border: 0px solid #ec1f26!important;
 }
-
 .checks span.wpcf7-not-valid-tip {
     color: #ec1f26!important;
     float: left!important;
@@ -93,7 +88,6 @@ div.wpcf7-validation-errors {
     margin: 0!important;
     position: relative!important;
 }
-
 .wpcf7-select {
    overflow: hidden!important;
    background: url(/wp-content/themes/scribe/img/down_arrow_select.png) no-repeat right #f9f9f9;
@@ -105,7 +99,6 @@ div.wpcf7-validation-errors {
 	text-indent: 0.01px;
     text-overflow: '';
 }
-
 .dropdown-img {
 	float: right;
     height: 52px;
