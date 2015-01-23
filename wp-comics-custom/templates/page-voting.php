@@ -139,7 +139,6 @@ if ( !is_user_logged_in() ) {
     <?php endwhile; ?>
     <?php endif; ?>
 
-
 <div class="row">
   <div class="col-md-12">
 	  
@@ -147,11 +146,7 @@ if ( !is_user_logged_in() ) {
 	<div class="aq-block aq-block-pg_gallery_block col-md-12 col-xs-12 clearfix" id="aq-block-344-1">
 	<div class="portfolio-grid pagination-infinite"><div class="portfolio-loader" style="display: none;"><div>
 	</div></div><div class="sort_width_container clearfix">
-	<div id="js_sort_items" style="display: none;"><div class="sort_by_cat clearfix">
-	<span class="sort_label">All</span>
-		<ul class="sort_list"><li><a class="all_sort_button active_sort" data-filter="*" href="#">All</a></li><li><a class="partners_sort_button" data-filter=".partners_sort" href="#">Partners</a></li></ul>
-	</div>
-	</div></div>
+
 	<div class="ajax-container">
 	<div class="ajax-controls"><a class="close-ajax-container" href="#">
 	<i class="dashicons dashicons-no"></i></a></div></div>
@@ -168,10 +163,10 @@ if ( !is_user_logged_in() ) {
 			$my_excerpt = get_the_excerpt();
 			$post_id 	= get_the_ID();			
 
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'medium' );
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'thumbnail' );
 
 			if(file_exists(!$image))continue;
-				
+
 		?>	
  
 	<div style="padding: 4px; position: absolute; left: 0px; top: 0px;" class="portfolio-entry portfolio-overlay partners_sort  portfolio-animated" id="entry-<?php echo $post_id; ?>"><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image[0]; ?>" class="entry-image"><div class="img-overlay"><div class="dashicons dashicons-plus"></div></div></div></div>
