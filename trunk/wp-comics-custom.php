@@ -75,17 +75,21 @@ global $wpdb;
 
 	$table_name = $wpdb->prefix . "votes"; 
 
-	$sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
-	`id` bigint(11) NOT NULL,
-	  `comedy_id` bigint(11) NOT NULL,
-	  `voter` bigint(11) NOT NULL,
-	  `comedian` bigint(11) NOT NULL,
-	  `votecount` bigint(11) NOT NULL,
-	  `description` longtext NOT NULL
-	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	$sql = "
+CREATE TABLE IF NOT EXISTS `wp_votes` (
+`id` bigint(11) NOT NULL,
+  `comedy_id` bigint(11) NOT NULL,
+  `voter` bigint(11) NOT NULL,
+  `comedian` bigint(11) NOT NULL,
+  `medallion` int(11) NOT NULL,
+  `description` longtext NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-	ALTER TABLE `wp_votes` ADD PRIMARY KEY (`id`);
-	ALTER TABLE `wp_votes` MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `wp_votes`
+ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `wp_votes` ADD PRIMARY KEY (`id`);
+ALTER TABLE `wp_votes` MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
 	";
 		
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
