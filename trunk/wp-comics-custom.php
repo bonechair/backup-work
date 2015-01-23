@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Comics Voting
 Plugin URI: lightsites@gmail.com
-Description: Wp Comics Voting Plugin
+Description: Wp Comics Voting Plugin..
 Version: 1.0
 Author: Louis Christian Stoltz
 */
