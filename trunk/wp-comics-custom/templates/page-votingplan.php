@@ -159,55 +159,63 @@ hr {
 	<div class="cat-row left">
 
 		<div class="left" style="width:65%;">
-		  <h4><a href="/vote?id=<?php echo $cat; ?>"><?php echo $row->name; ?></a></h4> 
+		  <h4><a href="<?php echo get_site_url(); ?>/vote?id=<?php echo $cat; ?>"><?php echo $row->name; ?></a></h4> 
 		  <p><?php echo $row->description; ?></p>
 		</div>
 <?php
-	  $uid 				= get_current_user_id();
-	  $post1			= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 3 LIMIT 1" , $uid));
-	  $image1 			= wp_get_attachment_image_src( get_post_thumbnail_id( $post1 ), 'thumbnail' );
+
+	  $uid 		= get_current_user_id();
+	  
+	  $post1	= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 3 LIMIT 1" , $uid));
+	  $image1 	= wp_get_attachment_image_src( get_post_thumbnail_id( $post1 ), 'thumbnail' );
 
 	  if(empty($image1)){
 		$image1 = $default;
+		$medallion = $orange;
 	  }
 	  else {
 		$image1 = '<img src="' . $image1[0] . '" width="101" height="101">';
-	  }
+		$medallion = $orange_c;
+	  }  
+	  
 	  ?>
 
-		<div class="voty right"><a href="#"><?php echo $image1;?><div class="place"><?php echo $gold; ?></a></div></div>
+	<div class="voty right"><a href="#"><?php echo $image1;?><div class="place"><?php echo $medallion; ?></a></div></div>
 
 	  <?php
-	  $post2			= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 2 LIMIT 1" , $uid));
-	  $image2 			= wp_get_attachment_image_src( get_post_thumbnail_id( $post2 ), 'thumbnail' );
+	  $post2	= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 2 LIMIT 1" , $uid));
+	  $image2 	= wp_get_attachment_image_src( get_post_thumbnail_id( $post2 ), 'thumbnail' );
+	  
 	  if(empty($image2)){
 		$image2 = $default;
+		$medallion = $grey;		
 	  }
 	  else {
 		$image2 = '<img src="' . $image2[0] . '" width="101" height="101">';
+		$medallion = $grey_c;		
 	  }
+  
 	  ?>
 
-		<div class="voty right"><a href="#"><?php echo $image2;?><div class="place"><?php echo $silver; ?></a></div></div>
+	<div class="voty right"><a href="#"><?php echo $image2;?><div class="place"><?php echo $medallion; ?></a></div></div>
 
-		  <?php
+	<?php
 
-			  $post3			= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 1 LIMIT 1" , $uid));
-			  $image3 			= wp_get_attachment_image_src( get_post_thumbnail_id( $post3 ), 'thumbnail' );
-			  if(empty($image3)){
-				$image3 = $default;
-			  }
-			  else {
-				$image3 = '<img src="' . $image3[0] . '" width="101" height="101">';
-			  }
-
-			  $gold 	= $yellow_c;
-			  $silver 	= $grey_c;
-			  $bronze 	= $orange_c;
+	  $post3	= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 1 LIMIT 1" , $uid));
+	  $image3 	= wp_get_attachment_image_src( get_post_thumbnail_id( $post3 ), 'thumbnail' );
+	  
+	  if(empty($image3)){
+		$image3 = $default;
+		$medallion = $yellow;		
+	  }
+	  else {
+		$image3 = '<img src="' . $image3[0] . '" width="101" height="101">';
+		$medallion = $yellow_c;		
+	  }
 
 ?>
 
-		<div class="voty right"><a href="#"><?php echo $image3;?><div class="place"><?php echo $bronze; ?></a></div></div>
+	<div class="voty right"><a href="#"><?php echo $image3;?><div class="place"><?php echo $medallion; ?></a></div></div>
 
 	</div>
 
@@ -216,7 +224,6 @@ hr {
 <?php
 }
 ?>
-	
 	
 	</div>
 
