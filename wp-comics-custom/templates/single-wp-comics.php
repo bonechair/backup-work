@@ -177,11 +177,15 @@ $("#image").click(function(){
 			</div>	
 		</div>
 		
-        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); 
+        <?php 
+		
+		if ( have_posts() ) : while ( have_posts() ) : the_post(); 
 			
-	$format = get_post_format(); 
-	if( false === $format ) 
-		$format = 'standard'; ?>
+		$format = get_post_format(); 
+		if( false === $format ) 
+		$format = 'standard'; 
+		
+		?>
      
 	    <section class="vt-header-sub" style="clear:both;">
 	        <div class="containerCentered">
@@ -219,34 +223,41 @@ $("#image").click(function(){
 				echo do_shortcode( '[contact-form-7 id="1153" title="Profile"]' );
 				$ex = wp_strip_all_tags(get_the_excerpt());
 				$ex = str_replace('"', "''", $ex);
+				
+				$pen = wp_strip_all_tags($meta['pen-text'][0]);
+				$pen = str_replace('"', "''", $pen);
+				
+
 			?>
 			<script type="text/javascript">
 
 				jQuery(".your-id .wpcf7-text").hide();
 				jQuery(".your-id .wpcf7-text").val("<?php echo get_the_ID(); ?>");
 				jQuery(".wpcf7-email").val("<?php echo $meta['email'][0];?>");
-				jQuery(".wpcf7-twitter").val("<?php echo $meta['twitter'][0];?>");
-				jQuery(".wpcf7-facebook").val("<?php echo $meta['facebook'][0];?>");
-				jQuery(".wpcf7-instagram").val("<?php echo $meta['instagram'][0];?>");
-				jQuery(".wpcf7-social-other").val("<?php echo $meta['social-other'][0];?>");
-				jQuery(".biography .wpcf7-textarea").val("<?php  echo $ex; ?>");
-				jQuery(".pen-text .wpcf7-textarea").val("<?php  echo $meta['pen-text'][0];; ?>");
+				jQuery(".twitter input").val("<?php echo $meta['twitter'][0];?>");
+				jQuery(".facebook input").val("<?php echo $meta['facebook'][0];?>");
+				jQuery(".website input").val("<?php echo $meta['website'][0];?>");
+				jQuery(".instagram input").val("<?php echo $meta['instagram'][0];?>");
+				jQuery(".social-other input").val("<?php echo $meta['social-other'][0];?>");
+				jQuery(".biography textarea").val("<?php echo $ex; ?>");
+				jQuery(".pen-text textarea").val("<?php echo $pen; ?>");
 				jQuery(".ref1 input").val("<?php  echo $meta['ref1'][0]; ?>");
 				jQuery(".ref2 input").val("<?php  echo $meta['ref2'][0]; ?>");
-				jQuery(".refcell1 input").val("<?php  echo $meta['refcell1'][0]; ?>");
-				jQuery(".refcell2 input").val("<?php  echo $meta['refcell2'][0]; ?>");				
-				jQuery(".started select").val("<?php  echo $meta['started'][0]; ?>");
-				jQuery(".province select").val("<?php  echo $meta['province'][0]; ?>");
-				jQuery(".your-name input").val("<?php  echo $meta['your-name'][0]; ?>");
-				jQuery(".sur-name input").val("<?php  echo $meta['sur-name'][0]; ?>");
-				jQuery(".wpcf-id-number").val("<?php  echo $meta['id-number'][0]; ?>");
-				jQuery(".wpcf-stage-number").val("<?php  echo $meta['stage-number'][0]; ?>");
-				jQuery(".wpcf-contact-number").val("<?php  echo $meta['contact-number'][0]; ?>");
+				jQuery(".refcell1 input").val("<?php echo $meta['refcell1'][0]; ?>");
+				jQuery(".refcell2 input").val("<?php echo $meta['refcell2'][0]; ?>");				
+				jQuery(".started select").val("<?php echo $meta['started'][0]; ?>");
+				jQuery(".province select").val("<?php echo $meta['province'][0]; ?>");
+				jQuery(".your-name input").val("<?php echo $meta['your-name'][0]; ?>");
+				jQuery(".sur-name input").val("<?php echo $meta['sur-name'][0]; ?>");
+				jQuery(".id-number input").val("<?php echo $meta['id-number'][0]; ?>");
+				jQuery(".stage-number input").val("<?php echo $meta['stage-number'][0]; ?>");
+				jQuery(".contact-number input").val("<?php echo $meta['contact-number'][0]; ?>");
+				jQuery(".alt-contact-number input").val("<?php echo $meta['alt-contact-number'][0]; ?>");
 
 				<?php
 				if($meta['Pen-Award'][0] == "1") {
 				?>
-				jQuery('.Pen-Award input[type=checkbox]').prop('checked', true);
+					jQuery('.Pen-Award input[type=checkbox]').prop('checked', true);
 				<?php
 				}
 				?>
