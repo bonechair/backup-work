@@ -576,9 +576,9 @@ class AjaxPortfolio {
 		$html .= "<div class='project_description'>";
 		$html .= "<h2 class='title'>{$title}</h2>";
 		$html .= $content;
-		$html .= ' <input type="button" value="bronze" class="bronze" ref="' . $the_id . '">';
-		$html .= ' <input type="button" value="silver" class="silver" ref="' . $the_id . '">';
-		$html .= ' <input type="button" value="gold" class="gold" ref="' . $the_id . '">';
+		$html .= ' <a href="' . $_SERVER['HTTP_REFERER'] . '&bronze_id=' . $the_id . '"><input type="button" value="bronze" class="bronze" ref="' . $the_id . '"></a>';
+		$html .= ' <a href="' . $_SERVER['HTTP_REFERER'] . '&silver_id=' . $the_id . '"><input type="button" value="silver" class="silver" ref="' . $the_id . '"></a>';
+		$html .= ' <a href="' . $_SERVER['HTTP_REFERER'] . '&gold_id=' . $the_id . '"><input type="button" value="gold" class="gold" ref="' . $the_id . '"></a>';
 		$html .= ' </div>';
 		$html .= "</div>";
 		endwhile;
