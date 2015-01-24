@@ -146,6 +146,7 @@ function v_contact_add( $cf7 ) {
 			$ref2  				= $data['ref2'];
 			$refcell1   		= $data['refcell1'];
 			$refcell2   		= $data['refcell2'];
+			$alt_contact_number	= $data['alt-contact-number'];
 			$contact_number		= $data['contact-number'];
 			$Pen_Award	    	= $data['Pen-Award'];
 			if(!empty($Pen_Award))$Pen_Award = 1;
@@ -179,6 +180,7 @@ function v_contact_add( $cf7 ) {
 		add_post_meta( $post_id, 'refcell1', $refcell1 );
 		add_post_meta( $post_id, 'refcell2', $refcell2 );
 		add_post_meta( $post_id, 'contact-number', $contact_number );
+		add_post_meta( $post_id, 'alt-contact-number', $alt_contact_number );
 		add_post_meta( $post_id, 'Pen-Award', $Pen_Award );
 		add_post_meta( $post_id, 'province', $province );
 
@@ -237,6 +239,7 @@ function v_contact_add( $cf7 ) {
 		$refcell1			= $data['refcell1'];
 		$refcell2			= $data['refcell2'];
 		$contact_number		= $data['contact-number'];
+		$alt_contact_number	= $data['alt-contact-number'];
 
 		$province   		= $data['province'];
 		$password   		= $data['password1'];
@@ -256,8 +259,7 @@ function v_contact_add( $cf7 ) {
 
 		wp_update_post($post);
 
-		$website    = get_post_meta( $post_id, 'website', true );
-		$confirmed  = get_post_meta( $post_id, 'confirmed', true );
+		//$confirmed  = get_post_meta( $post_id, 'confirmed', true );
 		$User_ID  	= get_post_meta( $post_id, 'comedians-uid', true );
 
 		update_post_meta( $post_id, 'twitter', $twitter );
@@ -272,7 +274,14 @@ function v_contact_add( $cf7 ) {
 		update_post_meta( $post_id, 'refcell1', $refcell1 );
 		update_post_meta( $post_id, 'refcell2', $refcell2 );
 		update_post_meta( $post_id, 'contact-number', $contact_number );
-
+		
+		delete_post_meta($post_id, 'confirmed');		
+		add_post_meta( $post_id, 'confirmed', 1 );		
+		
+		if($alt_contact_number) {
+			delete_post_meta($post_id, 'alt-contact-number');
+			add_post_meta( $post_id, 'alt-contact-number', $alt_contact_number );
+		}
 		if ($password) {	
 			delete_post_meta($post_id, 'password');
 		    add_post_meta( $post_id, 'password', $password);
@@ -282,10 +291,6 @@ function v_contact_add( $cf7 ) {
 		if ($website) {	
 			delete_post_meta($post_id, 'website');
 		    add_post_meta( $post_id, 'website', $website);
-		}
-		if ($confirm) {	
-			delete_post_meta($post_id, 'confirmed');		
-		    add_post_meta( $post_id, 'confirmed', 1 );
 		}
 		if ($province) {
 			delete_post_meta($post_id, 'province');		
