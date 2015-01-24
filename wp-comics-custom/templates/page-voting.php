@@ -3,10 +3,86 @@
 Template Name: Voting/ Voting
 */
 
+global $wpdb;
+
+
 if ( !is_user_logged_in() ) {
 
 	wp_redirect( home_url() . '/login' );
 
+}
+
+$uid 	= get_current_user_id();
+
+if (isset($_GET['gold_id']) && isset($_GET['id'])) {
+
+$wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND voter = $uid AND medallion = 1" );
+
+	$wpdb->insert( 
+		'wp_votes', 
+		array( 
+			'comedy_id' => $_GET['id'], 
+			'voter' => $uid,
+			'comedian' => $_GET['gold_id'],
+			'medallion' => 1,
+		), 
+		array( 
+			'%d', 
+			'%d', 
+			'%d', 
+			'%d'
+		) 
+	); 
+
+ wp_redirect( home_url() . '/vote/?id=' . $_GET['id'] );
+ 
+}
+
+if (isset($_GET['silver_id']) && isset($_GET['id'])) {
+
+$wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND voter = $uid AND medallion = 2" );
+
+	$wpdb->insert( 
+		'wp_votes', 
+		array( 
+			'comedy_id' => $_GET['id'], 
+			'voter' => $uid,
+			'comedian' => $_GET['silver_id'],
+			'medallion' => 2,
+		), 
+		array( 
+			'%d', 
+			'%d', 
+			'%d', 
+			'%d'
+		) 
+	); 
+
+ wp_redirect( home_url() . '/vote/?id=' . $_GET['id'] );
+ 
+}
+if (isset($_GET['bronze_id']) && isset($_GET['id'])) {
+
+$wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND voter = $uid AND medallion = 3" );
+
+	$wpdb->insert( 
+		'wp_votes', 
+		array( 
+			'comedy_id' => $_GET['id'], 
+			'voter' => $uid,
+			'comedian' => $_GET['bronze_id'],
+			'medallion' => 3,
+		), 
+		array( 
+			'%d', 
+			'%d', 
+			'%d', 
+			'%d'
+		) 
+	); 
+
+ wp_redirect( home_url() . '/vote/?id=' . $_GET['id'] );
+ 
 }
 
 ?><!DOCTYPE html>
@@ -86,6 +162,18 @@ if ( !is_user_logged_in() ) {
 	width:60%;
 	margin:0 auto;
 }
+.portfolio-image .names {
+    color: #fff;
+    font-size: 1.1em;
+    margin: -30px 0 0;
+    position: relative;
+    text-align: center !important;
+}
+.portfolio-entry .place {
+    margin: 0 -5px -30px 0;
+    position: relative;
+    z-index: 47;
+}
 </style>
 
 </head>
@@ -152,24 +240,29 @@ if ( !is_user_logged_in() ) {
 	<i class="dashicons dashicons-no"></i></a></div></div>
 	<div style="margin: -4px; position: relative; height: 1119.18px; opacity: 1;" data-columns="7" data-post-count="50" data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame">
 		
-		<?php 
+	<?php 
 
-			$loop = new WP_Query( array( 'orderby' => 'rand', 'post_type' => 'wp-comics', 'posts_per_page' => 25 ) ); 
+		//$loop = new WP_Query( array( 'orderby' => 'rand', 'post_type' => 'wp-comics', 'posts_per_page' => 25 ) ); 
+		$loop = new WP_Query( array( 'post_type' => 'wp-comics', 'posts_per_page' => 25 ) ); 
 
-			while ( $loop->have_posts() ) : $loop->the_post(); 
+		while ( $loop->have_posts() ) : $loop->the_post(); 
 
 			$yourname 	= get_post_meta( get_the_ID(), 'your-name' );
 			$surname 	= get_post_meta( get_the_ID(), 'sur-name' );
 			$my_excerpt = get_the_excerpt();
 			$post_id 	= get_the_ID();			
 
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'thumbnail' );
-
-			if(file_exists(!$image))continue;
-
-		?>	
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'medium' );
+			$image = $image[0];
+			if(empty($image)) {
+				$theme 		= get_template_directory_uri();
+				$image 	= $theme . '/img/default-pic.png';
+			}
+		
+		$place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/yellow-check.png" class="place">';
+	?>	
  
-	<div style="padding: 4px; position: absolute; left: 0px; top: 0px;" class="portfolio-entry portfolio-overlay partners_sort  portfolio-animated" id="entry-<?php echo $post_id; ?>"><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image[0]; ?>" class="entry-image"><div class="img-overlay"><div class="dashicons dashicons-plus"></div></div></div></div>
+	<div style="padding: 4px; float:left;" class="portfolio-entry portfolio-overlay partners_sort  portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image; ?>" class="entry-image"><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay"><div class="dashicons dashicons-plus"></div></div></div></div>
 			
 	<?php endwhile; wp_reset_query(); ?>
 	
@@ -188,11 +281,12 @@ echo scribe_pagination();
   
 <script type="text/javascript">
 
-jQuery('.like-button').click(function () {
+	jQuery('.like-button').click(function () {
 
-    jQuery('.like-lightbox').hide();
- 
-});
+		jQuery('.like-lightbox').hide();
+	 
+	});
+
 </script>  
   
 <?php get_footer();?>
