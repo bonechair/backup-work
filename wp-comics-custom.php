@@ -138,7 +138,9 @@ function v_contact_add( $cf7 ) {
 			$email 				= $data['user-email'];
 			$biography 			= $data['biography'];
 			$twitter 			= $data['twitter'];
+			$instagram 			= $data['instagram'];
 			$facebook 			= $data['facebook'];
+			$social_other		= $data['social-other'];
 			$id_number 			= $data['id-number'];
 			$stage_number   	= $data['stage-number'];
 			$started   			= $data['started'];
@@ -149,6 +151,7 @@ function v_contact_add( $cf7 ) {
 			$alt_contact_number	= $data['alt-contact-number'];
 			$contact_number		= $data['contact-number'];
 			$Pen_Award	    	= $data['Pen-Award'];
+			$Pen_Text	    	= $data['pen-text'];
 			if(!empty($Pen_Award))$Pen_Award = 1;
 			$province	    	= $data['province'];
 
@@ -182,6 +185,7 @@ function v_contact_add( $cf7 ) {
 		add_post_meta( $post_id, 'contact-number', $contact_number );
 		add_post_meta( $post_id, 'alt-contact-number', $alt_contact_number );
 		add_post_meta( $post_id, 'Pen-Award', $Pen_Award );
+		add_post_meta( $post_id, 'pen-text', wp_strip_all_tags( $Pen_Text ) );
 		add_post_meta( $post_id, 'province', $province );
 
 		//Upload Featured Image
