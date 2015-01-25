@@ -49,10 +49,9 @@ else {
 		<div class="containerCentered">
 		<a href="/"><u style="font-size:9pt;color:#000;margin:0 0 10px 0;">Back to Website</u></a>
 		<br>
-		<img src="/wp-content/themes/scribe/img/02-Login.jpg" alt="">
-		
+
 		<div style="border:1px solid #dededb;width:390px;margin:35px auto 25px auto;padding:0px;">
-		<h3 style="background:#000;color:#61D9A4;margin:0;padding:10px 0 10px 0;font-size:26px;">Comics Voting Centre</h3>
+		<h3 style="background:#000;color:#3886a5;margin:0;padding:10px 0 10px 0;font-size:26px;">Comics Voting Centre</h3>
 			<form name="loginform" id="loginform" action="<?php echo get_option('home'); ?>/wp-login.php" method="post">
 				<p style="padding-left:5px!important;text-align:left!important;">
 					<label>Username<br />

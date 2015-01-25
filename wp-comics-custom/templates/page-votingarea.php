@@ -105,7 +105,54 @@ div.wpcf7-validation-errors {
     margin: -71px 26px !important;
     position: relative !important;
 }
+.references {
+  margin:-50px 10px 0 10px;
+  display:none;
+}
+.references li{
+  margin:0;
+  padding:0;
+  cursor:pointer;
+  font-size:0.7em;
+}
 </style>
+
+<script>
+jQuery( document ).ready(function() {
+	var text ='';
+	jQuery( ".ref1 input" ).click(function() {
+		jQuery( "#references1" ).show();
+	});
+	jQuery( ".ref2 input" ).click(function() {
+		jQuery( "#references2" ).show();
+	});	
+
+	jQuery( ".ref1 select" ).change(function() {
+		text = jQuery('.ref1 select option:selected').text();
+		if(text == 'Create New Reference') {
+			jQuery('.ref1 select').replaceWith('<input type="text" aria-invalid="false" class="wpcf7-form-control wpcf7-text reff1" size="40" value="" name="ref1">');
+			jQuery('.reff1').focus();
+			jQuery('.img1').hide();
+		}
+		else {
+		  //jQuery( ".ref1 input" ).val(text);
+		  //jQuery( "#references1" ).hide();
+	    }
+	});
+	jQuery( ".ref2 select" ).change(function() {
+		var text2 = jQuery('.ref2 select option:selected').text();
+		if(text2 == 'Create New Reference') {
+			jQuery('.ref2 select').replaceWith('<input type="text" aria-invalid="false" class="wpcf7-form-control wpcf7-text reff2" size="40" value="" name="ref2">');
+			jQuery('.reff2').focus();
+			jQuery('.img2').hide();
+		}
+		else {		
+		  //jQuery( ".ref2 input" ).val(text);
+		  //jQuery( "#references2" ).hide();
+		}		
+	});	
+});
+</script>
 
 </head>
 

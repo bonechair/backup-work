@@ -35,11 +35,10 @@ if ( is_user_logged_in() )wp_redirect( home_url() . '/vote' );
 		<div class="containerCentered">
 		<a href="/"><u style="font-size:9pt;color:#000;margin:0 0 10px 0;">Back to Website</u></a>
 		<br>
-		<img src="/wp-content/themes/scribe/img/02-Login.jpg" alt="">
-		<br />
+
 	   <div style="width:390px;margin:35px auto 25px auto;padding:0px;"><p style="margin:0px 0 -40px 0;text-align:left!important;"><a href="<?php echo get_option('home'); ?>/login" title="Login">Cancel</a></p></div>
 		<div style="border:1px solid #dededb;width:390px;margin:35px auto 25px auto;padding:0px;">
-		<h3 style="background:#000;color:#61D9A4;margin:0;padding:10px 0 10px 0;font-size:26px;">Comics Voting Centre</h3>
+		<h3 style="background:#000;color:#3886a5;margin:0;padding:10px 0 10px 0;font-size:26px;">Comics Voting Centre</h3>
 			<form name="loginform" id="loginform" action="<?php echo get_option('home'); ?>/wp-login.php?action=lostpassword" method="post">
 				<input type="hidden" name="tg_pwd_nonce" value="<?php echo wp_create_nonce("tg_pwd_nonce"); ?>" />
 				<br />
@@ -68,7 +67,7 @@ if ( is_user_logged_in() )wp_redirect( home_url() . '/vote' );
 
 
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 	try{document.getElementById('user_login').focus();}catch(e){}
 	if(typeof wpOnload=='function')wpOnload();
 	</script>

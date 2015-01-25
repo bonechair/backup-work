@@ -268,6 +268,7 @@ $("#image").click(function(){
 				    echo "urlRelative = '" . $meta['Ext-Image'][0] . "';";
 				  }
 				?>
+
 				jQuery(".wp-post-image").hide();
 				jQuery("#profile-photo").attr("src", urlRelative);
 
