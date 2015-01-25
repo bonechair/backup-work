@@ -145,8 +145,8 @@ div.wpcf7-validation-errors {
 }
 </style>
 <?php
-/** 
-.form input[type="file"]{ 
+/**
+.form input[type="file"]{
 
 <img id="image" style="cursor:pointer;" src="img.jpg" />
 <input type='file' style="display:none;" name="photosubmit" id="photosubmit"/>
@@ -167,7 +167,7 @@ $("#image").click(function(){
 			<div class="top-box"><h4>Comics Voting Center</h4></div> 
 			<div class="top-box" style="margin-top:17px;">
 			<a href="<?php echo home_url(); ?>" style="color:#61D9A4;">Go Back To Website</a> 
-			<a href="<?php echo home_url(); ?>/wp-login.php?action=logout" style="color:#2F2F2F;">Logout</a> 
+			<a href="<?php echo wp_logout_url(); ?>" style="color:#2F2F2F;">Logout</a>
 				<?php /** <a href="<?php echo home_url(); ?>" style="color:#2F2F2F;">Vote</a> 
 				<a href="<?php echo home_url(); ?>" style="color:#61D9A4;">My Profile</a>
 				 <a href="<?php echo home_url(); ?>" style="color:#2F2F2F;">Help</a> **/ ?>
@@ -177,16 +177,16 @@ $("#image").click(function(){
 			</div>	
 		</div>
 		
-        <?php 
-		
-		if ( have_posts() ) : while ( have_posts() ) : the_post(); 
+        <?php
 			
-		$format = get_post_format(); 
-		if( false === $format ) 
-		$format = 'standard'; 
-		
-		?>
+		if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+	$format = get_post_format();
+	if( false === $format ) 
+		$format = 'standard';
      
+		?>
+
 	    <section class="vt-header-sub" style="clear:both;">
 	        <div class="containerCentered">
 
@@ -223,10 +223,9 @@ $("#image").click(function(){
 				echo do_shortcode( '[contact-form-7 id="1153" title="Profile"]' );
 				$ex = wp_strip_all_tags(get_the_excerpt());
 				$ex = str_replace('"', "''", $ex);
-				
+
 				$pen = wp_strip_all_tags($meta['pen-text'][0]);
 				$pen = str_replace('"', "''", $pen);
-				
 
 			?>
 			<script type="text/javascript">
@@ -239,30 +238,28 @@ $("#image").click(function(){
 				jQuery(".website input").val("<?php echo $meta['website'][0];?>");
 				jQuery(".instagram input").val("<?php echo $meta['instagram'][0];?>");
 				jQuery(".social-other input").val("<?php echo $meta['social-other'][0];?>");
-				jQuery(".biography textarea").val("<?php echo $ex; ?>");
-				jQuery(".pen-text textarea").val("<?php echo $pen; ?>");
+				jQuery(".biography textarea").val("<?php  echo $ex; ?>");
+				jQuery(".pen-text textarea").val("<?php  echo $pen; ?>");
 				jQuery(".ref1 input").val("<?php  echo $meta['ref1'][0]; ?>");
 				jQuery(".ref2 input").val("<?php  echo $meta['ref2'][0]; ?>");
 				jQuery(".refcell1 input").val("<?php echo $meta['refcell1'][0]; ?>");
-				jQuery(".refcell2 input").val("<?php echo $meta['refcell2'][0]; ?>");				
+				jQuery(".refcell2 input").val("<?php echo $meta['refcell2'][0]; ?>");
 				jQuery(".started select").val("<?php echo $meta['started'][0]; ?>");
 				jQuery(".province select").val("<?php echo $meta['province'][0]; ?>");
 				jQuery(".your-name input").val("<?php echo $meta['your-name'][0]; ?>");
 				jQuery(".sur-name input").val("<?php echo $meta['sur-name'][0]; ?>");
 				jQuery(".id-number input").val("<?php echo $meta['id-number'][0]; ?>");
-				jQuery(".stage-number input").val("<?php echo $meta['stage-number'][0]; ?>");
-				jQuery(".contact-number input").val("<?php echo $meta['contact-number'][0]; ?>");
-				jQuery(".alt-contact-number input").val("<?php echo $meta['alt-contact-number'][0]; ?>");
+				jQuery(".stage-number input").val("<?php  echo $meta['stage-number'][0]; ?>");
+				jQuery(".contact-number input").val("<?php  echo $meta['contact-number'][0]; ?>");
+				jQuery(".alt-contact-number input").val("<?php  echo $meta['alt-contact-number'][0]; ?>");
 
 				<?php
 				if($meta['Pen-Award'][0] == "1") {
 				?>
-					jQuery('.Pen-Award input[type=checkbox]').prop('checked', true);
+				jQuery('.Pen-Award input[type=checkbox]').prop('checked', true);
 				<?php
 				}
 				?>
-
-				<?php //if($meta['Ext-Image'] && !has_post_thumbnail( $post_id )) {	?>
 
 				var urlRelative = jQuery('.wp-post-image').attr("src");
 
