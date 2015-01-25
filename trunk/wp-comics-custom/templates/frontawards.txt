@@ -3,87 +3,105 @@
 
 <div class="award" id="1">
 	<div class="award-category toggle">The Savanna Newcomer Award Category</div>
-		<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 			• The Act who has made the biggest impact on the comedy industry in the preceding 12 months. 
 			• This category is open to all English and Non-English acts that have a minimum of (1) one year and a maximum of two (2) years professional comedy experience.
+		</div>
 		</div>
 </div>
 
 <div class="award" id="3">
 <div class="award-category toggle">The Intermediate Act Award Category</div>
-<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 • Formerly known as the Breakthrough Act Category 
 • The Act who has progressed from being a newcomer but isn’t quite an established act yet. This will take into account, media coverage, digital presence, film and television work, radio, etc. 
 • This category is open to all English and Non-English acts that have a minimum of two (2) years and maximum four (4) years of professional comedy experience.
+</div>
 </div>
 </div>
 
 
 <div class="award" id="4">
 <div class="award-category toggle">The Comic of the Year Award Category</div>
-<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 • This award acknowledges the Act who has made the most impact as an established comedian by form of their quality of comedy and their contribution to the comedy industry. 
 • This category will be for acts that have a minimum of 5 years professional comedy experience.
+</div>
 </div>
 </div>
 
 
 <div class="award" id="5">
 <div class="award-category toggle">The Non-English Act Award Category</div>
-<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 • Predominant language of performance in any language other than English. 
 • This award acknowledges the Act who has made the most impact as an established non-english comedian by form of their quality of comedy and their contribution to the comedy industry. 
 • Only comedians who perform predominately in a non-english language may vote in this category
+</div>
 </div>
 </div>
 
 
 <div class="award" id="10">
 <div class="award-category toggle">The Stage Show Award Category</div>
-<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 • This category is open to all English and Non-English acts that meet the following criteria: 
 • Tickets for the solo-show must have been sold through a reputable ticketing system i.e Computicket. 
 • The show must have taken place at a reputable 300+ seater theatre/rented venue 
 • The show must have had a proper marketing plan with professional artwork made and distributed by way of street pole posters, flyers etc
 </div>
 </div>
+</div>
 
 <div class="award" id="6">
 	<div class="award-category toggle">The Times Comic’s Pen Award Category</div>
-		<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 			• The Comics Pen award recognizes excellent comedy writing/drawn work sold in the previous 12 months. 
 			• This category is open to ALL comedic writers across South Africa, professional writers and comedians. 
 			• Professional writers & comedians must supply in accordance with CCA requirements, a sample of no less and no more than 500 words from the written comedic submission, or a reproduction of comedic art work should the work be drawn 
 			• Comedian submissions must be verified by five (5) other registered comedians. 
 			• Professional writers (non-comedians) must be nominated by five (5) registered comedians.
 		</div>
+		</div>
 </div>
 	
 <div class="award" id="7">
 	<div class="award-category toggle">The Lifetime Achiever Recipient</div>
-		<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 			• Comedians with 25+ years of professional experience become eligible for the Lifetime Achiever award, whether currently performing or not. 
 			• Comedians eligible for this category will have their votes weigh more when voting in this category than all other registered comedians. The voting points will be as follows: 
 			• Gold = 12 points 
 			• Silver = 8 points 
 			• Bronze = 6 points
 		</div>
+		</div>
 </div>	
 
 <div class="award" id="8">
 	<div class="award-category toggle">The Best Friend of Comedy Award Category</div>
-		<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 			• This award maybe won by either a registered comedian or any non-registered person nominated by a minimum of 5 registered comics 
 			• The entities eligible to win this award include but are not limited to any individual, media channel, company or registered comedian whose work in the field of growing, supporting, promoting or otherwise championing South African comedy in a non-performance capacity
+		</div>
 		</div>
 </div>
 
 <div class="award" id="9">
 	<div class="award-category toggle">The Savanna Audience Choice Award Category</div>
-		<div class="award-description toggle">
+		<div class="toggle overlay">
+		<div class="award-description">
 			• All registered comedians irrespective of category are eligible for this award category. 
 			• This award category is the only one in which the public determines the recipient by way of sms voting to the number 38374 
 			• Each registered comedian will receive a unique code in which they can lobby to the public to use when voting for them. It is really important and encouraged to lobby for votes from the public.
+		</div>
 		</div>
 </div>
 
