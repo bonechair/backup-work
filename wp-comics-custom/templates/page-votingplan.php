@@ -62,13 +62,22 @@ hr {
   text-align:right;
 }
 .voty .place{
-  margin:-110px -10px 0 0;
+    margin: 0 -17px -15px 0;
   position:relative;
+}
+.voty .names {
+    color: #fff;
+    font-size: 0.7em;
+    margin: -20px 0 0;
+    position: relative;
+    text-align: center !important;
+	text-overflow: ellipsis;
+	width:100px;
 }
 .cat-row {
   padding-top:10px;
   width:100%;
-  height:130px;
+  height:160px;
 }
 </style>
 
@@ -165,57 +174,77 @@ hr {
 <?php
 
 	  $uid 		= get_current_user_id();
-	  
-	  $post1	= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 3 LIMIT 1" , $uid));
+	  $sql = "SELECT comedian FROM wp_votes WHERE voter = $uid AND comedy_id =  $cat AND medallion = 3 LIMIT 1";
+	  $post1	= $wpdb->get_var( $sql );
 	  $image1 	= wp_get_attachment_image_src( get_post_thumbnail_id( $post1 ), 'thumbnail' );
-
-	  if(empty($image1)){
-		$image1 = $default;
-		$medallion = $orange;
-	  }
-	  else {
-		$image1 = '<img src="' . $image1[0] . '" width="101" height="101">';
-		$medallion = $orange_c;
-	  }  
-	  
+			
+	$yourname 	= get_post_meta( $post1, 'your-name' );
+	$surname 	= get_post_meta( $post1, 'sur-name' );
+	
+		  if(empty($post1)){
+			$medallion = $yellow;
+		  }
+		  else {
+			$medallion = $yellow_c;
+		  }  
+		  if(empty($image1)){
+			$image1 = $default;
+		  }
+		  else {
+			$image1 = '<img src="' . $image1[0] . '" width="101" height="101">';
+		  }  	  
 	  ?>
 
-	<div class="voty right"><a href="#"><?php echo $image1;?><div class="place"><?php echo $medallion; ?></a></div></div>
+	<div class="voty right"><div class="place"><?php echo $medallion; ?></a></div><a href="#"><?php echo $image1;?><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div></div>
 
 	  <?php
-	  $post2	= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 2 LIMIT 1" , $uid));
+	  $sql = "SELECT comedian FROM wp_votes WHERE voter = $uid AND comedy_id = $cat AND medallion = 2 LIMIT 1";
+	  $post2	= $wpdb->get_var( $sql );
 	  $image2 	= wp_get_attachment_image_src( get_post_thumbnail_id( $post2 ), 'thumbnail' );
-	  
-	  if(empty($image2)){
-		$image2 = $default;
-		$medallion = $grey;		
-	  }
-	  else {
-		$image2 = '<img src="' . $image2[0] . '" width="101" height="101">';
-		$medallion = $grey_c;		
-	  }
-  
+	
+	$yourname 	= get_post_meta( $post2, 'your-name' );
+	$surname 	= get_post_meta( $post2, 'sur-name' );
+		  
+		  if(empty($post2)){
+			$medallion = $grey;
+		  }
+		  else {
+			$medallion = $grey_c;
+		  }  
+		  if(empty($image2)){
+			$image2 = $default;
+		  }
+		  else {
+			$image2 = '<img src="' . $image2[0] . '" width="101" height="101">';
+		  }    
 	  ?>
 
-	<div class="voty right"><a href="#"><?php echo $image2;?><div class="place"><?php echo $medallion; ?></a></div></div>
+	<div class="voty right"><div class="place"><?php echo $medallion; ?></a></div><a href="#"><?php echo $image2;?><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div></div>
 
 	<?php
 
-	  $post3	= $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->votes WHERE voter = %s medallion = 1 LIMIT 1" , $uid));
+	  $sql = "SELECT comedian FROM wp_votes WHERE voter = $uid AND comedy_id = $cat AND medallion = 3 LIMIT 1";
+	  $post3	= $wpdb->get_var( $sql );
 	  $image3 	= wp_get_attachment_image_src( get_post_thumbnail_id( $post3 ), 'thumbnail' );
-	  
-	  if(empty($image3)){
-		$image3 = $default;
-		$medallion = $yellow;		
-	  }
-	  else {
-		$image3 = '<img src="' . $image3[0] . '" width="101" height="101">';
-		$medallion = $yellow_c;		
-	  }
-
+	
+	$yourname 	= get_post_meta( $post3, 'your-name' );
+	$surname 	= get_post_meta( $post3, 'sur-name' );
+		  
+		  if(empty($post3)){
+			$medallion = $orange;
+		  }
+		  else {
+			$medallion = $orange_c;
+		  }  
+		  if(empty($image3)){
+			$image3 = $default;
+		  }
+		  else {
+			$image3 = '<img src="' . $image3[0] . '" width="101" height="101">';
+		  }  
 ?>
 
-	<div class="voty right"><a href="#"><?php echo $image3;?><div class="place"><?php echo $medallion; ?></a></div></div>
+	<div class="voty right"><div class="place"><?php echo $medallion; ?></a></div><a href="#"><?php echo $image3;?><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div></div>
 
 	</div>
 
