@@ -259,7 +259,19 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 				$image 	= $theme . '/img/default-pic.png';
 			}
 		
-		$place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/yellow-check.png" class="place">';
+		$place = '';	
+			
+			$sql 	= "SELECT medallion FROM wp_votes WHERE voter = " . $uid . " AND comedy_id = " . $_GET['id'] . " AND comedian = " . $post_id . "  LIMIT 1";
+			$medal	= $wpdb->get_var( $sql );
+			if ($medal == 1) {
+			   $place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/yellow-check.png" class="place">';
+			}
+			else if ($medal == 2) {
+			   $place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/grey-check.png" class="place">';
+			}
+			else if ($medal == 3) {
+			   $place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/orange-check.png" class="place">';
+			}
 	?>	
  
 	<div style="padding: 4px; float:left;" class="portfolio-entry portfolio-overlay partners_sort  portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image; ?>" class="entry-image"><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay"><div class="dashicons dashicons-plus"></div></div></div></div>
