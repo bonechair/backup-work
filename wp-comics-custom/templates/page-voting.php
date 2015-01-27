@@ -177,14 +177,15 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
     text-align: center !important;
 }
 .portfolio-entry .place {
-    margin: 0 -5px -30px 0;
-    position: relative;
+    margin: -15px 0 0 -20px;
+    position: absolute;
     z-index: 47;
 }
 .portfolio-entry {
     padding: 4px;
 	float:left!important;
-	width:130px!important;
+	width:135px!important
+	min-width:135px!important
 }
 
 .thegreensexy {
@@ -200,7 +201,6 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
     font-size: 1em;
     font-weight: bold;
 }
-
 .arrow-down {
     margin:0 auto 0 auto;
 	width: 0; 
@@ -236,11 +236,10 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
     padding: 5px 5px;
     text-decoration: none; 
 }
-.ui-tabs-selected a 	{ 
+.ui-tabs-selected a { 
 	color: white!important; 
 }
-
-.ui-tabs .ui-tabs-panel 	{ 
+.ui-tabs .ui-tabs-panel { 
 	display: block; 
 	border-width: 0; 
 	background: none; 
@@ -251,20 +250,33 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 	height: auto !important; 
 	height: 200px; 
 }
-a.mover 	{ 
+a.mover { 
 	padding: 6px 12px; 
 	position: absolute;
 	color: white; 
 	font-weight: bold; 
 	text-decoration: none; 
 }
+.exit { 
+	margin:10px auto;
+	position: relative; 
+	z-index: 1000; 
+	height: 35px; 
+	width:160px;
+}
+.exit a{ 
+	margin:0 0 0 30px;
+}
 .next-tab { 
-	top: -50px; 
+	top: -35px; 
 	right: 0; 
 }
 .prev-tab { 
-	top: -50px;
+	top: -35px;
 	left: 0; 
+ }
+ h3, b {
+	color:#FFF;
  }
 </style>
 
@@ -272,13 +284,15 @@ a.mover 	{
 
 <body <?php body_class(); ?>>
 	 	
-	 <div class="loader"></div>
-	 	
-	 <div id="main" style="background:#000;">	        
-
+	<div class="loader"></div>
+	
+	<div id="main" style="background:#000;">
+	
 	<br>
 
-		<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">	
+		<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+	<div class="exit"><a href="/voters-categories" class="mover">Exit</a></div>	
+		
 			<ul class="ui-tabs-nav">
         		<li class="ui-corner-top"><a id="t-1" rel="1" href="#fragment-1">&#8226;</a></li>
         		<li class="ui-corner-top"><a id="t-2" rel="2" href="#fragment-2">&#8226;</a></li>
@@ -287,8 +301,7 @@ a.mover 	{
     	   </ul>
 	
         	<div id="fragment-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-        	<a href="#" class="next-tab mover" rel="2">Next »</a>
-				<p>
+
 				<div id="welcome">
 					<h3>Welcome To The Comics Voting Centre</h3>
 						<b>The rules are:</b>
@@ -296,7 +309,7 @@ a.mover 	{
 
 					<input class="wpcf7-form-control wpcf7-submit like-button" type="submit" value="Okay got it" />
 				</div>
-				</p>
+
 			 </div> 
    	
         	<div id="fragment-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
@@ -306,7 +319,7 @@ a.mover 	{
 	<div class="row">
 	
 		<div class="thegreensexy">
-			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b>cast all your votes</b> for this category
+			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b>2 votes</b> left for this category
 		</div>
 			
 		<div class="arrow-down"></div>
@@ -349,17 +362,20 @@ a.mover 	{
 			$medal	= $wpdb->get_var( $sql );
 			if ($medal == 1) {
 			   $place = '<img src="' . $theme . '/img/yellow-check.png" class="place">';
+			   $overdisplay = ' style="background-color:yellow;opacity:0.3;"';			   
 			}
 			else if ($medal == 2) {
 			   $place = '<img src="' . $theme . '/img/grey-check.png" class="place">';
+			   $overdisplay = ' style="background-color:grey;opacity:0.3;"';			   
 			}
 			else if ($medal == 3) {
 			   $place = '<img src="' . $theme . '/img/orange-check.png" class="place">';
+			   $overdisplay = ' style="background-color:orange;opacity:0.3;"';			   
 			}
 	?>	
  
 	<div class="portfolio-entry portfolio-overlay partners_sort portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image; ?>" class="entry-image"><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay" <?php echo $overdisplay;?>><div class="dashicons dashicons-plus"></div></div></div></div>
-			
+
 	<?php endwhile; wp_reset_query(); ?>
 	
 	</div></div></div></div></div></div></div>
@@ -371,6 +387,13 @@ a.mover 	{
 <a href="#" class="next-tab mover" rel="4">Next »</a><a href="#" class="prev-tab mover" rel="2">« Previous</a>
 <p>
 <div class="row">
+
+		<div class="thegreensexy">
+			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b>cast all your votes</b> for this category
+		</div>
+			
+		<div class="arrow-down"></div>
+		<br /><br />
   <div class="col-md-12">
 	  
     <div class="aq-template-wrapper aq_row" id="aq-template-wrapper-345">
@@ -437,8 +460,13 @@ a.mover 	{
 </div>
 
 	<div id="fragment-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-	<a href="#" class="prev-tab mover" rel="3">Previous »</a>			
-		  
+	<a href="#" class="prev-tab mover" rel="3">« Previous</a>			
+		<div class="thegreensexy">
+			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b>cast all your votes</b> for this category
+		</div>
+			
+		<div class="arrow-down"></div>
+		<br /><br />		  
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit quam quam, ut commodo urna euismod ac. Integer non massa ac risus lobortis posuere. In mattis facilisis libero dignissim consequat. Suspendisse ac justo dui. Maecenas dolor enim, lobortis nec tempor non, ullamcorper ut eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat sagittis arcu vitae iaculis..</p>
 	 
 	 </div> 
@@ -488,11 +516,19 @@ a.mover 	{
 		jQuery(function() {
 
 			jQuery('.ui-tabs-panel').hide();
+			jQuery('.ui-tabs-nav').hide();
+			jQuery('.exit').hide();
 			
 			jQuery('.like-button').click(function () {
 
-				jQuery('#welcome').hide();
-			 
+		        jQuery('.ui-tabs-panel').hide();
+		        jQuery('.ui-corner-top a').css('color', '#444');
+				jQuery('#t-2').css('color', '#fff');
+				jQuery('#fragment-2').fadeIn('slow');
+				jQuery('.portfolio-grid').ajaxPortfolio();
+				jQuery('.portfolio-grid').ajaxPortfolio();
+			 	jQuery('.ui-tabs-nav').show();
+				jQuery('.exit').show();
 			});
 			<?php
 			if ($_GET['success'] == 'yes') {
@@ -500,6 +536,8 @@ a.mover 	{
 				jQuery('.ui-corner-top a').css('color', '#444');
 				jQuery('#t-2').css('color', '#fff');
 				jQuery('#fragment-2').fadeIn('slow');
+				jQuery('.ui-tabs-nav').show();
+				jQuery('.exit').show();
 			<?php
 			}
 			else {
@@ -514,9 +552,19 @@ a.mover 	{
 		           jQuery('.ui-tabs-panel').hide();
 		           jQuery('.ui-corner-top a').css('color', '#444');
 				   jQuery('#t-' + jQuery(this).attr("rel")).css('color', '#fff');
-				   
 				   jQuery(jQuery(this).attr("href")).fadeIn('slow');
 				   jQuery('.portfolio-grid').ajaxPortfolio();
+				   jQuery('.portfolio-grid').ajaxPortfolio();
+				   
+				   var s = jQuery(this).attr("rel");
+				   if( s != 1) {
+				     jQuery('.ui-tabs-nav').show();
+				     jQuery('.exit').show();
+				   }
+				   else {
+				     jQuery('.ui-tabs-nav').hide();
+				     jQuery('.exit').hide();
+				   }
 				   return false;
 		       });			
 			   
@@ -526,6 +574,16 @@ a.mover 	{
 				   jQuery('#t-' + jQuery(this).attr("rel")).css('color', '#fff');
 				   jQuery('#fragment-' + jQuery(this).attr("rel")).fadeIn('slow');
 				   jQuery('.portfolio-grid').ajaxPortfolio();
+				   jQuery('.portfolio-grid').ajaxPortfolio();
+				   var s = jQuery(this).attr("rel");
+				   if( s != 1) {
+				     jQuery('.ui-tabs-nav').show();
+				     jQuery('.exit').show();
+				   }
+				   else {
+				     jQuery('.ui-tabs-nav').hide();
+				     jQuery('.exit').hide();
+				   }
 				   return false;
 		       });
        
