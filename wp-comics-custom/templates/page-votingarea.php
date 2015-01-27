@@ -174,7 +174,7 @@ jQuery( document ).ready(function() {
 			   	        </div>
 			   	    </section>
 					                </div> 
-					            </div>
+				 	            </div>
 					        </section>
      <?php } else { ?>  
 	   

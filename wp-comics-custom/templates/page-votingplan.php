@@ -223,7 +223,7 @@ hr {
 
 	<?php
 
-	  $sql = "SELECT comedian FROM wp_votes WHERE voter = $uid AND comedy_id = $cat AND medallion = 3 LIMIT 1";
+	  $sql = "SELECT comedian FROM wp_votes WHERE voter = $uid AND comedy_id = $cat AND medallion = 1 LIMIT 1";
 	  $post3	= $wpdb->get_var( $sql );
 	  $image3 	= wp_get_attachment_image_src( get_post_thumbnail_id( $post3 ), 'thumbnail' );
 	
@@ -262,7 +262,7 @@ hr {
 global $wp_query;
 
 echo scribe_pagination(); 
-?></div>      
+?></div>
 
       <?php wp_reset_query(); ?>
   </div> 
