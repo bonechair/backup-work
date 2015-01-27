@@ -325,10 +325,10 @@ a.mover {
 		<div class="arrow-down"></div>
 		<br /><br />
 		
-	<div class="col-md-12">
+	<div style="margin:0 auto;width:900px;position:relative;">
 	  
     <div class="aq-template-wrapper aq_row" id="aq-template-wrapper-344">
-	<div class="aq-block aq-block-pg_gallery_block col-md-12 col-xs-12 clearfix" id="aq-block-344-1">
+	<div class="" id="aq-block-344-1">
 	<div class="portfolio-grid pagination-infinite"><div class="portfolio-loader" style="display: none;"><div>
 	</div></div><div class="sort_width_container clearfix">
 
@@ -394,10 +394,10 @@ a.mover {
 			
 		<div class="arrow-down"></div>
 		<br /><br />
-  <div class="col-md-12">
+	<div style="margin:0 auto;width:900px;position:relative;">
 	  
     <div class="aq-template-wrapper aq_row" id="aq-template-wrapper-345">
-	<div class="aq-block aq-block-pg_gallery_block col-md-12 col-xs-12 clearfix" id="aq-block-345-1">
+	<div class="" id="aq-block-345-1">
 	<div class="portfolio-grid pagination-infinite"><div class="portfolio-loader" style="display: none;"><div>
 	</div></div><div class="sort_width_container clearfix">
 
