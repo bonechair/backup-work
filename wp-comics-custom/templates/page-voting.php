@@ -10,7 +10,11 @@ if ( !is_user_logged_in() ) {
 	wp_redirect( home_url() . '/login' );
 
 }
+if ( empty($_GET['id']) ) {
 
+	wp_redirect( home_url() . '/voters-categories' );
+
+}
 $uid 	= get_current_user_id();
 
 if (isset($_GET['gold_id']) && isset($_GET['id'])) {
@@ -258,7 +262,7 @@ a.mover {
 	text-decoration: none; 
 }
 .exit { 
-	margin:10px auto;
+	margin:-20px auto -20px auto;
 	position: relative; 
 	z-index: 1000; 
 	height: 35px; 
@@ -278,6 +282,23 @@ a.mover {
  h3, b {
 	color:#FFF;
  }
+#welcome { 
+	margin:10px auto;
+	position: relative; 
+	z-index: 1000; 
+	height:auto; 
+	width:900px;
+	text-align:center;	
+}
+.votingbar {
+	display:block!important;
+}
+.ajax-controls {
+    top:5px!important;
+}
+.ajax_project {
+    margin-top: 0!important;
+}
 </style>
 
 </head>
@@ -306,20 +327,23 @@ a.mover {
 					<h3>Welcome To The Comics Voting Centre</h3>
 						<b>The rules are:</b>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit quam quam, ut commodo urna euismod ac. Integer non massa ac risus lobortis posuere. In mattis facilisis libero dignissim consequat. Suspendisse ac justo dui. Maecenas dolor enim, lobortis nec tempor non, ullamcorper ut eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat sagittis arcu vitae iaculis..
-
+					<br />
 					<input class="wpcf7-form-control wpcf7-submit like-button" type="submit" value="Okay got it" />
 				</div>
 
 			 </div> 
    	
-        	<div id="fragment-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-            <a href="#" class="next-tab mover" rel="3">Next »</a><a href="#" class="prev-tab mover" rel="1">« Previous</a>                   
+<div id="fragment-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+<a href="#" class="next-tab mover" id="f1" rel="4" style="display:none;">Next »</a>
+<a href="#" class="next-tab mover" id="f2" rel="3">Next »</a>
+<a href="#" class="prev-tab mover" id="f3" rel="2" style="display:none;">« Previous</a>                   
+<a href="#" class="prev-tab mover" id="f4" rel="1">« Previous</a>                   
 				   
 	<p>
 	<div class="row">
 	
 		<div class="thegreensexy">
-			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b>2 votes</b> left for this category
+			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b id="nvotes">2 votes</b> left for this category
 		</div>
 			
 		<div class="arrow-down"></div>
@@ -338,9 +362,21 @@ a.mover {
 	<div style="margin: -4px; position: relative; height: 1119.18px; opacity: 1;" data-columns="7" data-post-count="50" data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame1">
 		
 	<?php 
+	
+		//$loop = new WP_Query( array( 'orderby' => 'rand', 'post_type' => 'wp-comics', 'posts_per_page' => -1 ) ); 
 
-		//$loop = new WP_Query( array( 'orderby' => 'rand', 'post_type' => 'wp-comics', 'posts_per_page' => 25 ) ); 
-		$loop = new WP_Query( array( 'post_type' => 'wp-comics', 'posts_per_page' => 25 ) ); 
+		$loop = new WP_Query( array( 
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'comic-category',
+					'field'    => 'id',
+					'terms'    => $_GET['id']
+					), 
+			'orderby' => 'rand', 
+			'post_type' => 'wp-comics', 
+			'posts_per_page' => -1 
+		) 
+		)); 
 
 		while ( $loop->have_posts() ) : $loop->the_post(); 
 
@@ -357,9 +393,11 @@ a.mover {
 			}
 		
 		$place = '';	
-			
+			$overdisplay = '';
 			$sql 	= "SELECT medallion FROM wp_votes WHERE voter = " . $uid . " AND comedy_id = " . $_GET['id'] . " AND comedian = " . $post_id . "  LIMIT 1";
 			$medal	= $wpdb->get_var( $sql );
+			
+			$display = '';
 			if ($medal == 1) {
 			   $place = '<img src="' . $theme . '/img/yellow-check.png" class="place">';
 			   $overdisplay = ' style="background-color:yellow;opacity:0.3;"';			   
@@ -372,90 +410,22 @@ a.mover {
 			   $place = '<img src="' . $theme . '/img/orange-check.png" class="place">';
 			   $overdisplay = ' style="background-color:orange;opacity:0.3;"';			   
 			}
+			else {
+			   $display = 'blackops';
+			}
 	?>	
  
-	<div class="portfolio-entry portfolio-overlay partners_sort portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image; ?>" class="entry-image"><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay" <?php echo $overdisplay;?>><div class="dashicons dashicons-plus"></div></div></div></div>
+	<div class="portfolio-entry portfolio-overlay partners_sort portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image; ?>" class="entry-image img1"><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay <?php echo $display;?>" <?php echo $overdisplay;?>><div class="dashicons dashicons-plus"></div></div></div></div>
+
 
 	<?php endwhile; wp_reset_query(); ?>
 	
 	</div></div></div></div></div></div></div>
 	</p>
 	
-	</div>
+</div>
 
 <div id="fragment-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-<a href="#" class="next-tab mover" rel="4">Next »</a><a href="#" class="prev-tab mover" rel="2">« Previous</a>
-<p>
-<div class="row">
-
-		<div class="thegreensexy">
-			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b>cast all your votes</b> for this category
-		</div>
-			
-		<div class="arrow-down"></div>
-		<br /><br />
-	<div style="margin:0 auto;width:900px;position:relative;">
-	  
-    <div class="aq-template-wrapper aq_row" id="aq-template-wrapper-345">
-	<div class="" id="aq-block-345-1">
-	<div class="portfolio-grid pagination-infinite"><div class="portfolio-loader" style="display: none;"><div>
-	</div></div><div class="sort_width_container clearfix">
-
-	<div class="ajax-container">
-	<div class="ajax-controls"><a class="close-ajax-container" href="#">
-	<i class="dashicons dashicons-no"></i></a></div></div>
-	<div style="margin: -4px; position: relative; height: 1119.18px; opacity: 1;" data-columns="7" data-post-count="50" data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame3">
-		
-	<?php 
-
-		//$loop = new WP_Query( array( 'orderby' => 'rand', 'post_type' => 'wp-comics', 'posts_per_page' => 25 ) ); 
-		$loop = new WP_Query( array( 'post_type' => 'wp-comics', 'posts_per_page' => 25 ) ); 
-
-		while ( $loop->have_posts() ) : $loop->the_post(); 
-
-			$yourname 	= get_post_meta( get_the_ID(), 'your-name' );
-			$surname 	= get_post_meta( get_the_ID(), 'sur-name' );
-			$my_excerpt = get_the_excerpt();
-			$post_id 	= get_the_ID();			
-			$theme 		= get_template_directory_uri();
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'medium' );
-			$image = $image[0];
-			if(empty($image)) {
-				continue;
-				$image 	= $theme . '/img/default-pic.png';
-			}
-		
-		$place = '';	
-		$overdisplay = '';
-		
-			$sql 	= "SELECT medallion FROM wp_votes WHERE voter = " . $uid . " AND comedy_id = " . $_GET['id'] . " AND comedian = " . $post_id . "  LIMIT 1";
-			$medal	= $wpdb->get_var( $sql );
-			if ($medal == 1) {
-			   $place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/yellow-check.png" class="place">';
-			   $overdisplay = ' style="background-color:yellow;opacity:0.3;"';			
-			   $names = ' style="z-index:1001;background-color:#000;opacity:0.9;"';				
-			}
-			else if ($medal == 2) {
-			   $place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/grey-check.png" class="place">';
-			   $overdisplay = ' style="background-color:grey;opacity:0.3;"';
-			   $names = ' style="z-index:1001;background-color:#000;opacity:0.9;"';	
-			}
-			else if ($medal == 3) {
-			   $place = '<img src="http://localhost/wordpress/wp-content/themes/scribe/img/orange-check.png" class="place">';
-			   $overdisplay = ' style="background-color:orange;opacity:0.3;"';
-			   $names = ' style="z-index:1001;background-color:#000;opacity:0.9;"';			   
-			}
-			else {
-				$overdisplay = ' style="background-color:#000;opacity:0.8;"';
-			    $names = ' style="background-color:#000;opacity:0.4;"';
-			}
-	?>	
-
-	<div class="portfolio-entry portfolio-overlay partners_sort  portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image; ?>" class="entry-image"><div class="names" <?php echo $names; ?>><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay" <?php echo $overdisplay;?>><div class="dashicons dashicons-plus"></div></div></div></div>	
-	<?php endwhile; wp_reset_query(); ?>
-	
-	</div></div></div></div></div></div></div>	
-</p>	
 
 </div>
 
@@ -499,10 +469,6 @@ a.mover {
 	
 	?>
 	
-	  <div class="foot-sidebar <?php echo $footer_widget_wrapper; ?>">
-	  <?php get_sidebar('footer')?>
-	  
-  </div>
   </div>
   
 
@@ -514,7 +480,7 @@ a.mover {
 
     <script type="text/javascript">
 		jQuery(function() {
-
+		
 			jQuery('.ui-tabs-panel').hide();
 			jQuery('.ui-tabs-nav').hide();
 			jQuery('.exit').hide();
@@ -524,11 +490,17 @@ a.mover {
 		        jQuery('.ui-tabs-panel').hide();
 		        jQuery('.ui-corner-top a').css('color', '#444');
 				jQuery('#t-2').css('color', '#fff');
-				jQuery('#fragment-2').fadeIn('slow');
-				jQuery('.portfolio-grid').ajaxPortfolio();
-				jQuery('.portfolio-grid').ajaxPortfolio();
 			 	jQuery('.ui-tabs-nav').show();
 				jQuery('.exit').show();
+
+					 jQuery(".close-ajax-container").trigger('click');
+					 jQuery('.portfolio-entry').hide();	
+				     jQuery('#fragment-2').fadeIn('slow');	
+					 jQuery(".img1:first").trigger('click');
+				   	 jQuery('.portfolio-entry').show();	
+					 
+				     jQuery('.blackops').css('background', '');			   	   
+				     jQuery('.blackops').css('opacity', '');						 
 			});
 			<?php
 			if ($_GET['success'] == 'yes') {
@@ -552,11 +524,39 @@ a.mover {
 		           jQuery('.ui-tabs-panel').hide();
 		           jQuery('.ui-corner-top a').css('color', '#444');
 				   jQuery('#t-' + jQuery(this).attr("rel")).css('color', '#fff');
-				   jQuery(jQuery(this).attr("href")).fadeIn('slow');
-				   jQuery('.portfolio-grid').ajaxPortfolio();
-				   jQuery('.portfolio-grid').ajaxPortfolio();
 				   
 				   var s = jQuery(this).attr("rel");
+				   if(s == 1) {
+				     jQuery('#fragment-1').fadeIn('slow');		 
+				   }				   					   
+				   if(s == 2) {
+					 jQuery(".close-ajax-container").trigger('click');
+					 jQuery('.portfolio-entry').hide();	
+				     jQuery('#fragment-2').fadeIn('slow');	
+					 jQuery(".img1:first").trigger('click');
+				   	 jQuery('.portfolio-entry').show();	
+				     jQuery('.blackops').css('background', '');			   	   
+				     jQuery('.blackops').css('opacity', '');	
+				   	 jQuery('#f1').hide();						 
+				     jQuery('#f2').show();	
+				     jQuery('#f3').hide();						 
+				     jQuery('#f4').show();						 
+				   }
+				   if(s == 3) {
+				 	 jQuery(".close-ajax-container").trigger('click');
+				     jQuery('#f2').hide();						 
+				     jQuery('#f1').show();
+				     jQuery('#f3').hide();						 
+				     jQuery('#f4').show();					 
+				     jQuery('#fragment-2').fadeIn('slow');		   
+				     jQuery('.blackops').css('background', '#000');			   	   
+				     jQuery('.blackops').css('opacity', 0.8);			   				 
+				   }
+				   if(s == 4) {
+				     jQuery('#fragment-4').fadeIn('slow');			   
+				   }				   
+
+	
 				   if( s != 1) {
 				     jQuery('.ui-tabs-nav').show();
 				     jQuery('.exit').show();
@@ -572,10 +572,38 @@ a.mover {
 		           jQuery('.ui-tabs-panel').hide();
 		           jQuery('.ui-corner-top a').css('color', '#444');
 				   jQuery('#t-' + jQuery(this).attr("rel")).css('color', '#fff');
-				   jQuery('#fragment-' + jQuery(this).attr("rel")).fadeIn('slow');
-				   jQuery('.portfolio-grid').ajaxPortfolio();
-				   jQuery('.portfolio-grid').ajaxPortfolio();
+				     
 				   var s = jQuery(this).attr("rel");
+				   if(s == 1) {
+				     jQuery('#fragment-1').fadeIn('slow');					 
+				   }				   					   
+				   if(s == 2) {
+					 jQuery(".close-ajax-container").trigger('click');
+					 jQuery('.portfolio-entry').hide();	
+				     jQuery('#fragment-2').fadeIn('slow');	
+					 jQuery(".img1:first").trigger('click');
+				   	 jQuery('.portfolio-entry').show();		
+				     jQuery('.blackops').css('background', '');			   	   
+				     jQuery('.blackops').css('opacity', '');
+				   	 jQuery('#f1').hide();						 
+				     jQuery('#f2').show();	
+				     jQuery('#f3').hide();						 
+				     jQuery('#f4').show();						 
+				   }
+				   if(s == 3) {
+				   
+				   	 jQuery(".close-ajax-container").trigger('click');
+				   	 jQuery('#f2').hide();						 
+				     jQuery('#f1').show();	
+					 jQuery('#f4').hide();						 
+				     jQuery('#f3').show();	
+				     jQuery('#fragment-2').fadeIn('slow');			   	   
+				     jQuery('.blackops').css('background', '#000');			   	   
+				     jQuery('.blackops').css('opacity', 0.8);			   	   
+				   }			   
+				   if(s == 4) {
+				     jQuery('#fragment-4').fadeIn('slow');			   
+				   }	
 				   if( s != 1) {
 				     jQuery('.ui-tabs-nav').show();
 				     jQuery('.exit').show();
@@ -587,7 +615,17 @@ a.mover {
 				   return false;
 		       });
        
-
+			var numItems = jQuery('#fragment-2 .place').length;
+			numItems = 3 - numItems;
+		
+			if(numItems == 2){
+				jQuery('#nvotes').html('1 vote');
+			}else {
+				jQuery('#nvotes').html(numItems + ' votes');
+			}
+			
+			
+			
 		});
     </script>
 
