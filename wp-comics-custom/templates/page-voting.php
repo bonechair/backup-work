@@ -179,12 +179,9 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
     margin: -15px 0 0;
     position: relative;
     text-align: center !important;
+	font-weight: bold;
 }
-.portfolio-entry .place {
-    margin: -15px 0 0 -20px;
-    position: absolute;
-    z-index: 47;
-}
+
 .portfolio-entry {
     padding: 4px;
 	float:left!important;
@@ -299,6 +296,79 @@ a.mover {
 .ajax_project {
     margin-top: 0!important;
 }
+.project_media {
+    width: 40%!important;
+}
+.sort_width_container {
+    text-align: left!important;
+	color:#B5B4B2!important;
+}
+.ajax_project {
+    background: none repeat scroll 0 0 #2F2F2F;
+}
+h2.title {
+color:#FFF!important;
+}
+.checkmark2 {
+    display:inline-block;
+    width: 22px;
+    height:22px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+	float:right;
+	margin: -15px -5px 0 0;
+    position: relative;
+    z-index: 46;
+}
+.checkmark {
+    display:inline-block;
+    width: 22px;
+    height:22px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+	float:right;
+	margin: -15px -5px 0 0;
+    position: relative;
+    z-index: 47;
+}
+
+.circle {
+    position: absolute;
+    width:0;
+    height:0;
+    border-radius:25px;
+    left:0;
+    top:0;
+}
+.circle2 {
+    position: absolute;
+    width:0;
+    height:0;
+    border-radius:25px;
+    left:-3px;
+    top:-3px;
+	border:17px solid #000;
+}
+.stem {
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color:#000;
+    left:15px;
+    top:9px;
+}
+
+.kick {
+    position: absolute;
+    width:3px;
+    height:3px;
+    background-color:#000;
+    left:13px;
+    top:15px;
+}
+
 </style>
 
 </head>
@@ -359,7 +429,7 @@ a.mover {
 	<div class="ajax-container">
 	<div class="ajax-controls"><a class="close-ajax-container" href="#">
 	<i class="dashicons dashicons-no"></i></a></div></div>
-	<div style="margin: -4px; position: relative; height: 1119.18px; opacity: 1;" data-columns="7" data-post-count="50" data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame1">
+	<div style="margin: -4px; position: relative; height: 1119.18px; opacity: 1;" data-columns="7" data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame1">
 		
 	<?php 
 	
@@ -399,15 +469,18 @@ a.mover {
 			
 			$display = '';
 			if ($medal == 1) {
-			   $place = '<img src="' . $theme . '/img/yellow-check.png" class="place">';
+			   //$place = '<img src="' . $theme . '/img/yellow-check.png" class="place">';
+			   $place = '<span class="checkmark"><div class="circle2"></div><div class="circle" style="border:15px solid #F7DA00;"></div> <div class="stem"></div> <div class="kick"></div></span>';
 			   $overdisplay = ' style="background-color:yellow;opacity:0.3;"';			   
 			}
 			else if ($medal == 2) {
-			   $place = '<img src="' . $theme . '/img/grey-check.png" class="place">';
+			   //$place = '<img src="' . $theme . '/img/grey-check.png" class="place">';
+			   $place = '<span class="checkmark"><div class="circle2"></div><div class="circle" style="border:15px solid #B5C2CB;"></div> <div class="stem"></div> <div class="kick"></div></span>';
 			   $overdisplay = ' style="background-color:grey;opacity:0.3;"';			   
 			}
 			else if ($medal == 3) {
-			   $place = '<img src="' . $theme . '/img/orange-check.png" class="place">';
+			   //$place = '<img src="' . $theme . '/img/orange-check.png" class="place">';
+			   $place = '<span class="checkmark"><div class="circle2"></div><div class="circle" style="border:15px solid #CA633A;"></div> <div class="stem"></div> <div class="kick"></div></span>';
 			   $overdisplay = ' style="background-color:orange;opacity:0.3;"';			   
 			}
 			else {
