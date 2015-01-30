@@ -419,7 +419,7 @@ class AjaxPortfolio {
 		if ( have_posts() ):
 			while ( have_posts() ):
 				the_post();
-			$the_id                  = get_the_ID();
+		$the_id                  = get_the_ID();
 		$size                    = 'full';
 		$current_post['title']   = get_the_title();
 		$current_post['content'] = get_the_content();
