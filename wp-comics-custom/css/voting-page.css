@@ -71,7 +71,11 @@
 	overflow:hidden;
 	height:15px;
 	width:129px;
-	z-index:1000;
+
+  background: -webkit-linear-gradient(transparent, black); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(transparent, black); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(transparent, black); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(transparent, black); /* Standard syntax */	
 }
 .portfolio-entry {
     padding: 1px;
