@@ -1,5 +1,4 @@
-		jQuery(function() {
-		
+jQuery( document ).ready(function() {
 			jQuery('.ui-tabs-panel').hide();
 			jQuery('.ui-tabs-nav').hide();
 			jQuery('.exit').hide();
@@ -122,7 +121,7 @@
 			var silver = 1;
 			var bronze = 1;
 			
-			function medald(s = '') {
+			function medald(s) {
 				if(s == 'gold')gold--;
 				if(s == 'silver')silver--;
 				if(s == 'bronze')bronze--;
