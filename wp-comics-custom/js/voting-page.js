@@ -19,7 +19,8 @@
 				   	 jQuery('.portfolio-entry').show();	
 					 
 				     jQuery('.blackops').css('background', '');			   	   
-				     jQuery('.blackops').css('opacity', '');						 
+				     jQuery('.blackops').css('opacity', '');	
+					 
 			});
 
 			jQuery('.ui-corner-top a').click(function() { 
@@ -58,7 +59,6 @@
 				     jQuery('#fragment-4').fadeIn('slow');			   
 				   }				   
 
-	
 				   if( s != 1) {
 				     jQuery('.ui-tabs-nav').show();
 				     jQuery('.exit').show();
@@ -117,9 +117,30 @@
 				   return false;
 		       });
        
-			var numItems = jQuery('#fragment-2 .place').length;
-			numItems = 3 - numItems;
-		
+			var numItems = 3;
+			var gold = 1;
+			var silver = 1;
+			var bronze = 1;
+			
+			function medald(s = '') {
+				if(s == 'gold')gold--;
+				if(s == 'silver')silver--;
+				if(s == 'bronze')bronze--;
+			}
+			jQuery( '#fragment-2 .checkmark' ).each(function( index ) {
+			  numItems--;
+			  if(jQuery( this ).hasClass('gold'))medald('gold');
+			  if(jQuery( this ).hasClass('silver'))medald('silver');
+			  if(jQuery( this ).hasClass('bronze'))medald('bronze');
+			});
+			if(gold == 1 && silver == 1 && bronze == 0)jQuery('#nvotes2').html('(Gold & Silver Left)');
+			if(gold == 1 && silver == 0 && bronze == 1)jQuery('#nvotes2').html('(Bronze & Gold Left)');
+			if(gold == 0 && silver == 1 && bronze == 1)jQuery('#nvotes2').html('(Bronze & Silver Left)');
+
+			if(gold == 1 && silver == 0 && bronze == 0)jQuery('#nvotes2').html('(Gold Left)');
+			if(gold == 0 && silver == 0 && bronze == 1)jQuery('#nvotes2').html('(Bronze Left)');
+			if(gold == 0 && silver == 1 && bronze == 1)jQuery('#nvotes2').html('(Silver Left)');
+			
 			if(numItems == 2){
 				jQuery('#nvotes').html('1 vote');
 			}else {
