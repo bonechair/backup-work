@@ -419,14 +419,16 @@ class AjaxPortfolio {
 		if ( have_posts() ):
 			while ( have_posts() ):
 				the_post();
-		$the_id                  = get_the_ID();
+			$the_id                  = get_the_ID();
 		$size                    = 'full';
 		$current_post['title']   = get_the_title();
 		$current_post['content'] = get_the_content();
+		$current_post['excerpt'] = get_the_excerpt();
 		// Apply the default wordpress filters to the content
 		$current_post['content'] = str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', $current_post['content'] ) );
 		$slides                  = get_post_meta( $the_id, 'slider', false );
 		$slides                  = $slides[0];
+		if(empty($slides))$slides = array();
 		$rand                    = mt_rand();
 		$slideshow               = '';
 		foreach ( $slides as $slide ):
@@ -576,9 +578,18 @@ class AjaxPortfolio {
 		$html .= "<div class='project_description'>";
 		$html .= "<h2 class='title'>{$title}</h2>";
 		$html .= $content;
-		$html .= ' <a href="' . $_SERVER['HTTP_REFERER'] . '&bronze_id=' . $the_id . '"><input type="button" value="bronze" class="bronze" ref="' . $the_id . '"></a>';
-		$html .= ' <a href="' . $_SERVER['HTTP_REFERER'] . '&silver_id=' . $the_id . '"><input type="button" value="silver" class="silver" ref="' . $the_id . '"></a>';
-		$html .= ' <a href="' . $_SERVER['HTTP_REFERER'] . '&gold_id=' . $the_id . '"><input type="button" value="gold" class="gold" ref="' . $the_id . '"></a>';
+		$html .= "<div style='clear:both;'>" . $excerpt . "</div>";
+		$html .= '<div style="display:none;clear:both;margin-top: 15px;" class="votingbar">';
+		$html .= ' <div class="tooltip" id="tooltip1" style="opacity:1;display:none;">Please confirm your vote <br> <a onclick="jQuery(\'#tooltip1\').hide();jQuery(\'.ex\').hide()" class="cancel">Cancel</a><a href="' . $_SERVER['HTTP_REFERER'] . '&bronze_id=' . $the_id . '" class="confirm">Confirm</a><div class="arrow1"></div><div class="ex1 ex"><img src="/wp-content/themes/scribe/img/exclamation.png"></div></div>';
+		$html .= ' <div class="tooltip" id="tooltip2" style="opacity:1;display:none;">Please confirm your vote <br> <a onclick="jQuery(\'#tooltip2\').hide();jQuery(\'.ex\').hide()" class="cancel">Cancel</a><a href="' . $_SERVER['HTTP_REFERER'] . '&silver_id=' . $the_id . '" class="confirm">Confirm</a><div class="arrow2"></div><div class="ex2 ex"><img src="/wp-content/themes/scribe/img/exclamation.png"></div></div>';
+		$html .= ' <div class="tooltip" id="tooltip3" style="opacity:1;display:none;">Please confirm your vote <br> <a onclick="jQuery(\'#tooltip3\').hide();jQuery(\'.ex\').hide()" class="cancel">Cancel</a><a href="' . $_SERVER['HTTP_REFERER'] . '&gold_id=' . $the_id . '" class="confirm">Confirm</a><div class="arrow3"></div><div class="ex3 ex"><img src="/wp-content/themes/scribe/img/exclamation.png"></div></div>';
+		$html .= '<div class="vbuttons" onclick="jQuery(\'.tooltip\').hide();jQuery(\'#tooltip1\').show();jQuery(\'.ex\').hide();jQuery(\'.ex1\').show();"><span class="checkmark2"><div class="circle2"></div><div class="circle" style="border:15px solid #CA633A;"></div> <div class="stem"></div> <div class="kick"></div></span> Bronze</div> ';
+		$html .= '<div class="vbuttons" onclick="jQuery(\'.tooltip\').hide();jQuery(\'#tooltip2\').show();jQuery(\'.ex\').hide();jQuery(\'.ex2\').show();"><span class="checkmark2"><div class="circle2"></div><div class="circle" style="border:15px solid #B5C2CB;"></div> <div class="stem"></div> <div class="kick"></div></span> Silver</div> ';
+		$html .= '<div class="vbuttons" onclick="jQuery(\'.tooltip\').hide();jQuery(\'#tooltip3\').show();jQuery(\'.ex\').hide();jQuery(\'.ex3\').show();"><span class="checkmark2"><div class="circle2"></div><div class="circle" style="border:15px solid #F7DA00;"></div> <div class="stem"></div> <div class="kick"></div></span> Gold</div> ';
+
+		$html .= '<br />';
+		$html .= '</div>';
+		
 		$html .= ' </div>';
 		$html .= "</div>";
 		endwhile;
