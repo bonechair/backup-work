@@ -107,269 +107,8 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 
 <?php if ( is_singular() ) wp_enqueue_script( "comment-reply" ); ?>
 <?php wp_head(); ?>
-
-
-<style>
-.vt-header-sub {
-    background: none repeat scroll 0 0 #232323;
-    height: 180px;
-    overflow: hidden;
-    padding-bottom: 15px;
-    padding-top: 20px;
-    position: relative;
-    z-index: 1;
-}
-.vt-header-sub h1{
-	color:#61D9A4!important;
-}
-.top-box {
-	width:33%;
-	float:left;
-	margin:5px 0 0 0;
-}
-.top-box a {
-    font-size: 17px !important;
-	margin-right:30px!important;
-}
-.top-box h4 {
-    font-size: 24px !important;
-    font-weight: bold;
-}
-
-/** LIGHTBOX MARKUP **/
-
-.like-lightbox {
-	/** Default lightbox to hidden */
-	position:fixed;
-	box-shadow: 0px 0px 8px rgba(0,0,0,.3);
-	box-sizing: border-box;
-	-webkit-transition: .5s ease-in-out;
-	-moz-transition: .5s ease-in-out;
-	-o-transition: .5s ease-in-out;
-	transition: .5s ease-in-out;	
-	z-index: 999;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	top: 0;
-	left: 0;
-	background: #000;
-	color:#FFF;
-}
-.like-lightbox b{
-	color:#FFF;
-	font-size:1.6em;
-}
-.like-lightbox p{
-	color:#FFF;
-	font-size:0.8em;
-}
-.like-lightbox h1{
-	margin:60px 0 0 0;
-	color:#65DCA4;
-	font-size:3em;
-}
-.like-lightbox .like-70s{
-	width:60%;
-	margin:0 auto;
-}
-.portfolio-image .names {
-    color: #fff;
-    font-size: 0.65em;
-    margin: -15px 0 0;
-    position: relative;
-    text-align: center !important;
-	font-weight: bold;
-}
-
-.portfolio-entry {
-    padding: 4px;
-	float:left!important;
-	width:135px!important
-	min-width:135px!important
-}
-
-.thegreensexy {
-   background:#60DBA5;
-   color:#000;
-   width:100%;
-   height:70px;
-   text-align:center;
-   font-size:0.9em;  
-   padding:20px 0 0 0;
-}
-.thegreensexy b {
-    font-size: 1em;
-    font-weight: bold;
-}
-.arrow-down {
-    margin:0 auto 0 auto;
-	width: 0; 
-	height: 0; 
-	border-left: 15px solid transparent;
-	border-right: 15px solid transparent;
-	border-top: 15px solid #61D9A4;
-}
-.ui-tabs { 
-	z-index:1000;
-}
-.ui-tabs .ui-tabs-nav { 
-	margin:10px auto;
-	list-style: none; 
-	position: relative; 
-	padding: 2px 2px 0; 
-	overflow: hidden; 
-	top: 1px; 
-	z-index: 1000; 
-	height: 25px; 
-	width:150px;
-}
-.ui-tabs .ui-tabs-nav li { 
-	position: relative; 
-	float: left; 
-	border-bottom-width: 0 !important; 
-	margin: 0 2px -1px 0; 
-}
-.ui-tabs .ui-tabs-nav li a { 
-	color:#444; 
-    float: left;
-    font-size: 40px;
-    padding: 5px 5px;
-    text-decoration: none; 
-}
-.ui-tabs-selected a { 
-	color: white!important; 
-}
-.ui-tabs .ui-tabs-panel { 
-	display: block; 
-	border-width: 0; 
-	background: none; 
-	z-index:1000;
-	border: 1px solid #000; 
-	position: relative; 
-	min-height: 200px; 
-	height: auto !important; 
-	height: 200px; 
-}
-a.mover { 
-	padding: 6px 12px; 
-	position: absolute;
-	color: white; 
-	font-weight: bold; 
-	text-decoration: none; 
-}
-.exit { 
-	margin:-20px auto -20px auto;
-	position: relative; 
-	z-index: 1000; 
-	height: 35px; 
-	width:160px;
-}
-.exit a{ 
-	margin:0 0 0 30px;
-}
-.next-tab { 
-	top: -35px; 
-	right: 0; 
-}
-.prev-tab { 
-	top: -35px;
-	left: 0; 
- }
- h3, b {
-	color:#FFF;
- }
-#welcome { 
-	margin:10px auto;
-	position: relative; 
-	z-index: 1000; 
-	height:auto; 
-	width:900px;
-	text-align:center;	
-}
-.votingbar {
-	display:block!important;
-}
-.ajax-controls {
-    top:5px!important;
-}
-.ajax_project {
-    margin-top: 0!important;
-}
-.project_media {
-    width: 40%!important;
-}
-.sort_width_container {
-    text-align: left!important;
-	color:#B5B4B2!important;
-}
-.ajax_project {
-    background: none repeat scroll 0 0 #2F2F2F;
-}
-h2.title {
-color:#FFF!important;
-}
-.checkmark2 {
-    display:inline-block;
-    width: 22px;
-    height:22px;
-    -ms-transform: rotate(45deg); /* IE 9 */
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);
-	float:right;
-	margin: -15px -5px 0 0;
-    position: relative;
-    z-index: 46;
-}
-.checkmark {
-    display:inline-block;
-    width: 22px;
-    height:22px;
-    -ms-transform: rotate(45deg); /* IE 9 */
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);
-	float:right;
-	margin: -15px -5px 0 0;
-    position: relative;
-    z-index: 47;
-}
-
-.circle {
-    position: absolute;
-    width:0;
-    height:0;
-    border-radius:25px;
-    left:0;
-    top:0;
-}
-.circle2 {
-    position: absolute;
-    width:0;
-    height:0;
-    border-radius:25px;
-    left:-3px;
-    top:-3px;
-	border:17px solid #000;
-}
-.stem {
-    position: absolute;
-    width:3px;
-    height:9px;
-    background-color:#000;
-    left:15px;
-    top:9px;
-}
-
-.kick {
-    position: absolute;
-    width:3px;
-    height:3px;
-    background-color:#000;
-    left:13px;
-    top:15px;
-}
-
-</style>
+ 
+<link rel="stylesheet" type="text/css" href="<?php echo plugins_url( 'wp-comics-custom/wp-comics-custom/css/voting-page.css' ); ?>">
 
 </head>
 
@@ -382,7 +121,7 @@ color:#FFF!important;
 	<br>
 
 		<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-	<div class="exit"><a href="/voters-categories" class="mover">Exit</a></div>	
+	<div class="exit"><a href="/voters-categories" class="mover"><img src="/wp-content/themes/scribe/img/exit.png"></a></div>	
 		
 			<ul class="ui-tabs-nav">
         		<li class="ui-corner-top"><a id="t-1" rel="1" href="#fragment-1">&#8226;</a></li>
@@ -404,23 +143,58 @@ color:#FFF!important;
 			 </div> 
    	
 <div id="fragment-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-<a href="#" class="next-tab mover" id="f1" rel="4" style="display:none;">Next »</a>
-<a href="#" class="next-tab mover" id="f2" rel="3">Next »</a>
-<a href="#" class="prev-tab mover" id="f3" rel="2" style="display:none;">« Previous</a>                   
-<a href="#" class="prev-tab mover" id="f4" rel="1">« Previous</a>                   
-				   
+<div class="paginat">
+<a href="#" class="next-tab mover" id="f1" rel="4" style="display:none;">Next <img src="/wp-content/themes/scribe/img/next.png" class="nextimg"></a>
+<a href="#" class="next-tab mover" id="f2" rel="3">Next <img src="/wp-content/themes/scribe/img/next.png" class="nextimg"> </a>
+<a href="#" class="prev-tab mover" id="f3" rel="2" style="display:none;"><img src="/wp-content/themes/scribe/img/previous.png" class="previmg">  Previous</a>                   
+<a href="#" class="prev-tab mover" id="f4" rel="1"><img src="/wp-content/themes/scribe/img/previous.png" class="previmg">  Previous</a>                   
+</div>				   
 	<p>
 	<div class="row">
 	
 		<div class="thegreensexy">
-			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b id="nvotes">2 votes</b> left for this category
+			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b id="nvotes">2 votes</b> left for this category <span id="nvotes2"></span>
 		</div>
 			
 		<div class="arrow-down"></div>
-		<br /><br />
 		
-	<div style="margin:0 auto;width:900px;position:relative;">
+	<div class="voting-section">
 	  
+<?php
+
+	function get_categories_ids( $args = '' ) {
+	        $defaults = array( 'taxonomy' => 'comic-category' );
+	        $args = wp_parse_args( $args, $defaults );
+	
+	        $taxonomy = $args['taxonomy'];
+
+	        $taxonomy = apply_filters( 'get_categories_taxonomy', $taxonomy, $args );
+	
+	        if ( isset($args['type']) && 'link' == $args['type'] ) {
+	                _deprecated_argument( __FUNCTION__, '3.0', '' );
+	                $taxonomy = $args['taxonomy'] = 'link_category';
+	        }
+	
+	        $categories = (array) get_terms( $taxonomy, $args );
+	
+	        foreach ( array_keys( $categories ) as $k )
+	                _make_cat_compat( $categories[$k] );
+	
+	        return $categories;
+	}
+  $objects = get_categories_ids();
+	
+  foreach ($objects as $row) {
+
+  $cat = $row->cat_ID;
+  if($cat != $_GET['id'])continue;
+?>
+	<h2><?php echo $row->name; ?></h2>
+	<p><?php echo $row->description; ?></p>
+	<br />
+<?php
+}
+?>	  
     <div class="aq-template-wrapper aq_row" id="aq-template-wrapper-344">
 	<div class="" id="aq-block-344-1">
 	<div class="portfolio-grid pagination-infinite"><div class="portfolio-loader" style="display: none;"><div>
@@ -429,25 +203,28 @@ color:#FFF!important;
 	<div class="ajax-container">
 	<div class="ajax-controls"><a class="close-ajax-container" href="#">
 	<i class="dashicons dashicons-no"></i></a></div></div>
-	<div style="margin: -4px; position: relative; height: 1119.18px; opacity: 1;" data-columns="7" data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame1">
-		
+	
 	<?php 
 	
 		//$loop = new WP_Query( array( 'orderby' => 'rand', 'post_type' => 'wp-comics', 'posts_per_page' => -1 ) ); 
 
 		$loop = new WP_Query( array( 
+			'orderby' => 'rand', 
+			'post_type' => 'wp-comics', 
+			'posts_per_page' => -1,
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'comic-category',
 					'field'    => 'id',
 					'terms'    => $_GET['id']
 					), 
-			'orderby' => 'rand', 
-			'post_type' => 'wp-comics', 
-			'posts_per_page' => -1 
 		) 
 		)); 
-
+		?>
+		
+		<div style="margin: -4px; position: relative; height: auto; opacity: 1;"  data-post-count='1000' data-columns='5' data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame1">
+		
+		<?php
 		while ( $loop->have_posts() ) : $loop->the_post(); 
 
 			$yourname 	= get_post_meta( get_the_ID(), 'your-name' );
@@ -455,7 +232,8 @@ color:#FFF!important;
 			$my_excerpt = get_the_excerpt();
 			$post_id 	= get_the_ID();			
 			$theme 		= get_template_directory_uri();
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'medium' );
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
+
 			$image = $image[0];
 			if(empty($image)) {
 				continue;
@@ -470,18 +248,18 @@ color:#FFF!important;
 			$display = '';
 			if ($medal == 1) {
 			   //$place = '<img src="' . $theme . '/img/yellow-check.png" class="place">';
-			   $place = '<span class="checkmark"><div class="circle2"></div><div class="circle" style="border:15px solid #F7DA00;"></div> <div class="stem"></div> <div class="kick"></div></span>';
-			   $overdisplay = ' style="background-color:yellow;opacity:0.3;"';			   
+			   $place = '<span class="checkmark gold"><div class="circle2"></div><div class="circle" style="border:15px solid #F7DA00;"></div> <div class="stem"></div> <div class="kick"></div></span>';
+			   $overdisplay = ' style="background-color:yellow;opacity:0.7;"';			   
 			}
 			else if ($medal == 2) {
 			   //$place = '<img src="' . $theme . '/img/grey-check.png" class="place">';
-			   $place = '<span class="checkmark"><div class="circle2"></div><div class="circle" style="border:15px solid #B5C2CB;"></div> <div class="stem"></div> <div class="kick"></div></span>';
-			   $overdisplay = ' style="background-color:grey;opacity:0.3;"';			   
+			   $place = '<span class="checkmark silver"><div class="circle2"></div><div class="circle" style="border:15px solid #B5C2CB;"></div> <div class="stem"></div> <div class="kick"></div></span>';
+			   $overdisplay = ' style="background-color:grey;opacity:0.7;"';			   
 			}
 			else if ($medal == 3) {
 			   //$place = '<img src="' . $theme . '/img/orange-check.png" class="place">';
-			   $place = '<span class="checkmark"><div class="circle2"></div><div class="circle" style="border:15px solid #CA633A;"></div> <div class="stem"></div> <div class="kick"></div></span>';
-			   $overdisplay = ' style="background-color:orange;opacity:0.3;"';			   
+			   $place = '<span class="checkmark bronze"><div class="circle2"></div><div class="circle" style="border:15px solid #CA633A;"></div> <div class="stem"></div> <div class="kick"></div></span>';
+			   $overdisplay = ' style="background-color:orange;opacity:0.7;"';			   
 			}
 			else {
 			   $display = 'blackops';
@@ -503,15 +281,22 @@ color:#FFF!important;
 </div>
 
 	<div id="fragment-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-	<a href="#" class="prev-tab mover" rel="3">« Previous</a>			
-		<div class="thegreensexy">
+	
+	<div class="paginat">
+		<a href="#" class="prev-tab mover" rel="3"><img src="/wp-content/themes/scribe/img/previous.png" class="previmg"> Previous</a>			
+	</div>
+	
+	<div class="thegreensexy">
 			<img src="/wp-content/themes/scribe/img/green-check.png">You have <b>cast all your votes</b> for this category
 		</div>
 			
 		<div class="arrow-down"></div>
-		<br /><br />		  
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit quam quam, ut commodo urna euismod ac. Integer non massa ac risus lobortis posuere. In mattis facilisis libero dignissim consequat. Suspendisse ac justo dui. Maecenas dolor enim, lobortis nec tempor non, ullamcorper ut eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat sagittis arcu vitae iaculis..</p>
-	 
+		<br /><br />
+		<div id="votedform">
+		<p><?php echo do_shortcode( '[contact-form-7 id="1755" title="Voted"]' ); ?></p>
+	 	</div>
+		
+	
 	 </div> 
 
         </div>
@@ -550,157 +335,29 @@ color:#FFF!important;
 </footer>
 		
 <?php wp_footer(); ?>
-
-    <script type="text/javascript">
-		jQuery(function() {
+<script type="text/javascript" src="<?php echo plugins_url( 'wp-comics-custom/wp-comics-custom/js/voting-page.js' ); ?>"></script>
+<script type="text/javascript">
+jQuery(function() {
 		
-			jQuery('.ui-tabs-panel').hide();
-			jQuery('.ui-tabs-nav').hide();
-			jQuery('.exit').hide();
-			
-			jQuery('.like-button').click(function () {
-
-		        jQuery('.ui-tabs-panel').hide();
-		        jQuery('.ui-corner-top a').css('color', '#444');
-				jQuery('#t-2').css('color', '#fff');
-			 	jQuery('.ui-tabs-nav').show();
-				jQuery('.exit').show();
-
-					 jQuery(".close-ajax-container").trigger('click');
-					 jQuery('.portfolio-entry').hide();	
-				     jQuery('#fragment-2').fadeIn('slow');	
-					 jQuery(".img1:first").trigger('click');
-				   	 jQuery('.portfolio-entry').show();	
-					 
-				     jQuery('.blackops').css('background', '');			   	   
-				     jQuery('.blackops').css('opacity', '');						 
-			});
-			<?php
-			if ($_GET['success'] == 'yes') {
-			?>
-				jQuery('.ui-corner-top a').css('color', '#444');
-				jQuery('#t-2').css('color', '#fff');
-				jQuery('#fragment-2').fadeIn('slow');
-				jQuery('.ui-tabs-nav').show();
-				jQuery('.exit').show();
-			<?php
-			}
-			else {
-			?>
-				jQuery('.ui-corner-top a').css('color', '#444');
-				jQuery('#t-1').css('color', '#fff');
-				jQuery('#fragment-1').fadeIn('slow');			
-			<?php
-			}
-			?>
-			jQuery('.ui-corner-top a').click(function() { 
-		           jQuery('.ui-tabs-panel').hide();
-		           jQuery('.ui-corner-top a').css('color', '#444');
-				   jQuery('#t-' + jQuery(this).attr("rel")).css('color', '#fff');
-				   
-				   var s = jQuery(this).attr("rel");
-				   if(s == 1) {
-				     jQuery('#fragment-1').fadeIn('slow');		 
-				   }				   					   
-				   if(s == 2) {
-					 jQuery(".close-ajax-container").trigger('click');
-					 jQuery('.portfolio-entry').hide();	
-				     jQuery('#fragment-2').fadeIn('slow');	
-					 jQuery(".img1:first").trigger('click');
-				   	 jQuery('.portfolio-entry').show();	
-				     jQuery('.blackops').css('background', '');			   	   
-				     jQuery('.blackops').css('opacity', '');	
-				   	 jQuery('#f1').hide();						 
-				     jQuery('#f2').show();	
-				     jQuery('#f3').hide();						 
-				     jQuery('#f4').show();						 
-				   }
-				   if(s == 3) {
-				 	 jQuery(".close-ajax-container").trigger('click');
-				     jQuery('#f2').hide();						 
-				     jQuery('#f1').show();
-				     jQuery('#f3').hide();						 
-				     jQuery('#f4').show();					 
-				     jQuery('#fragment-2').fadeIn('slow');		   
-				     jQuery('.blackops').css('background', '#000');			   	   
-				     jQuery('.blackops').css('opacity', 0.8);			   				 
-				   }
-				   if(s == 4) {
-				     jQuery('#fragment-4').fadeIn('slow');			   
-				   }				   
-
-	
-				   if( s != 1) {
-				     jQuery('.ui-tabs-nav').show();
-				     jQuery('.exit').show();
-				   }
-				   else {
-				     jQuery('.ui-tabs-nav').hide();
-				     jQuery('.exit').hide();
-				   }
-				   return false;
-		       });			
-			   
-			jQuery('.next-tab, .prev-tab').click(function() { 
-		           jQuery('.ui-tabs-panel').hide();
-		           jQuery('.ui-corner-top a').css('color', '#444');
-				   jQuery('#t-' + jQuery(this).attr("rel")).css('color', '#fff');
-				     
-				   var s = jQuery(this).attr("rel");
-				   if(s == 1) {
-				     jQuery('#fragment-1').fadeIn('slow');					 
-				   }				   					   
-				   if(s == 2) {
-					 jQuery(".close-ajax-container").trigger('click');
-					 jQuery('.portfolio-entry').hide();	
-				     jQuery('#fragment-2').fadeIn('slow');	
-					 jQuery(".img1:first").trigger('click');
-				   	 jQuery('.portfolio-entry').show();		
-				     jQuery('.blackops').css('background', '');			   	   
-				     jQuery('.blackops').css('opacity', '');
-				   	 jQuery('#f1').hide();						 
-				     jQuery('#f2').show();	
-				     jQuery('#f3').hide();						 
-				     jQuery('#f4').show();						 
-				   }
-				   if(s == 3) {
-				   
-				   	 jQuery(".close-ajax-container").trigger('click');
-				   	 jQuery('#f2').hide();						 
-				     jQuery('#f1').show();	
-					 jQuery('#f4').hide();						 
-				     jQuery('#f3').show();	
-				     jQuery('#fragment-2').fadeIn('slow');			   	   
-				     jQuery('.blackops').css('background', '#000');			   	   
-				     jQuery('.blackops').css('opacity', 0.8);			   	   
-				   }			   
-				   if(s == 4) {
-				     jQuery('#fragment-4').fadeIn('slow');			   
-				   }	
-				   if( s != 1) {
-				     jQuery('.ui-tabs-nav').show();
-				     jQuery('.exit').show();
-				   }
-				   else {
-				     jQuery('.ui-tabs-nav').hide();
-				     jQuery('.exit').hide();
-				   }
-				   return false;
-		       });
-       
-			var numItems = jQuery('#fragment-2 .place').length;
-			numItems = 3 - numItems;
-		
-			if(numItems == 2){
-				jQuery('#nvotes').html('1 vote');
-			}else {
-				jQuery('#nvotes').html(numItems + ' votes');
-			}
-			
-			
-			
-		});
-    </script>
-
+<?php
+if ($_GET['success'] == 'yes') {
+?>
+	jQuery('.ui-corner-top a').css('color', '#444');
+	jQuery('#t-2').css('color', '#fff');
+	jQuery('#fragment-2').fadeIn('slow');
+	jQuery('.ui-tabs-nav').show();
+	jQuery('.exit').show();
+<?php
+}
+else {
+?>
+	jQuery('.ui-corner-top a').css('color', '#444');
+	jQuery('#t-1').css('color', '#fff');
+	jQuery('#fragment-1').fadeIn('slow');			
+<?php
+}
+?>
+});
+</script>
 </body></html>
 		

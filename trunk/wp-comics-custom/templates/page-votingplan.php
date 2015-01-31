@@ -62,7 +62,7 @@ hr {
   text-align:right;
 }
 .voty .place{
-    margin: 0 -17px -15px 0;
+  margin: 0 -17px -15px 0;
   position:relative;
 }
 .voty .names {
@@ -73,6 +73,7 @@ hr {
     text-align: center !important;
 	text-overflow: ellipsis;
 	width:100px;
+	font-weight:bold;
 }
 .cat-row {
   padding-top:10px;
