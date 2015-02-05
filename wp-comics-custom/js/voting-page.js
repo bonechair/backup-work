@@ -3,6 +3,13 @@ jQuery( document ).ready(function() {
 			jQuery('.ui-tabs-nav').hide();
 			jQuery('.exit').hide();
 			
+			jQuery('html, body').animate({ scrollTop: 0 }, "slow");
+			
+			jQuery('.close-ajax-container').click(function () {
+			
+				jQuery('.profile').hide();	
+				
+		    });	
 			jQuery('.like-button').click(function () {
 
 		        jQuery('.ui-tabs-panel').hide();
@@ -14,12 +21,12 @@ jQuery( document ).ready(function() {
 					 jQuery(".close-ajax-container").trigger('click');
 					 jQuery('.portfolio-entry').hide();	
 				     jQuery('#fragment-2').fadeIn('slow');	
-					 jQuery(".img1:first").trigger('click');
+
 				   	 jQuery('.portfolio-entry').show();	
 					 
 				     jQuery('.blackops').css('background', '');			   	   
 				     jQuery('.blackops').css('opacity', '');	
-					 
+					 jQuery('.profile').hide();
 			});
 
 			jQuery('.ui-corner-top a').click(function() { 
@@ -35,7 +42,7 @@ jQuery( document ).ready(function() {
 					 jQuery(".close-ajax-container").trigger('click');
 					 jQuery('.portfolio-entry').hide();	
 				     jQuery('#fragment-2').fadeIn('slow');	
-					 jQuery(".img1:first").trigger('click');
+
 				   	 jQuery('.portfolio-entry').show();	
 				     jQuery('.blackops').css('background', '');			   	   
 				     jQuery('.blackops').css('opacity', '');	
@@ -66,8 +73,8 @@ jQuery( document ).ready(function() {
 				     jQuery('.ui-tabs-nav').hide();
 				     jQuery('.exit').hide();
 				   }
-				   return false;
-		       });			
+					 jQuery('.profile').hide();
+			});		
 			   
 			jQuery('.next-tab, .prev-tab').click(function() { 
 		           jQuery('.ui-tabs-panel').hide();
@@ -82,7 +89,6 @@ jQuery( document ).ready(function() {
 					 jQuery(".close-ajax-container").trigger('click');
 					 jQuery('.portfolio-entry').hide();	
 				     jQuery('#fragment-2').fadeIn('slow');	
-					 jQuery(".img1:first").trigger('click');
 				   	 jQuery('.portfolio-entry').show();		
 				     jQuery('.blackops').css('background', '');			   	   
 				     jQuery('.blackops').css('opacity', '');
@@ -113,8 +119,8 @@ jQuery( document ).ready(function() {
 				     jQuery('.ui-tabs-nav').hide();
 				     jQuery('.exit').hide();
 				   }
-				   return false;
-		       });
+					 jQuery('.profile').hide();
+			});
        
 			var numItems = 3;
 			var gold = 1;
