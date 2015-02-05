@@ -109,6 +109,7 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 <?php wp_head(); ?>
  
 <link rel="stylesheet" type="text/css" href="<?php echo plugins_url( 'wp-comics-custom/wp-comics-custom/css/voting-page.css' ); ?>">
+<script type="text/javascript" src="<?php echo plugins_url( 'wp-comics-custom/wp-comics-custom/js/voting-page.js' ); ?>"></script>
 
 </head>
 
@@ -132,10 +133,12 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 	
         	<div id="fragment-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
 
-				<div id="welcome">
+				<div id="welcome" style="width:570px;margin-top:-50px;">
 					<h3>Welcome To The Comics Voting Centre</h3>
+						<br />
 						<b>The rules are:</b>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit quam quam, ut commodo urna euismod ac. Integer non massa ac risus lobortis posuere. In mattis facilisis libero dignissim consequat. Suspendisse ac justo dui. Maecenas dolor enim, lobortis nec tempor non, ullamcorper ut eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat sagittis arcu vitae iaculis..
+					<br />
 					<br />
 					<input class="wpcf7-form-control wpcf7-submit like-button" type="submit" value="Okay got it" />
 				</div>
@@ -194,15 +197,36 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 	<br />
 <?php
 }
-?>	  
-    <div class="aq-template-wrapper aq_row" id="aq-template-wrapper-344">
-	<div class="" id="aq-block-344-1">
-	<div class="portfolio-grid pagination-infinite"><div class="portfolio-loader" style="display: none;"><div>
-	</div></div><div class="sort_width_container clearfix">
-
-	<div class="ajax-container">
-	<div class="ajax-controls"><a class="close-ajax-container" href="#">
-	<i class="dashicons dashicons-no"></i></a></div></div>
+?>	
+	<a class="close-ajax-container" name="top" href="#"><i class="dashicons dashicons-no"></i></a>
+	<div class="profile ajax_project clearfix project_position_right" style="display:none;">
+	
+	<div class="project_media"><div class="project_flexslider">
+	<div class="flex-viewport" style="overflow: hidden; position: relative; height: 261px;">
+	<ul class="project_slides" style="width: 200%; margin-left: 0px;">
+	<li class="project_slide flex-active-slide" style="width: 348px; float: left; display: block;">
+	<div class="primagetjie"><img alt="" src="#" draggable="false"></div>
+	</li>
+	</ul>
+	</div>
+	<ul class="flex-direction-nav">
+	<li>
+	  <a href="#" class="flex-prev flex-disabled" tabindex="-1"><i class="dashicons dashicons-arrow-left-alt2"></i></a>
+	</li>
+	<li>
+	  <a href="#" class="flex-next flex-disabled" tabindex="-1"><i class="dashicons dashicons-arrow-right-alt2"></i></a>
+	</li>
+	</ul>
+	</div>
+	</div>
+	
+	<div class="project_description">
+	
+	<h2 class="title">Lorum Ipsum</h2>
+	
+	<div style="clear:both;" class="excerpt">Lorum Ipsum</div>
+	
+	<div class="votingbar" style="display:none;clear:both;margin-top: 15px;"> <div style="opacity:1;display:none;" id="tooltip1" class="tooltip">Please confirm your vote <br> <a class="cancel" onclick="jQuery('#tooltip1').hide();jQuery('.ex').hide()">Cancel</a><a class="confirm cbronze" href="#">Confirm</a><div class="arrow1"></div><div class="ex1 ex"><img src="/wp-content/themes/scribe/img/exclamation.png"></div></div> <div style="opacity:1;display:none;" id="tooltip2" class="tooltip">Please confirm your vote <br> <a class="cancel" onclick="jQuery('#tooltip2').hide();jQuery('.ex').hide()">Cancel</a><a class="confirm csilver" href="#">Confirm</a><div class="arrow2"></div><div class="ex2 ex"><img src="/wp-content/themes/scribe/img/exclamation.png"></div></div> <div style="opacity:1;display:none;" id="tooltip3" class="tooltip">Please confirm your vote <br> <a class="cancel" onclick="jQuery('#tooltip3').hide();jQuery('.ex').hide()">Cancel</a><a class="confirm cgold" href="#">Confirm</a><div class="arrow3"></div><div class="ex3 ex"><img src="/wp-content/themes/scribe/img/exclamation.png"></div></div><div onclick="jQuery('.tooltip').hide();jQuery('#tooltip1').show();jQuery('.ex').hide();jQuery('.ex1').show();" class="vbuttons"><span class="checkmark2"><div class="circle2"></div><div style="border:15px solid #CA633A;" class="circle"></div> <div class="stem"></div> <div class="kick"></div></span> Bronze</div> <div onclick="jQuery('.tooltip').hide();jQuery('#tooltip2').show();jQuery('.ex').hide();jQuery('.ex2').show();" class="vbuttons"><span class="checkmark2"><div class="circle2"></div><div style="border:15px solid #B5C2CB;" class="circle"></div> <div class="stem"></div> <div class="kick"></div></span> Silver</div> <div onclick="jQuery('.tooltip').hide();jQuery('#tooltip3').show();jQuery('.ex').hide();jQuery('.ex3').show();" class="vbuttons"><span class="checkmark2"><div class="circle2"></div><div style="border:15px solid #F7DA00;" class="circle"></div> <div class="stem"></div> <div class="kick"></div></span> Gold</div> <br></div> </div></div>
 	
 	<?php 
 	
@@ -222,7 +246,7 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 		)); 
 		?>
 		
-		<div style="margin: -4px; position: relative; height: auto; opacity: 1;"  data-post-count='1000' data-columns='5' data-effect="effect-2" class="portfolio-grid-container isotope" id="portfolio-grid-frame1">
+		<div style="margin: -4px; position: relative; height: auto; opacity: 1;">
 		
 		<?php
 		while ( $loop->have_posts() ) : $loop->the_post(); 
@@ -266,12 +290,29 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 			}
 	?>	
  
-	<div class="portfolio-entry portfolio-overlay partners_sort portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img alt="<?php echo $yourname[0]; ?> <?php echo $surname[0] ?>" src="<?php echo $image; ?>" class="entry-image img1"><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay <?php echo $display;?>" <?php echo $overdisplay;?>><div class="dashicons dashicons-plus"></div></div></div></div>
+	<div class="portfolio-entry portfolio-overlay partners_sort portfolio-animated" id="entry-<?php echo $post_id; ?>"><?php echo $place; ?><div class="portfolio-image project-load portfolio-animate effect-2" data-post-id="<?php echo $post_id; ?>" data-permalink="#" style="animation-delay: 0s;"><img src="<?php echo $image; ?>" class="entry-image img1"><div class="names"><?php echo $yourname[0]; ?> <?php echo $surname[0] ?></div><div class="img-overlay <?php echo $display;?>" <?php echo $overdisplay;?>><div class="dashicons dashicons-plus"></div></div></div></div>
 
+<script type="text/javascript">
+	jQuery( document ).ready(function() {
 
+		jQuery('#entry-<?php echo $post_id; ?>').click(function () {
+			jQuery('html, body').animate({ scrollTop: 300 }, "slow");
+			jQuery('.profile').hide().fadeIn(3000);	
+			jQuery('.title').text("<?php echo str_replace('"', '', $yourname[0]); ?> <?php echo str_replace('"', '', $surname[0]); ?>").html();	
+			jQuery('.excerpt').text("<?php echo str_replace('"', '', $my_excerpt); ?>").html();	
+			jQuery('.primagetjie img').attr("src", '<?php echo $image; ?>');	
+			jQuery('.cbronze').attr("href", '/vote/?id=<?php echo $_GET['id']; ?>&bronze_id=<?php echo $post_id; ?>');	
+			jQuery('.csilver').attr("href", '/vote/?id=<?php echo $_GET['id']; ?>&silver_id=<?php echo $post_id; ?>');	
+			jQuery('.cgold').attr("href", '/vote/?id=<?php echo $_GET['id']; ?>&gold_id=<?php echo $post_id; ?>');	
+		
+		});
+		
+	});
+</script>	
 	<?php endwhile; wp_reset_query(); ?>
-	
-	</div></div></div></div></div></div></div>
+	</div>
+	</div>
+	</div>
 	</p>
 	
 </div>
@@ -300,10 +341,7 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 	 </div> 
 
         </div>
-
-
-		
-		
+	
 </div></div>
 		
 <footer id="fill" style="background:#000;">
@@ -335,10 +373,8 @@ $wpdb->query( "DELETE FROM wp_votes WHERE comedy_id = " . $_GET['id'] . " AND vo
 </footer>
 		
 <?php wp_footer(); ?>
-<script type="text/javascript" src="<?php echo plugins_url( 'wp-comics-custom/wp-comics-custom/js/voting-page.js' ); ?>"></script>
 <script type="text/javascript">
-jQuery(function() {
-		
+jQuery( document ).ready(function() {
 <?php
 if ($_GET['success'] == 'yes') {
 ?>
