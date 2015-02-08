@@ -38,40 +38,53 @@ else {
 
 <body <?php body_class(); ?>>
 	 	
-	 <div class="loader"></div>
-	 <div id="main">	        
+<?php
+ /**
+$args = array('post_type' => 'wp-custom', 'name' => 'login');
 
-		<div style="width:390px;margin:35px auto 25px auto;padding:0px;">
-		<h3 style="color:#3886a5;margin:0;padding:10px 0 10px 0;font-size:26px;">Custom Login Centre</h3>
-			<form name="loginform" id="loginform" action="<?php echo get_option('home'); ?>/wp-login.php" method="post">
-				<p style="padding-left:5px!important;text-align:left!important;">
-					<label>Username<br />
-					<input type="text" name="log" id="user_login" class="input" value="" size="60" />
-					</label>
+$loop = new WP_Query( $args );
+ 
 
-					<label>
-					Password<br />
-					<input type="password" name="pwd" id="user_pass" class="input" value="" size="60" style="margin:0!important;" />
-					<a href="<?php echo get_option('home'); ?>/lostpassword" title="Password Lost and Found">Forget your password?</a>
-					</label>
-				</p>
+while ( $loop->have_posts() ) : $loop->the_post();
+?>
+<div class="entry-content">
+<?php the_content(); ?>
+</div>
+<?php endwhile;
+**/
+?>
+
+
+<div style="width:390px;margin:35px auto 25px auto;padding:0px;">
+<h3 style="color:#3886a5;margin:0;padding:10px 0 10px 0;font-size:26px;">Custom Login Centre</h3>
+<form name="loginform" id="loginform" action="<?php echo get_option('home'); ?>/wp-login.php" method="post">
+<p style="padding-left:5px!important;text-align:left!important;">
+<label>Username<br />
+<input type="text" name="log" id="user_login" class="input" value="" size="60" />
+</label>
+<label>Password<br />
+<input type="password" name="pwd" id="user_pass" class="input" value="" size="60" style="margin:0!important;" />
+<a href="<?php echo get_option('home'); ?>/lostpassword" title="Password Lost and Found">Forget your password?</a>
+</label>
+</p>
 				
-				<? //This can be replaced with checkbox. ?>
-				<input name="rememberme" type="hidden" id="rememberme" value="forever" />
+<? //This can be replaced with checkbox. ?>
+<input name="rememberme" type="hidden" id="rememberme" value="forever" />
+<p class="submit">
+<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" style="width:200px;" />
 
-				<p class="submit">
-					<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" style="width:200px;" />
-					<input type="hidden" name="redirect_to" value="<?php echo get_option('home'); ?>/register" />
-					<input type="hidden" name="testcookie" value="1" />
-					<p><a href="<?php echo get_option('home'); ?>/register" title="Register">Not registered? Register here</a></p>
-				</p>
-			</form>
-        </div>
+<input type="hidden" name="redirect_to" value="<?php echo get_option('home'); ?>/register" />
 
-	</div>
-		
-	</div>
-		
+<input type="hidden" name="testcookie" value="1" />
+
+<p>
+<a href="<?php echo get_option('home'); ?>/register" title="Register">Not registered? Register here</a>
+</p>
+
+</p>
+</form>
+</div>
+
 <?php wp_footer(); ?>
 
 	<script type="text/javascript">
