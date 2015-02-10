@@ -439,3 +439,6 @@ h2.title {
   display: block !important;
   padding: 10px;
 }
+.ajax-loader {
+  background: #fff!important;
+}
