@@ -44,7 +44,7 @@ if(!class_exists('WP_Custom_Login'))
                 $this->templates = array(
                         'wp-custom-login/templates/page-custom-login.php'     		=> 'Custom Login',
                         'wp-custom-login/templates/page-custom-password.php'     	=> 'Custom Forgotten Password',
-                );
+                ); 
 		                // Create the key used for the themes cache
                 $cache_key = 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() );
 
@@ -231,7 +231,6 @@ if(!class_exists('L_Custom_Templates'))
 	
 } // END if(!class_exists('L_Custom_Templates'))
 
-		
 add_filter( 'page_template', 'change_page_template' );
 function change_page_template( )
 {
@@ -242,7 +241,7 @@ function change_page_template( )
         $page_template = dirname(__FILE__) . '/templates/page-custom-password.php';
     }	
     return $page_template;
-}	
+}
 
 /**
 
